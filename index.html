@@ -1,1 +1,1976 @@
-<!-- placeholder -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCF · Rep Resource Hub</title>
+<style>
+:root{--navy:#0d1b3e;--navy-mid:#1a2f5e;--gold:#c8a94a;--gold-light:#f0d080;--bg:#f4f5f8;--card:#ffffff;--text:#1a1a2e;--text-muted:#6b7280;--border:#e5e7eb;--green:#10b981;--blue:#3b82f6;--purple:#8b5cf6;--orange:#f59e0b;--red:#ef4444;--radius:10px;--shadow:0 1px 4px rgba(0,0,0,0.08),0 4px 16px rgba(0,0,0,0.04);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.share-banner{background:#fef3c7;border-bottom:2px solid #fde68a;padding:10px 32px;display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:#92400e;line-height:1.5;}
+.share-banner strong{font-weight:700;}
+.share-banner .sb-close{margin-left:auto;cursor:pointer;font-size:18px;line-height:1;color:#92400e;opacity:.7;flex-shrink:0;padding:0 4px;}
+.share-banner .sb-close:hover{opacity:1;}
+.header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.25);}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-mark{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:var(--navy);}
+.logo-text{color:#fff;font-size:17px;font-weight:700;}
+.logo-sub{color:rgba(255,255,255,0.5);font-size:12px;}
+.header-right{display:flex;align-items:center;gap:12px;}
+.search-wrap{position:relative;}
+.search-wrap input{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:8px 14px 8px 36px;color:#fff;font-size:13px;width:240px;outline:none;transition:background .2s,border .2s;}
+.search-wrap input::placeholder{color:rgba(255,255,255,0.45);}
+.search-wrap input:focus{background:rgba(255,255,255,0.18);border-color:var(--gold);}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.5;font-size:14px;}
+.badge-date{color:rgba(255,255,255,0.5);font-size:12px;}
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:24px 32px 0;}
+.kpi{background:var(--card);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);border-top:3px solid transparent;transition:transform .15s;}
+.kpi:hover{transform:translateY(-2px);}
+.kpi.c-gold{border-top-color:var(--gold);}.kpi.c-blue{border-top-color:var(--blue);}.kpi.c-green{border-top-color:var(--green);}.kpi.c-purple{border-top-color:var(--purple);}.kpi.c-orange{border-top-color:var(--orange);}
+.kpi-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:6px;}
+.kpi-val{font-size:28px;font-weight:800;color:var(--text);line-height:1;}
+.kpi-desc{font-size:12px;color:var(--text-muted);margin-top:4px;}
+.tabs-wrap{padding:24px 32px 0;}
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--border);overflow-x:auto;}
+.tab{padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;border-radius:8px 8px 0 0;border:none;background:transparent;color:var(--text-muted);transition:all .2s;position:relative;top:2px;white-space:nowrap;}
+.tab:hover{color:var(--navy);background:rgba(13,27,62,0.05);}
+.tab.active{color:var(--navy);background:var(--card);border:2px solid var(--border);border-bottom:2px solid var(--card);}
+.tab .tc{display:inline-block;background:var(--navy);color:#fff;border-radius:10px;font-size:10px;padding:1px 6px;margin-left:6px;font-weight:700;}
+.tab.active .tc{background:var(--gold);color:var(--navy);}
+.content{padding:24px 32px 40px;}
+.panel{display:none;}.panel.active{display:block;}
+.sec-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text-muted);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-bottom:28px;}
+.rc{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;transition:box-shadow .2s,transform .15s;}
+.rc:hover{box-shadow:0 4px 20px rgba(0,0,0,0.1);transform:translateY(-2px);}
+.rc-head{padding:14px 16px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;user-select:none;}
+.rc-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.rc-icon.email{background:#dbeafe;}.rc-icon.doc{background:#fef3c7;}.rc-icon.product{background:#d1fae5;}.rc-icon.tool{background:#ede9fe;}.rc-icon.training{background:#fee2e2;}.rc-icon.pitch{background:#fce7f3;}
+.rc-meta{flex:1;min-width:0;}
+.rc-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.rc-sub{font-size:12px;color:var(--text-muted);}
+.rc-tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-top:5px;}
+.tag-email{background:#dbeafe;color:#1d4ed8;}.tag-doc{background:#fef3c7;color:#92400e;}.tag-product{background:#d1fae5;color:#065f46;}.tag-tool{background:#ede9fe;color:#6d28d9;}.tag-training{background:#fee2e2;color:#991b1b;}.tag-pitch{background:#fce7f3;color:#9d174d;}
+.rc-chevron{color:var(--text-muted);font-size:12px;transition:transform .2s;margin-top:2px;}
+.rc.open .rc-chevron{transform:rotate(180deg);}
+.rc-body{display:none;padding:0 16px 16px;border-top:1px solid var(--border);}
+.rc.open .rc-body{display:block;}
+.rc-body .cb{background:#f8f9fb;border-radius:8px;padding:14px;font-size:12.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word;margin:10px 0 0;color:#374151;border:1px solid #e5e7eb;font-family:'SF Mono','Fira Mono',monospace;}
+.rc-body .readable{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;line-height:1.8;}
+.copy-btn{display:inline-flex;align-items:center;gap:5px;margin-top:10px;padding:6px 14px;background:var(--navy);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s;}
+.copy-btn:hover{background:var(--navy-mid);}.copy-btn.copied{background:var(--green);}
+.link-btn{display:inline-flex;align-items:center;gap:5px;margin-top:10px;margin-left:8px;padding:6px 14px;background:transparent;color:var(--navy);border:1.5px solid var(--navy);border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .15s;}
+.link-btn:hover{background:var(--navy);color:#fff;}
+.checklist{list-style:none;margin:10px 0 0;}
+.checklist li{padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
+.checklist li:last-child{border-bottom:none;}
+.checklist li::before{content:'□';color:var(--gold);font-size:14px;flex-shrink:0;margin-top:1px;}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:28px;}
+.product-pill{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--text);box-shadow:var(--shadow);transition:all .15s;cursor:pointer;}
+.product-pill:hover{border-color:var(--gold);background:#fffdf0;transform:translateY(-1px);}
+.product-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.resource-table{width:100%;border-collapse:collapse;font-size:13px;}
+.resource-table thead th{text-align:left;padding:10px 14px;background:#f8f9fb;border-bottom:2px solid var(--border);color:var(--text-muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.resource-table tbody td{padding:11px 14px;border-bottom:1px solid var(--border);}
+.resource-table tbody tr:hover{background:#f8f9fb;}
+.resource-table tbody tr:last-child td{border-bottom:none;}
+.type-badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+.open-link{color:var(--blue);text-decoration:none;font-weight:600;}
+.open-link:hover{text-decoration:underline;}
+.intake-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.intake-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);padding:16px;}
+.intake-title{font-size:14px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.intake-num{font-size:11px;color:var(--text-muted);}
+ol.il{padding-left:16px;}
+ol.il li{font-size:12.5px;line-height:1.7;color:#374151;padding:2px 0;}
+/* ROUTER */
+.router-wrap{display:grid;grid-template-columns:380px 1fr;gap:20px;align-items:start;}
+.router-form{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);padding:20px;}
+.fg{margin-bottom:12px;}
+.fg label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);display:block;margin-bottom:5px;}
+.fg input,.fg select,.fg textarea{width:100%;border:1.5px solid var(--border);border-radius:7px;padding:8px 11px;font-size:13px;color:var(--text);background:#fff;outline:none;transition:border-color .2s;font-family:inherit;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);}
+.run-btn{width:100%;padding:10px;background:var(--navy);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;transition:background .15s;margin-top:6px;}
+.run-btn:hover{background:var(--navy-mid);}
+.router-results{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);padding:20px;min-height:300px;}
+.match-card{border-radius:8px;padding:14px 16px;margin-bottom:10px;border:1.5px solid;}
+.match-card:last-child{margin-bottom:0;}
+.match-strong{border-color:#10b981;background:#f0fdf4;}
+.match-possible{border-color:#f59e0b;background:#fffbeb;}
+.match-explore{border-color:#6366f1;background:#f5f3ff;}
+.match-no{border-color:#e5e7eb;background:#f9fafb;opacity:.6;}
+.match-header{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+.match-name{font-size:13px;font-weight:700;color:var(--text);}
+.match-score{font-size:11px;font-weight:700;color:var(--text-muted);}
+.mbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+.mb-g{background:#d1fae5;color:#065f46;}.mb-y{background:#fef3c7;color:#92400e;}.mb-p{background:#ede9fe;color:#5b21b6;}.mb-gr{background:#f3f4f6;color:#6b7280;}
+.match-note{font-size:11.5px;color:var(--text-muted);margin-bottom:7px;font-style:italic;}
+.match-pitch{font-size:12px;color:#374151;margin-bottom:7px;line-height:1.6;}
+.crit-row{display:flex;flex-wrap:wrap;gap:8px;}
+.crit{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text-muted);}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0;}
+.dot-g{background:var(--green);}.dot-r{background:var(--red);}.dot-y{background:var(--orange);}.dot-p{background:var(--purple);}
+.router-flag{background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:10px 14px;font-size:12.5px;color:#92400e;margin-bottom:14px;display:flex;gap:8px;align-items:flex-start;}
+.router-empty{color:var(--text-muted);font-size:13px;padding:60px 0;text-align:center;}
+/* SCRIPT BOX */
+.script-box{background:#f8f9fb;border:1px solid var(--border);border-radius:8px;padding:14px;margin:8px 0;font-size:13px;line-height:1.75;color:#374151;border-left:3px solid var(--gold);}
+.script-lbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.tip-note{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:10px 13px;font-size:12.5px;color:#92400e;margin-top:12px;line-height:1.6;}
+.q-table{width:100%;border-collapse:collapse;margin:10px 0 0;}
+.q-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-size:12.5px;vertical-align:top;}
+.q-table tr:last-child td{border-bottom:none;}
+.q-table tr:hover td{background:#f8f9fb;}
+.q-num{color:var(--gold);font-weight:800;width:28px;}
+.q-text{color:var(--text);}
+.q-note{color:var(--text-muted);font-size:11px;display:block;margin-top:2px;}
+.tier-row{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);}
+.tier-row:last-child{border-bottom:none;}
+.tier-num{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.t1{background:#fef3c7;}.t2{background:#dbeafe;}.t3{background:#fee2e2;}
+.tier-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.tier-p{font-size:12.5px;color:var(--text-muted);line-height:1.6;}
+/* TRAINING */
+.train-section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:14px;}
+.train-head{padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer;background:#f8f9fb;user-select:none;}
+.train-head:hover{background:#f1f2f4;}
+.train-icon{font-size:20px;}
+.train-title{font-size:14px;font-weight:700;color:var(--text);}
+.train-sub{font-size:12px;color:var(--text-muted);margin-top:1px;}
+.train-body{display:none;padding:16px 18px;font-size:13px;color:#374151;line-height:1.75;border-top:1px solid var(--border);}
+.train-body.open{display:block;}
+.train-body h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);margin:14px 0 8px;}
+.train-body h4:first-child{margin-top:0;}
+.train-body p{margin-bottom:10px;}
+.train-body ul{padding-left:18px;margin-bottom:10px;}
+.train-body ul li{margin-bottom:4px;}
+.train-body .highlight{background:#fffbeb;border-left:3px solid var(--gold);padding:10px 13px;border-radius:0 8px 8px 0;margin:10px 0;font-style:italic;color:#92400e;}
+/* SCHED TABLE */
+.sched-table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0 0;}
+.sched-table td{padding:8px 12px;border-bottom:1px solid var(--border);}
+.sched-table tr:last-child td{border-bottom:none;}
+.t-time{color:var(--gold);font-weight:700;white-space:nowrap;width:90px;}
+.t-power{background:#fffdf0;}
+/* INNER ACCORDION */
+.inner-acc{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:10px;}
+.ia-head{padding:10px 13px;cursor:pointer;background:#f8f9fb;border-bottom:1px solid var(--border);font-size:13px;font-weight:600;display:flex;justify-content:space-between;user-select:none;}
+.ia-head:hover{background:#f1f2f4;}
+.ia-head:last-of-type{border-bottom:none;}
+.ia-body{display:none;padding:10px 13px;font-size:12.5px;color:#374151;line-height:1.7;border-bottom:1px solid var(--border);}
+.ia-body.open{display:block;}
+/* TOOLS PAGE */
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;}
+.tool-card h3{font-size:14px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.figure-tag{display:inline-block;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;margin:3px 3px 0 0;}
+.hidden{display:none!important;}
+mark{background:rgba(200,169,74,0.3);border-radius:2px;padding:0 2px;}
+.footer{text-align:center;padding:16px 32px;font-size:11px;color:var(--text-muted);border-top:1px solid var(--border);}
+@media(max-width:900px){.kpi-row{grid-template-columns:repeat(2,1fr);}.intake-grid,.router-wrap,.tools-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){.header{padding:0 16px;}.kpi-row,.tabs-wrap,.content{padding-left:16px;padding-right:16px;}.cards{grid-template-columns:1fr;}.search-wrap input{width:160px;}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <div class="logo-mark">MCF</div>
+    <div><div class="logo-text">Motor City Funding</div><div class="logo-sub">Rep Resource Hub · Internal Use Only</div></div>
+  </div>
+  <div class="header-right">
+    <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" id="globalSearch" placeholder="Search resources…" oninput="filterAll(this.value)"></div>
+    <span class="badge-date" id="todayDate"></span>
+  </div>
+</div>
+
+<div class="share-banner" id="shareBanner">
+  <span>⚠️</span>
+  <div><strong>Sharing this hub?</strong> Always zip and share the <strong>entire parent folder</strong> — the HTML file depends on the <code style="background:rgba(0,0,0,0.07);padding:1px 5px;border-radius:3px;">PMF Figure Docs/</code> folder and PDF files stored alongside it. Sending the HTML file alone will break all PDF links.</div>
+  <span class="sb-close" onclick="document.getElementById('shareBanner').style.display='none'" title="Dismiss">×</span>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi c-gold"><div class="kpi-label">Products</div><div class="kpi-val">20</div><div class="kpi-desc">Financing programs</div></div>
+  <div class="kpi c-blue"><div class="kpi-label">Templates</div><div class="kpi-val">15</div><div class="kpi-desc">Email &amp; text scripts</div></div>
+  <div class="kpi c-green"><div class="kpi-label">Doc Checklists</div><div class="kpi-val">20</div><div class="kpi-desc">Per product</div></div>
+  <div class="kpi c-purple"><div class="kpi-label">Pitch Frameworks</div><div class="kpi-val">5</div><div class="kpi-desc">Scripts &amp; objections</div></div>
+  <div class="kpi c-orange"><div class="kpi-label">Lender Partners</div><div class="kpi-val">35+</div><div class="kpi-desc">Verified guidelines</div></div>
+</div>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('pitches',this)">🎙️ Pitches <span class="tc">5</span></button>
+    <button class="tab" onclick="switchTab('router',this)">⚡ Merchant Router</button>
+    <button class="tab" onclick="switchTab('templates',this)">✉️ Templates <span class="tc">15</span></button>
+    <button class="tab" onclick="switchTab('intake',this)">📝 Deal Intake <span class="tc">7</span></button>
+    <button class="tab" onclick="switchTab('docs',this)">📋 Doc Checklists <span class="tc">20</span></button>
+    <button class="tab" onclick="switchTab('products',this)">💼 Products <span class="tc">20</span></button>
+    <button class="tab" onclick="switchTab('training',this)">🎓 Training</button>
+    <button class="tab" onclick="switchTab('tools',this)">🛠 Tools</button>
+    <button class="tab" onclick="switchTab('leadsources',this)">🗂️ Lead Sources <span class="tc">10</span></button>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══ PITCHES ═══ -->
+<div class="panel active" id="panel-pitches">
+  <div class="sec-title">🎙️ Call Scripts &amp; Pitch Frameworks</div>
+  <div class="cards" id="pitchCards">
+
+    <div class="rc" id="pi1"><div class="rc-head" onclick="toggleCard('pi1')"><div class="rc-icon pitch">📞</div><div class="rc-meta"><div class="rc-title">Call Openers — Cold, Warm &amp; HELOC</div><div class="rc-sub">How to open every type of call</div><span class="rc-tag tag-pitch">Openers</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Tone First — Always</div>
+      <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:10px;">Talk slower (150–170 wpm). Talk louder than feels natural. Use pauses — silence is pressure. Mirror the client's pace and energy.</p>
+      <div class="script-lbl">Cold Outbound</div>
+      <div class="script-box">"Hey [Name], this is [Your Name] calling from Motor City Funding — business financing brokerage out of Detroit. Reason I'm reaching out is [business name] may qualify for a financing program we have — can I grab 60 seconds?"</div>
+      <p style="font-size:11.5px;color:var(--text-muted);margin-top:5px;">If they say yes — stop talking, start qualifying immediately.</p>
+      <div class="script-lbl" style="margin-top:12px;">Inbound / Warm Lead</div>
+      <div class="script-box">"Hey [Name], this is [Your Name] from Motor City Funding — you reached out about financing options for your business. I wanted to jump on while you're fresh — can I ask a couple quick questions to see what you qualify for?"</div>
+      <p style="font-size:11.5px;color:var(--text-muted);margin-top:5px;">Call within 5 minutes. Every minute you wait, they cool off.</p>
+      <div class="script-lbl" style="margin-top:12px;">HELOC Opener — Use Whenever Property Comes Up</div>
+      <div class="script-box">"One more quick question — do you own your home or any other real estate? Because we have a program that lets business owners pull from their home equity at a fraction of the rate of most business products. A lot of our clients use it for working capital, equipment, or paying off higher-rate debt. Is that worth 60 seconds?"</div>
+      <div class="tip-note">💡 <strong>Option-Based Questions:</strong> Never ask "do you want to move forward?" Ask "would you rather send the application first or the bank statements?" Give two doors both marked FORWARD.</div>
+    </div></div>
+
+    <div class="rc" id="pi2"><div class="rc-head" onclick="toggleCard('pi2')"><div class="rc-icon pitch">❓</div><div class="rc-meta"><div class="rc-title">The 12 Qualifying Questions</div><div class="rc-sub">Work conversationally — every answer feeds your product match</div><span class="rc-tag tag-pitch">Discovery</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <table class="q-table">
+        <tr><td class="q-num">1</td><td class="q-text">Are you getting calls from MCA brokers pushing high-interest short-term advances?<span class="q-note">Differentiates MCF; opens conversation about past experience.</span></td></tr>
+        <tr><td class="q-num">2</td><td class="q-text">Do you have a line of credit?<span class="q-note">Checks for existing revolving credit — enough? Room for more?</span></td></tr>
+        <tr><td class="q-num">3</td><td class="q-text">Do you have any current loans on the business?<span class="q-note">Identifies MCAs, term loans, SBA — feeds debt schedule conversation.</span></td></tr>
+        <tr><td class="q-num">4</td><td class="q-text">Are you interested in debt consolidation?<span class="q-note">Opens reverse consolidation if they have multiple MCA positions.</span></td></tr>
+        <tr><td class="q-num">5</td><td class="q-text">Have you ever borrowed with the SBA?<span class="q-note">If yes: experience? If no: sets up SBA pitch.</span></td></tr>
+        <tr><td class="q-num">6</td><td class="q-text">How much did you gross last year?<span class="q-note">Core revenue qualifier. Annual ÷ 12 = monthly baseline.</span></td></tr>
+        <tr><td class="q-num">7</td><td class="q-text">What is your FICO score?<span class="q-note">Primary routing question. 675+ → SBA. 650+ → SBA 504/CRE. 625+ → LOC. 620+ → HELOC. Below 620 → Credit Servicing.</span></td></tr>
+        <tr><td class="q-num">8</td><td class="q-text">Do you own any residential or commercial property?<span class="q-note">Unlocks HELOC, DSCR, CRE. Follow-up: value, mortgage balance, rented?</span></td></tr>
+        <tr><td class="q-num">9</td><td class="q-text">Do you have any plans for expansion or a major capital need?<span class="q-note">Surfaces use of funds and creates urgency.</span></td></tr>
+        <tr><td class="q-num">10</td><td class="q-text">Have you filed your 2024–2025 tax returns?<span class="q-note">Needed for SBA, HELOC, CRE. Flags timeline issue if not filed.</span></td></tr>
+        <tr><td class="q-num">11</td><td class="q-text">Do you accept credit cards?<span class="q-note">Identifies MCA merchant processing eligibility and revenue stream.</span></td></tr>
+        <tr><td class="q-num">12</td><td class="q-text">Do you plan on purchasing equipment or real estate?<span class="q-note">Opens equipment financing, SBA 504, or CRE. Ask about invoice amount and purpose.</span></td></tr>
+      </table>
+    </div></div>
+
+    <div class="rc" id="pi3"><div class="rc-head" onclick="toggleCard('pi3')"><div class="rc-icon pitch">🏆</div><div class="rc-meta"><div class="rc-title">Tiered Close System</div><div class="rc-sub">Always aim for Tier 1. Never stop below Tier 3.</div><span class="rc-tag tag-pitch">Close</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body" style="padding-top:10px;">
+      <div class="tier-row"><div class="tier-num t1">🏆</div><div><div class="tier-name">Tier 1 — Full Close</div><div class="tier-p">Application + Last 4 Months Bank Statements (+ Debt Schedule if applicable). Push for this every call.<br><em>"Based on what you've told me you look like a strong [PRODUCT] candidate. I need your application and the last 4 months of bank statements. Can you send those in the next hour?"</em></div></div></div>
+      <div class="tier-row"><div class="tier-num t2">📄</div><div><div class="tier-name">Tier 2 — Partial Close</div><div class="tier-p">Application OR bank statements. Either one is forward motion.<br><em>"Which is easier right now — knocking out the application or pulling the last 4 months of statements?"</em></div></div></div>
+      <div class="tier-row"><div class="tier-num t3">📅</div><div><div class="tier-name">Tier 3 — The Floor</div><div class="tier-p">Specific date and time locked in. Text immediately + follow-up email with unique subject line, app link, Calendly link.<br><em>Text: "Hey [First Name], [Your Name] from Motor City Funding — text me back so you've got my number saved."</em></div></div></div>
+      <div class="tip-note">🚫 <strong>NON-NEGOTIABLE:</strong> You do not end a call without a next step. Application, bank statements, or a locked calendar invite. Every. Single. Call.</div>
+    </div></div>
+
+    <div class="rc" id="pi4"><div class="rc-head" onclick="toggleCard('pi4')"><div class="rc-icon pitch">🛡️</div><div class="rc-meta"><div class="rc-title">Objection Handling Guide</div><div class="rc-sub">Acknowledge → Address → Ask. Stay in the loop.</div><span class="rc-tag tag-pitch">Objections</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <p style="font-size:12px;color:var(--text-muted);margin:10px 0 8px;">Every objection = a request for more confidence or information. Respond with positive tone and a follow-up question. Agree and redirect — never argue.</p>
+      <div class="inner-acc">
+        <div class="ia-head" onclick="toggleIA(this)">"I've dealt with guys like you before." <span>▾</span></div>
+        <div class="ia-body">Acknowledge immediately. <em>"I completely understand — there are a lot of brokers pushing high-rate cash advances. That's not what we do."</em> Differentiate: MCF offers SBA, HELOCs, LOCs, CRE — not just MCAs. Ask: <em>"Have you ever borrowed through the SBA or gotten a line of credit?"</em> — resets the conversation. Skeptical merchants who get comfortable convert at high rates.</div>
+        <div class="ia-head" onclick="toggleIA(this)">"Now isn't a good time." <span>▾</span></div>
+        <div class="ia-body">Ask what specifically makes now bad timing. <em>"Getting the docs ready doesn't commit you to anything — it just keeps the option open."</em> If they still won't move — BAMFAM.</div>
+        <div class="ia-head" onclick="toggleIA(this)">"The rates are too high." <span>▾</span></div>
+        <div class="ia-body">Ask what rate would work for them. Connect rate to context: what does the capital enable? What does inaction cost? If comparing to a bank: <em>"How long have you been waiting on the bank?"</em></div>
+        <div class="ia-head" onclick="toggleIA(this)">"I need to think about it." <span>▾</span></div>
+        <div class="ia-body">Ask what specifically they want to think through — name the concern, address it. <em>"Sending the docs doesn't commit you to anything."</em> Still won't move — BAMFAM.</div>
+        <div class="ia-head" onclick="toggleIA(this)">"Send me more information." <span>▾</span></div>
+        <div class="ia-body">Offer to walk through key points now — it'll make the email more useful. If they insist: send it, then immediately BAMFAM. Email = bridge to next call, not the close. Unique subject line. One product, three bullet points, one CTA.</div>
+        <div class="ia-head" onclick="toggleIA(this)">"How do I know this is legit?" <span>▾</span></div>
+        <div class="ia-body">Take it seriously. Explain MCF briefly: what we do, how we get paid (when they fund), no commitment from submitting an application. Offer references. Slower here is faster overall.</div>
+        <div class="ia-head" onclick="toggleIA(this)">"I don't think I'll get approved." <span>▾</span></div>
+        <div class="ia-body">Ask what the concern is — credit, TIB, revenue? If credit: <em>"We offer credit servicing that can clean that up and get you into better products faster."</em> Turn the objection into discovery. Never let them self-select out without one clarifying question.</div>
+        <div class="ia-head" onclick="toggleIA(this)">"We already have financing." <span>▾</span></div>
+        <div class="ia-body">Ask what they have and how it's working — you may find a gap. If multiple MCAs: reverse consolidation. If genuinely happy: note their info, flag for future call.</div>
+      </div>
+      <div class="tip-note">🔄 <strong>The Loop:</strong> Round 1 — Acknowledge + ask what's behind it. Round 2 — Acknowledge + reframe. Round 3 — Acknowledge + BAMFAM. Top reps handle 10–15 objections on one call without losing composure.</div>
+    </div></div>
+
+    <div class="rc" id="pi5"><div class="rc-head" onclick="toggleCard('pi5')"><div class="rc-icon pitch">📅</div><div class="rc-meta"><div class="rc-title">BAMFAM — Book A Meeting From A Meeting</div><div class="rc-sub">Standard for every call — including the ones you close</div><span class="rc-tag tag-pitch">BAMFAM</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist" style="margin-top:10px;">
+        <li>Confirm next action before hanging up — specific date and time, not "sometime next week"</li>
+        <li>Send Calendly invite immediately after the call</li>
+        <li>Text: "Hey [First Name], [Your Name] from Motor City Funding — text me back so you've got my number saved."</li>
+        <li>Follow-up email with UNIQUE subject line specific to their situation (never "Follow Up")</li>
+        <li>Include app link + Calendly link in every follow-up email</li>
+      </ul>
+      <div class="script-lbl" style="margin-top:14px;">BAMFAM Confirmation Text</div>
+      <div class="script-box">"Hey [First Name], just confirming our call [Day] at [Time] — looking forward to it. [Your Name], Motor City Funding."</div>
+      <div class="tip-note">A deal isn't done until it funds. Between the application and money hitting their account, things happen. Your job is to stay in the deal.</div>
+    </div></div>
+
+  </div>
+</div><!-- /pitches -->
+
+
+<!-- ═══ MERCHANT ROUTER ═══ -->
+<div class="panel" id="panel-router">
+  <div class="sec-title">⚡ Live Merchant Routing Tool</div>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Enter the merchant's profile — get a ranked product list with fair scoring and leeway. Backed by 35+ verified lender guidelines.</p>
+  <div class="router-wrap">
+    <div class="router-form">
+      <div class="sec-title" style="font-size:11px;margin-bottom:14px;">Merchant Profile</div>
+      <div class="fg"><label>Goal in Finance</label>
+        <select id="r-goal" onchange="runRouter()">
+          <option value="">Select goal…</option>
+          <option value="working_capital">Working Capital / Cash Flow</option>
+          <option value="equipment">Equipment Purchase</option>
+          <option value="real_estate">Real Estate Purchase / Refi</option>
+          <option value="expansion">Business Expansion</option>
+          <option value="debt_refi">Debt Consolidation / Payoff MCA</option>
+          <option value="construction">Construction / Build</option>
+          <option value="acquisition">Business Acquisition</option>
+          <option value="cash_out">Cash-Out / Liquidity</option>
+          <option value="credit">Credit Improvement</option>
+        </select>
+      </div>
+      <div class="fg"><label>Time in Business</label>
+        <select id="r-tib" onchange="runRouter()">
+          <option value="">Select…</option>
+          <option value="3">Under 6 months</option>
+          <option value="6">6–12 months</option>
+          <option value="12">1–2 years</option>
+          <option value="24">2–3 years</option>
+          <option value="36">3–5 years</option>
+          <option value="60">5+ years</option>
+        </select>
+      </div>
+      <div class="fg"><label>Monthly Revenue ($)</label><input type="number" id="r-rev" placeholder="e.g. 45000" oninput="runRouter()"></div>
+      <div class="fg"><label>FICO Score</label><input type="number" id="r-fico" placeholder="e.g. 680" oninput="runRouter()"></div>
+      <div class="fg"><label>Assets Available</label>
+        <select id="r-assets" onchange="runRouter()">
+          <option value="">Select…</option>
+          <option value="home_equity">Home equity (primary residence)</option>
+          <option value="investment_prop">Investment / rental property</option>
+          <option value="cre">Commercial real estate</option>
+          <option value="equipment_invoice">Equipment invoice / quote</option>
+          <option value="ar">Accounts receivable / invoices</option>
+          <option value="none">No significant assets</option>
+        </select>
+      </div>
+      <div class="fg"><label>Open Debt Positions</label>
+        <select id="r-debt" onchange="runRouter()">
+          <option value="0">None</option>
+          <option value="1">1 (MCA or term loan)</option>
+          <option value="2">2 positions</option>
+          <option value="3">3+ positions</option>
+        </select>
+      </div>
+      <div class="fg"><label>Business Type / Industry</label>
+        <select id="r-industry" onchange="runRouter()">
+          <option value="">Select…</option>
+          <option value="retail">Retail / E-Commerce</option>
+          <option value="restaurant">Restaurant / Bar / Food Service</option>
+          <option value="construction">Construction / Contractor</option>
+          <option value="medical">Medical / Dental / Healthcare</option>
+          <option value="trucking">Trucking / Transportation</option>
+          <option value="real_estate">Real Estate / Property Investor</option>
+          <option value="auto">Auto Dealer / Auto Services</option>
+          <option value="cannabis">Cannabis / Hemp</option>
+          <option value="professional">Professional Services / B2B</option>
+          <option value="general">General / Other</option>
+        </select>
+      </div>
+      <button class="run-btn" onclick="runRouter()">⚡ Run Routing Analysis</button>
+    </div>
+
+    <div class="router-results" id="routerResults">
+      <div class="router-empty">Enter merchant profile on the left — ranked product matches appear automatically.</div>
+    </div>
+  </div>
+</div><!-- /router -->
+
+
+<!-- ═══ TEMPLATES ═══ -->
+<div class="panel" id="panel-templates">
+  <div class="sec-title">✉️ Email &amp; Text Templates</div>
+  <div class="cards" id="tmplCards">
+
+    <div class="rc" id="t1"><div class="rc-head" onclick="toggleCard('t1')"><div class="rc-icon email">✉️</div><div class="rc-meta"><div class="rc-title">Post-Call Opener — Products Overview</div><div class="rc-sub">First email after any initial call</div><span class="rc-tag tag-email">Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t1c">Hi [First Name],
+
+Nice talking to you today. I look forward to helping you secure capital for [insert topic: growth, working capital, expansion, equipment, or debt restructuring].
+
+Our programs include:
+• SBA 7(a) Loans — up to $5M, 10-year terms, ~9.5% APR
+• SBA 504 — fixed-rate, owner-occupied CRE/equipment, up to $5.5M
+• HELOC (Home Equity Line) — 7–9% APR, up to $750K, funds in under a week
+• Unsecured Business Line of Credit — revolving, no collateral
+• Equipment Financing — up to 100% of asset value
+• MCA / Reverse Consolidation — fast capital or relief from multiple positions
+• DSCR Loans — investment property, no income verification
+• Commercial Real Estate — acquisition, refinance, construction
+• Invoice Factoring — advance on unpaid AR
+
+Please let me know the amount needed and the use of funds — I'll match you to the right program.
+
+Best,
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t1c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t2"><div class="rc-head" onclick="toggleCard('t2')"><div class="rc-icon email">🏠</div><div class="rc-meta"><div class="rc-title">HELOC Follow-Up — Property Owner</div><div class="rc-sub">Merchant owns home or real estate</div><span class="rc-tag tag-email">Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t2c">Subject: Home Equity Financing for [Business Name] — 7–9% APR, Under 1 Week to Fund
+
+Hi [First Name],
+
+Quick follow-up on the HELOC option we discussed.
+
+Since you own property, you may be able to access a revolving line of credit at 7–9% APR — a fraction of the rate on most business products:
+
+• Up to $750K available
+• Based on home equity — not business revenue or tax returns
+• Revolving: draw what you need, pay it down, draw again
+• No traditional appraisal in most cases
+• Funds in under a week
+
+All I need to get started:
+• Property address
+• Rough estimated value
+• Current mortgage balance
+
+→ [APPLICATION LINK]
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t2c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t3"><div class="rc-head" onclick="toggleCard('t3')"><div class="rc-icon email">🏦</div><div class="rc-meta"><div class="rc-title">SBA 7(a) — Qualified Prospect Pitch</div><div class="rc-sub">675+ FICO, 3+ yrs TIB, profitable</div><span class="rc-tag tag-email">Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t3c">Subject: SBA Loan Options for [Business Name] — Up to $5M at Under 10%
+
+Hi [First Name],
+
+Based on our conversation you look like a strong SBA 7(a) candidate — the best financing most small businesses can access.
+
+Why it stands out:
+• Up to $5,000,000
+• 10-year repayment term — lowest monthly payment per dollar borrowed
+• ~9.5% APR — dramatically cheaper than short-term products
+• Working capital, equipment, real estate, acquisition — any business purpose
+• No balloon payments; fully amortizing fixed payment
+
+To get started:
+→ Application (5 min): [APPLICATION LINK]
+→ Last 4 months of bank statements
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t3c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t4"><div class="rc-head" onclick="toggleCard('t4')"><div class="rc-icon email">💳</div><div class="rc-meta"><div class="rc-title">Business Line of Credit — LOC Pitch</div><div class="rc-sub">$25K+/mo revenue, 625+ FICO</div><span class="rc-tag tag-email">Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t4c">Subject: Flexible Line of Credit for [Business Name] — No Daily Payments
+
+Hi [First Name],
+
+Every business needs a cushion. A revolving line of credit gives you access to capital on demand — and you only pay for what you use.
+
+Unlike MCAs, a LOC doesn't lock you into fixed daily debits. It's a safety net the business controls:
+• Draw only when needed
+• Pay interest only on what you draw
+• Revolving — repay and reuse
+• No collateral required
+
+To see what you qualify for:
+→ Application: [APPLICATION LINK]
+→ Last 4 months of bank statements
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t4c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t5"><div class="rc-head" onclick="toggleCard('t5')"><div class="rc-icon email">🔁</div><div class="rc-meta"><div class="rc-title">Post-Call Follow-Up — Personalized</div><div class="rc-sub">After any call; customize to the merchant</div><span class="rc-tag tag-email">Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t5c">Subject: [Specific — e.g. "The $120K Line of Credit for [Business Name]"]
+
+Hi [First Name],
+
+Great speaking with you. Quick summary:
+
+Based on [what they shared], you look like a strong candidate for [PRODUCT] — [one sentence why it fits their situation].
+
+Next step:
+→ Application (5 min): [APPLICATION LINK]
+→ Last 4 months of bank statements: [UPLOAD LINK]
+
+I'll have a preliminary review ready within 24 hours of receiving both.
+
+Our follow-up call is confirmed for [Day + Time].
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t5c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t6"><div class="rc-head" onclick="toggleCard('t6')"><div class="rc-icon email">🔧</div><div class="rc-meta"><div class="rc-title">Equipment Financing — Docs Request</div><div class="rc-sub">Send when equipment deal is ready to move</div><span class="rc-tag tag-email">Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t6c">Hi [First Name],
+
+To move forward with the equipment financing, please send:
+
+• Invoice or quote (make, model, vendor, price)
+• Last 4 months of business bank statements
+• PMF Application: [APPLICATION LINK]
+
+Once I have those I'll review and find the best options for your business.
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t6c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t7"><div class="rc-head" onclick="toggleCard('t7')"><div class="rc-icon email">🏗️</div><div class="rc-meta"><div class="rc-title">SBA 504 / CRE — Owner-Occupied Property</div><div class="rc-sub">Business buying or refinancing property it occupies</div><span class="rc-tag tag-email">Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t7c">Subject: Commercial Real Estate Financing for [Business Name] — Fixed Rates, 10% Down
+
+Hi [First Name],
+
+Based on your situation, you may qualify for an SBA 504 loan — designed specifically for businesses purchasing or refinancing the commercial property they operate in.
+
+Key advantages:
+• Fixed long-term rates (10–25 years)
+• Only 10% down payment (vs. 20–30% conventional)
+• Up to $5.5M
+• Business must occupy 51%+ of the property
+
+To get a quote I'll need:
+• Property address + type
+• Purchase price or estimated value
+• Your business's annual gross revenue
+• PMF Application: [APPLICATION LINK]
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t7c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t8"><div class="rc-head" onclick="toggleCard('t8')"><div class="rc-icon email">🔀</div><div class="rc-meta"><div class="rc-title">MCA Consolidation — Debt Relief Pitch</div><div class="rc-sub">Merchant has 2+ active MCA positions</div><span class="rc-tag tag-email">Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t8c">Subject: Reducing Your Daily MCA Payments — [Business Name]
+
+Hi [First Name],
+
+If you're running multiple cash advances with daily ACH debits pulling from your account, there's a way to consolidate them into one lower payment and free up cash flow.
+
+What we can do:
+• Consolidate 2–3 positions into a single lower daily payment
+• Potentially extend terms to reduce daily burden
+• Or replace MCAs entirely with a line of credit or term loan
+
+To see what's possible, I need:
+• How many active positions? Total daily payments? Total payoffs?
+• Last 4 months bank statements
+• Application: [APPLICATION LINK]
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t8c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t9"><div class="rc-head" onclick="toggleCard('t9')"><div class="rc-icon email">🏢</div><div class="rc-meta"><div class="rc-title">DSCR — Investment Property Pitch</div><div class="rc-sub">Real estate investor with rental property</div><span class="rc-tag tag-email">Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t9c">Subject: Investment Property Financing for [Property/Business Name] — No Income Verification
+
+Hi [First Name],
+
+For your investment property, there's a program that qualifies based on the property's rental income — not your personal income or employment history.
+
+How DSCR loans work:
+• Loan qualified on: Monthly Rent ÷ Monthly Mortgage (PITIA) ≥ 1.0
+• No personal income verification
+• $75K–$1M loan amounts
+• 660+ FICO, 30-year fixed term
+• Works for long-term rentals AND Airbnb/short-term
+
+To get a quote:
+• Property address
+• Monthly rent (current or market)
+• Outstanding mortgage balance
+• Application: [APPLICATION LINK]
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t9c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t10"><div class="rc-head" onclick="toggleCard('t10')"><div class="rc-icon email">📱</div><div class="rc-meta"><div class="rc-title">Text Templates — Post-Call &amp; BAMFAM</div><div class="rc-sub">Send immediately after every call</div><span class="rc-tag tag-email">Text</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Post-Call Save-My-Number Text</div>
+      <div class="cb" id="t10a">Hey [First Name], [Your Name] from Motor City Funding — text me back so you've got my number saved.</div>
+      <button class="copy-btn" onclick="copyText('t10a',this)">📋 Copy</button>
+      <div class="script-lbl" style="margin-top:14px;">BAMFAM Confirmation Text</div>
+      <div class="cb" id="t10b">Hey [First Name], just confirming our call [Day] at [Time]. Looking forward to it — [Your Name], Motor City Funding.</div>
+      <button class="copy-btn" onclick="copyText('t10b',this)">📋 Copy</button>
+      <div class="script-lbl" style="margin-top:14px;">Docs Reminder Text</div>
+      <div class="cb" id="t10c">Hey [First Name], [Your Name] here — just a quick reminder to send over [the application / last 4 months of statements] when you get a chance. Link: [LINK]. Thanks!</div>
+      <button class="copy-btn" onclick="copyText('t10c',this)">📋 Copy</button>
+      <div class="script-lbl" style="margin-top:14px;">Quick HELOC Intro Text</div>
+      <div class="cb" id="t10d">Hey [First Name], [Your Name] from MCF — quick question: do you own your home or any property? I may have a financing option for you at a much lower rate than what most lenders offer. Worth a 5-min call?</div>
+      <button class="copy-btn" onclick="copyText('t10d',this)">📋 Copy</button>
+    </div></div>
+
+    <div class="rc" id="t11"><div class="rc-head" onclick="toggleCard('t11')"><div class="rc-icon email">🏗️</div><div class="rc-meta"><div class="rc-title">Ground Up Construction — Intake Request</div><div class="rc-sub">New build project, vertical or horizontal</div><span class="rc-tag tag-intake">Intake Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t11c">Hi [First Name],
+
+To underwrite your construction project, please provide:
+
+DEAL STRUCTURE
+• Is the property under contract? (Yes/No)
+• Purchase price or land basis
+• Build budget
+• ARV (After Repair/Completion Value)
+• Project description (type, beds/baths, sq ft, stories)
+• Vertical build (above-ground structure) or Horizontal (land dev/site prep)?
+
+BORROWER
+• Borrower name + entity (if closing in entity)
+• Credit score (estimate)
+• Available cash / liquid assets
+• Down payment source
+• Number of completed builds/projects in last 3 years
+• Exit strategy: Sell or Rent
+
+SUPPORTING DOCS
+• Settlement statement for land purchase (if owned)
+• Plans / blueprints (if available)
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t11c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t12"><div class="rc-head" onclick="toggleCard('t12')"><div class="rc-icon email">🏠</div><div class="rc-meta"><div class="rc-title">CRE Acquisition / Refi — Intake Request</div><div class="rc-sub">Purchase or refinance commercial real estate</div><span class="rc-tag tag-intake">Intake Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t12c">Hi [First Name],
+
+To quote your commercial real estate financing, please provide:
+
+• Property address + property type
+• Transaction type: Purchase / Refinance / Cash-Out Refi
+• Purchase price OR estimated value (if refi)
+• Outstanding debt on property (if refi)
+• Is this owner-occupied (your business operates there) or investment?
+• Monthly rent / NOI (if investment)
+• Annual taxes, insurance, HOA (if applicable)
+• Your FICO score
+• Any late payments, bankruptcies, or tax liens in last 47 months?
+• Citizenship / entity information
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t12c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t13"><div class="rc-head" onclick="toggleCard('t13')"><div class="rc-icon email" style="background:#cffafe;">🏭</div><div class="rc-meta"><div class="rc-title">ABL — Asset-Based Lending Intro</div><div class="rc-sub">B2B businesses with strong AR waiting on customer payments</div><span class="rc-tag tag-email">Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t13c">Subject: Revolving Credit Line Against Your Receivables — [Business Name]
+
+Hi [First Name],
+
+If your business is consistently invoicing commercial customers but waiting 30–90 days to get paid, an Asset-Based Lending (ABL) line could be a powerful tool.
+
+Here's how it works:
+• Revolving credit line secured by your accounts receivable
+• Advance up to 90–100% of eligible invoices (aged less than 90 days)
+• Access capital as you invoice — not after you collect
+• Rate: variable (Prime + 2.5%, floor of 6%)
+• Best for businesses with $500K+ annual revenue and strong commercial customer base
+
+Unlike factoring, your customers aren't notified in the same way — this is a true revolving credit facility backed by your AR portfolio.
+
+To get a preliminary review, I'll need:
+• YTD P&L and Balance Sheet
+• A/R Aging report (summary)
+• Sales last 12 months (with customer payment terms)
+• 2023–2024 financials (CPA-prepared if available)
+
+→ Application: [APPLICATION LINK]
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t13c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t14"><div class="rc-head" onclick="toggleCard('t14')"><div class="rc-icon email" style="background:#fef9c3;">🔨</div><div class="rc-meta"><div class="rc-title">Fix &amp; Flip — Intake Request</div><div class="rc-sub">All info needed to quote a fix &amp; flip deal (Lima One)</div><span class="rc-tag tag-intake">Intake Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t14c">Hi [First Name],
+
+To get started on your fix &amp; flip project, please provide the following:
+
+1. Property address
+2. Purchase price
+3. Construction / Rehab budget (estimate is fine)
+4. Are you also wanting to finance your Rehab?
+5. ARV (After Rehab Value)
+6. Current Bed/Bath and Property SF
+7. Changing Bed/Bath and SF? (Yes/No)
+8. Vacancy Status
+9. What work will be done to the property?
+10. Borrower name
+11. Name of entity (if applicable)
+12. Borrower credit score
+13. Available cash / liquid assets
+14. Where will your down payment come from?
+15. How many rehab projects have you COMPLETED ON HUD in the last 3 years?
+16. Occupation(s)
+17. Exit strategy (Sell or Rent)
+18. Preferred borrower phone number
+19. Preferred borrower email
+20. Borrower's Home Address
+21. Citizenship Status
+
+Best,
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t14c',this)">📋 Copy</button></div></div>
+
+    <div class="rc" id="t15"><div class="rc-head" onclick="toggleCard('t15')"><div class="rc-icon email" style="background:#dcfce7;">🏡</div><div class="rc-meta"><div class="rc-title">Residential Mortgage — Intro &amp; Docs Request</div><div class="rc-sub">Purchase, refinance, or cash-out on residential property</div><span class="rc-tag tag-email">Email</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable" id="t15c">Subject: Residential Mortgage Options for [Your Name / Property Address]
+
+Hi [First Name],
+
+Whether you're purchasing, refinancing for a better rate, or pulling equity out for business capital — we can put together a residential mortgage that fits your situation.
+
+Quick overview:
+• Purchase: competitive rates, primary / secondary / investment
+• Rate/Term Refi: lower your rate or payment
+• Cash-Out Refi: access equity at a fraction of MCA costs
+
+To get a quote, please send over:
+• Property address and loan info
+• Amount needed for cash-out (if applicable)
+• 2 months of bank statements
+• Latest W-2 and recent pay stubs
+• Last 2 years personal tax returns (Form 1040)
+• Copy of most recent mortgage statement (if refinance)
+• Driver's license / ID
+• Homeowners insurance info
+
+→ Application: [APPLICATION LINK]
+
+[Your Name] | Motor City Funding | [Phone]</div>
+    <button class="copy-btn" onclick="copyText('t15c',this)">📋 Copy</button></div></div>
+
+  </div>
+</div><!-- /templates -->
+
+
+<!-- ═══ DEAL INTAKE ═══ -->
+<div class="panel" id="panel-intake">
+  <div class="sec-title">📝 Deal Intake Questionnaires — Quick Reference</div>
+  <div class="intake-grid">
+
+    <div class="intake-card"><div class="intake-title">💼 General Business Finance <span class="intake-num">(13 Q)</span></div>
+    <ol class="il"><li>Business legal name</li><li>Business type / industry</li><li>Time in business</li><li>Annual gross revenue</li><li>Average monthly revenue (last 3 months)</li><li>Amount of financing requested</li><li>Use of funds</li><li>Owner name(s) and % ownership</li><li>Owner FICO score (estimate OK)</li><li>Current outstanding debt obligations?</li><li>Any open MCA or short-term loans? How many?</li><li>Do you own your home or any real estate?</li><li>Best contact number and email</li></ol></div>
+
+    <div class="intake-card"><div class="intake-title">🏠 HELOC — Property Intake <span class="intake-num">(8 Q)</span></div>
+    <ol class="il"><li>Property address (full street address)</li><li>Property type (primary home, investment, commercial)</li><li>Estimated property value</li><li>Current mortgage balance</li><li>Is the property rented? If so, monthly rent?</li><li>FICO score</li><li>Primary income source (W-2, self-employed, rental)</li><li>How would you use the equity? (working capital, equipment, debt payoff)</li></ol></div>
+
+    <div class="intake-card"><div class="intake-title">🏢 DSCR — Investment Property <span class="intake-num">(9 Q)</span></div>
+    <ol class="il"><li>Property address</li><li>Property type (SFR, 2-4 unit, condo, townhome)</li><li>Current rental status (occupied / vacant)</li><li>Monthly market rent (or current lease amount)</li><li>Purchase price or estimated value</li><li>Outstanding mortgage balance</li><li>Annual expenses: taxes, insurance, HOA</li><li>FICO score</li><li>Transaction type: purchase, refinance, or cash-out?</li></ol></div>
+
+    <div class="intake-card"><div class="intake-title">🏗️ Ground Up Construction <span class="intake-num">(12 Q)</span></div>
+    <ol class="il"><li>Property under contract? (Y/N)</li><li>Purchase price or land basis</li><li>Build budget</li><li>ARV (After Repair/Completion Value)</li><li>Project type: Vertical (structure) or Horizontal (site dev)?</li><li>Project description (beds, baths, sq ft, stories)</li><li>Borrower name / entity name</li><li>Credit score (estimate)</li><li>Available cash / liquid assets</li><li>Down payment source</li><li>Completed builds/projects in last 3 years</li><li>Exit strategy: Sell or Rent</li></ol></div>
+
+    <div class="intake-card"><div class="intake-title">🏦 SBA 504 / CRE Owner-Occupied <span class="intake-num">(8 Q)</span></div>
+    <ol class="il"><li>Property address + type</li><li>Transaction: Purchase or Refinance?</li><li>Purchase price or estimated value</li><li>Outstanding debt on property (if refi)</li><li>% of building your business occupies</li><li>Annual gross revenue</li><li>Years in business</li><li>FICO score</li></ol></div>
+
+    <div class="intake-card"><div class="intake-title">🔁 MCA Consolidation <span class="intake-num">(7 Q)</span></div>
+    <ol class="il"><li>How many active MCA positions?</li><li>Total combined daily/weekly payment amount?</li><li>Total remaining payoff balance across all positions?</li><li>Lender names (if known)</li><li>Average monthly revenue (last 3 months)</li><li>FICO score</li><li>Goal: reduce payments, extend terms, or replace with LOC?</li></ol></div>
+
+    <div class="intake-card"><div class="intake-title">🔧 Equipment Financing <span class="intake-num">(6 Q)</span></div>
+    <ol class="il"><li>What equipment are you purchasing?</li><li>Make, model, and vendor (if known)</li><li>Total purchase price / invoice amount</li><li>New or used?</li><li>Owner FICO score</li><li>Monthly business revenue (last 3 months avg)</li></ol></div>
+
+    <div class="intake-card"><div class="intake-title">🏭 ABL — Asset-Based Lending <span class="intake-num">(8 Q)</span></div>
+    <ol class="il"><li>What is the business's annual gross revenue?</li><li>Average monthly A/R outstanding (unpaid invoices)?</li><li>What are your typical customer payment terms? (net 30, net 60, net 90?)</li><li>Do you have CPA-prepared financials for 2023 and 2024?</li><li>How many commercial customers make up the majority of your revenue?</li><li>Are there any existing liens or UCC filings on your receivables?</li><li>Do you have an A/R aging report available?</li><li>What is the primary use of the line? (payroll, operations, bridge while awaiting payment)</li></ol></div>
+
+    <div class="intake-card"><div class="intake-title">🔨 Fix &amp; Flip <span class="intake-num">(21 Q)</span></div>
+    <ol class="il"><li>Property address</li><li>Purchase price</li><li>Construction / Rehab budget (estimate OK)</li><li>Finance rehab too? (Y/N)</li><li>ARV (After Rehab Value)</li><li>Current bed/bath and property SF</li><li>Changing bed/bath or SF? (Y/N)</li><li>Vacancy status</li><li>What work will be done to the property?</li><li>Borrower name</li><li>Entity name (if applicable)</li><li>Borrower credit score</li><li>Available cash / liquid assets</li><li>Down payment source</li><li>Rehab projects completed on HUD — last 3 years</li><li>Occupation(s)</li><li>Exit strategy (Sell or Rent)</li><li>Preferred phone number</li><li>Preferred email address</li><li>Borrower's home address</li><li>Citizenship status</li></ol></div>
+
+    <div class="intake-card"><div class="intake-title">🏡 Residential Mortgage <span class="intake-num">(9 Q)</span></div>
+    <ol class="il"><li>Property address</li><li>Transaction type: Purchase, Rate/Term Refi, or Cash-Out Refi?</li><li>Purchase price or estimated value (if refi)</li><li>Outstanding mortgage balance (if refi)</li><li>Amount needed for cash-out (if cash-out)</li><li>Occupancy: Primary residence, secondary home, or investment?</li><li>FICO score</li><li>Income type: W-2, self-employed, rental income?</li><li>Any late payments, bankruptcies, or liens in last 24 months?</li></ol></div>
+
+  </div>
+</div><!-- /intake -->
+
+
+<!-- ═══ DOC CHECKLISTS ═══ -->
+<div class="panel" id="panel-docs">
+  <div class="sec-title">📄 Document Checklists — All Products</div>
+  <div class="cards" id="docCards">
+
+    <div class="rc" id="d1"><div class="rc-head" onclick="toggleCard('d1')"><div class="rc-icon doc">🏦</div><div class="rc-meta"><div class="rc-title">SBA 7(a) Loan</div><div class="rc-sub">Full underwriting package</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <strong style="font-size:12px;color:var(--text-muted);">TO START SUBMISSION</strong>
+      <ul class="checklist"><li>PMF Application (all owners 20%+ must sign)</li><li>Number of employees + amount requested</li></ul>
+      <strong style="font-size:12px;color:var(--text-muted);display:block;margin-top:12px;">FULL PACKAGE</strong>
+      <ul class="checklist"><li>6 months business bank statements (all pages)</li><li>Personal Financial Statement (SBA Form 413)</li><li>Business Debt Schedule</li><li>P&amp;L + Balance Sheet — current + prior year</li><li>Accounts Receivable Aging Report</li><li>3 years business tax returns (1120S, 1120, or Schedule C)</li><li>3 years personal tax returns (1040, all 20%+ owners)</li></ul>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-muted);">📌 Exclusions: No truckers / oversaturated industries.</p>
+    </div></div>
+
+    <div class="rc" id="d2"><div class="rc-head" onclick="toggleCard('d2')"><div class="rc-icon doc">🏗️</div><div class="rc-meta"><div class="rc-title">SBA 504 Loan</div><div class="rc-sub">Fixed-rate, owner-occupied CRE or heavy equipment</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application (completed and signed)</li><li>3 years business tax returns</li><li>3 years personal tax returns (all owners 20%+)</li><li>YTD P&amp;L and Balance Sheet</li><li>Business Debt Schedule</li><li>Personal Financial Statement</li><li>Property appraisal or purchase contract</li><li>Site lease agreement or deed</li><li>Driver's license (all 20%+ owners)</li></ul>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-muted);">📌 Business must occupy 51%+ of existing property (60%+ for new construction).</p>
+    </div></div>
+
+    <div class="rc" id="d3"><div class="rc-head" onclick="toggleCard('d3')"><div class="rc-icon doc">🏦</div><div class="rc-meta"><div class="rc-title">SBA Microloan</div><div class="rc-sub">Up to $50K — early-stage or small businesses</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application</li><li>Bank statements (3–4 months)</li><li>Personal tax returns (2 years)</li><li>Business plan (sometimes required for startups)</li><li>Driver's license</li><li>Voided check</li></ul>
+    </div></div>
+
+    <div class="rc" id="d4"><div class="rc-head" onclick="toggleCard('d4')"><div class="rc-icon doc">🏠</div><div class="rc-meta"><div class="rc-title">HELOC — Figure Lending</div><div class="rc-sub">Home equity line — property required</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application (SSN required for soft credit pull)</li><li>Property address (full street address)</li><li>Estimated property value (owner estimate OK to start)</li><li>Current mortgage balance</li><li>Government-issued photo ID (all applicants)</li><li>Homeowners insurance documentation (if available)</li><li>Income documentation — W-2, paystubs, tax returns, or bank deposits</li></ul>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-muted);">📌 Texas properties: special rules — reference PMF Texas HELOC Guide. Figure FICO min: 620+ (varies by state/CLTV). Max CLTV 75–85%.</p>
+    </div></div>
+
+    <div class="rc" id="d5"><div class="rc-head" onclick="toggleCard('d5')"><div class="rc-icon doc">🏢</div><div class="rc-meta"><div class="rc-title">DSCR Loan — Figure Lending</div><div class="rc-sub">Investment property, qualified on rental income</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application (full owner + property info)</li><li>Government-issued photo ID (all 20%+ owners)</li><li>Current lease agreement (12-month minimum; active)</li><li>Property details: address, type, estimated value, mortgage balance</li><li>Most recent mortgage statement</li><li>Property insurance documentation</li><li>3 months liquid reserves documentation (6 months for 2–4 unit)</li></ul>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-muted);">📌 DSCR ≥ 1.0 required. 660+ FICO. Business purpose only — Business Loan Affidavit required.</p>
+    </div></div>
+
+    <div class="rc" id="d6"><div class="rc-head" onclick="toggleCard('d6')"><div class="rc-icon doc">💳</div><div class="rc-meta"><div class="rc-title">Unsecured Line of Credit</div><div class="rc-sub">Revolving — no collateral required</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application (completed and signed)</li><li>Last 4 months business bank statements (all pages)</li><li>Driver's license (all owners 20%+)</li><li>Voided business check</li><li>Business Debt Schedule (if active MCAs/loans)</li></ul>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-muted);">📌 NSFs: 0–1 = OK. 2–3 = caution. 4+ = most lenders decline. Always disclose upfront.</p>
+    </div></div>
+
+    <div class="rc" id="d7"><div class="rc-head" onclick="toggleCard('d7')"><div class="rc-icon doc">⚡</div><div class="rc-meta"><div class="rc-title">MCA — Merchant Cash Advance</div><div class="rc-sub">Fast capital, minimum docs</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application (signed)</li><li>Last 3–4 months business bank statements</li><li>Driver's license (all owners 20%+)</li><li>Voided check</li><li>Proof of ownership (if needed: K-1, Schedule C, EIN letter, Articles)</li></ul>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-muted);">📌 CA/NY/UT merchants: 4 months required. After 15th of month (Channel Partners) or 21st (VOX): MTD statement also required.</p>
+    </div></div>
+
+    <div class="rc" id="d8"><div class="rc-head" onclick="toggleCard('d8')"><div class="rc-icon doc">🔁</div><div class="rc-meta"><div class="rc-title">Reverse Consolidation / MCA Relief</div><div class="rc-sub">2+ active positions being consolidated</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application</li><li>Last 4 months business bank statements</li><li>Business Debt Schedule (all MCA lenders, payoff balances, daily payments)</li><li>Driver's license</li><li>Voided check</li><li>Payoff statements from existing MCA lenders (if available)</li></ul>
+    </div></div>
+
+    <div class="rc" id="d9"><div class="rc-head" onclick="toggleCard('d9')"><div class="rc-icon doc">🔧</div><div class="rc-meta"><div class="rc-title">Equipment Financing</div><div class="rc-sub">Asset-backed — equipment is the collateral</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application</li><li>Last 4 months business bank statements</li><li>Equipment invoice or vendor quote (make, model, price)</li><li>Driver's license (all owners 20%+)</li></ul>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-muted);">📌 Lender may request additional docs during underwriting.</p>
+    </div></div>
+
+    <div class="rc" id="d10"><div class="rc-head" onclick="toggleCard('d10')"><div class="rc-icon doc">📑</div><div class="rc-meta"><div class="rc-title">Invoice Factoring</div><div class="rc-sub">B2B businesses with $100K+ unpaid invoices</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application</li><li>Sample invoice(s) — customer, amount, payment terms</li><li>AR Aging Report — all outstanding invoices, customer names, days outstanding</li><li>Customer list with contact info</li><li>Last 4 months business bank statements</li></ul>
+    </div></div>
+
+    <div class="rc" id="d11"><div class="rc-head" onclick="toggleCard('d11')"><div class="rc-icon doc">📈</div><div class="rc-meta"><div class="rc-title">Credit Servicing</div><div class="rc-sub">Pipeline play — improve FICO to unlock better products</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>Current credit report (all 3 bureaus if possible)</li><li>List of negative items (late payments, collections, judgments)</li><li>Business name + owner SSN for monitoring</li></ul>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-muted);">📌 Goal: reach 625+ for LOC or 620+ for HELOC. Timeline: 60–90 days typical.</p>
+    </div></div>
+
+    <div class="rc" id="d12"><div class="rc-head" onclick="toggleCard('d12')"><div class="rc-icon doc">🏢</div><div class="rc-meta"><div class="rc-title">Commercial Real Estate (General)</div><div class="rc-sub">CRE acquisition or refinance — investor or owner</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application</li><li>Property details: address, type, value, mortgage balance</li><li>Purchase contract or appraisal (if purchase)</li><li>Rent roll / lease agreements (if investment)</li><li>2 years business tax returns</li><li>2 years personal tax returns (all 20%+ owners)</li><li>YTD P&amp;L and Balance Sheet</li><li>Personal Financial Statement</li><li>Driver's license (all 20%+ owners)</li><li>Entity documents (articles, operating agreement)</li></ul>
+    </div></div>
+
+    <div class="rc" id="d13"><div class="rc-head" onclick="toggleCard('d13')"><div class="rc-icon doc">🏗️</div><div class="rc-meta"><div class="rc-title">Ground Up Construction — Vertical</div><div class="rc-sub">Above-ground structure (residential, commercial, multifamily)</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>Completed application / borrower info</li><li>Settlement statement for land (if already owned)</li><li>Purchase contract (if under contract)</li><li>Plans and blueprints (if available)</li><li>Construction budget / scope of work</li><li>ARV appraisal or comps</li><li>Track record: list of completed builds last 3 years</li><li>Builder's risk insurance (required at closing)</li><li>Entity documents (if closing in LLC/Corp)</li><li>Credit report (650+ preferred)</li></ul>
+    </div></div>
+
+    <div class="rc" id="d14"><div class="rc-head" onclick="toggleCard('d14')"><div class="rc-icon doc">🌍</div><div class="rc-meta"><div class="rc-title">Ground Up Construction — Horizontal</div><div class="rc-sub">Land development, site prep, roads, utilities</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>Land ownership documentation or purchase contract</li><li>Survey (if available)</li><li>Site development plan / engineering drawings</li><li>Development budget (civil work, utilities, roads)</li><li>Entitlement/permit status documentation</li><li>Developer track record (completed horizontal projects)</li><li>Entity documents</li><li>Personal Financial Statement</li><li>Credit report (650+ preferred)</li></ul>
+    </div></div>
+
+    <div class="rc" id="d15"><div class="rc-head" onclick="toggleCard('d15')"><div class="rc-icon doc">🏛️</div><div class="rc-meta"><div class="rc-title">CRE 504 — Owner-Occupied</div><div class="rc-sub">SBA 504 for business purchasing its own space</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application (all 20%+ owners)</li><li>3 years business tax returns</li><li>3 years personal tax returns</li><li>YTD P&amp;L and Balance Sheet</li><li>Business Debt Schedule</li><li>Personal Financial Statement</li><li>Purchase contract or appraisal</li><li>Property details (address, type, sq ft)</li><li>Confirmation of 51%+ owner-occupancy</li><li>Driver's license</li></ul>
+    </div></div>
+
+    <div class="rc" id="d16"><div class="rc-head" onclick="toggleCard('d16')"><div class="rc-icon doc">🔄</div><div class="rc-meta"><div class="rc-title">CRE Acquisition &amp; Refinance</div><div class="rc-sub">Non-owner-occupied investment or commercial refi</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application</li><li>Property appraisal or purchase contract</li><li>Rent roll and current leases (all tenants)</li><li>Operating statement / NOI (last 12 months)</li><li>2 years business tax returns</li><li>2 years personal tax returns</li><li>Personal Financial Statement</li><li>Current mortgage statement(s)</li><li>Entity documents</li><li>Driver's license</li></ul>
+    </div></div>
+
+    <div class="rc" id="d17"><div class="rc-head" onclick="toggleCard('d17')"><div class="rc-icon doc">💰</div><div class="rc-meta"><div class="rc-title">Cash-Out Refinance</div><div class="rc-sub">Pull equity from existing property (residential or CRE)</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>PMF Application</li><li>Property appraisal (full appraisal required for amounts over $400K)</li><li>Current mortgage statement(s)</li><li>Property insurance / title documents</li><li>2 years personal tax returns</li><li>Recent paystubs or self-employment income verification</li><li>Personal Financial Statement</li><li>Driver's license</li><li>If CRE: rent roll and operating statement</li></ul>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-muted);">📌 Max LTV: 75% residential, 70–75% CRE. 90-day seasoning from date of purchase typically required.</p>
+    </div></div>
+
+    <div class="rc" id="d18"><div class="rc-head" onclick="toggleCard('d18')"><div class="rc-icon doc" style="background:#cffafe;">🏭</div><div class="rc-meta"><div class="rc-title">ABL — Asset-Based Lending</div><div class="rc-sub">Ledgered line of credit secured by AR and business assets</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <strong style="font-size:12px;color:var(--text-muted);">FINANCIAL STATEMENTS</strong>
+      <ul class="checklist"><li>YTD 2025 P&amp;L and Balance Sheet</li><li>CPA-prepared financials — 2023 and 2024 (if available)</li><li>Sales last 12 months with net terms of sale, website or billing address</li><li>Business Debt Schedule</li></ul>
+      <strong style="font-size:12px;color:var(--text-muted);display:block;margin-top:12px;">A/R &amp; A/P AGING</strong>
+      <ul class="checklist"><li>A/R Aging Report — Summary</li><li>A/R Aging Report — Detail</li><li>A/P Summary Aging Report</li></ul>
+      <strong style="font-size:12px;color:var(--text-muted);display:block;margin-top:12px;">CUSTOMER SAMPLES (TOP 3 CUSTOMERS)</strong>
+      <ul class="checklist"><li>Contract or Purchase Order (PO)</li><li>Sample Invoice</li><li>Supporting documentation to the invoice</li></ul>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-muted);">📌 Post-funding: monthly financial statements, sales journals, A/R &amp; A/P agings, and quarterly payroll tax returns required. All debtors notified to pay into lender lockbox.</p>
+    </div></div>
+
+    <div class="rc" id="d19"><div class="rc-head" onclick="toggleCard('d19')"><div class="rc-icon doc" style="background:#fef9c3;">🔨</div><div class="rc-meta"><div class="rc-title">Fix &amp; Flip</div><div class="rc-sub">Lima One Real Estate — rehab acquisition loan</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <strong style="font-size:12px;color:var(--text-muted);">PROPERTY INFORMATION</strong>
+      <ul class="checklist"><li>Property address</li><li>Purchase price</li><li>Construction / Rehab budget (estimate OK)</li><li>Finance rehab too? (Yes / No)</li><li>ARV — After Rehab Value</li><li>Current bed/bath count and property square footage</li><li>Changing bed/bath or SF? (Yes / No)</li><li>Vacancy status</li><li>Description of work to be done</li></ul>
+      <strong style="font-size:12px;color:var(--text-muted);display:block;margin-top:12px;">BORROWER INFORMATION</strong>
+      <ul class="checklist"><li>Borrower full legal name</li><li>Entity name (if closing in LLC or Corp)</li><li>Borrower credit score</li><li>Available cash / liquid assets</li><li>Down payment source</li><li>Number of rehab projects completed on HUD in the last 3 years</li><li>Occupation(s)</li><li>Exit strategy: Sell or Rent</li><li>Preferred phone number</li><li>Preferred email address</li><li>Borrower's home address</li><li>Citizenship status</li></ul>
+    </div></div>
+
+    <div class="rc" id="d20"><div class="rc-head" onclick="toggleCard('d20')"><div class="rc-icon doc" style="background:#dcfce7;">🏡</div><div class="rc-meta"><div class="rc-title">Residential Mortgage</div><div class="rc-sub">Purchase, refinance, or cash-out on residential property</div><span class="rc-tag tag-doc">Checklist</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <ul class="checklist"><li>2 months business or personal bank statements</li><li>Homeowners insurance (current policy)</li><li>Latest W-2 (most recent year)</li><li>Recent pay stubs (last 30 days)</li><li>Driver's license / government-issued ID</li><li>Last 2 years personal tax returns (Form 1040, all pages)</li><li>Most recent mortgage statement (if refinance)</li><li>Property address and loan information</li><li>Amount needed for cash-out (if cash-out refi)</li></ul>
+      <p style="margin-top:10px;font-size:12px;color:var(--text-muted);">📌 Self-employed borrowers: 2 years personal + business tax returns, YTD P&amp;L. 650+ FICO preferred. Corresponds with DSCR guidelines for investment properties.</p>
+    </div></div>
+
+  </div>
+</div><!-- /docs -->
+
+
+<!-- ═══ PRODUCTS ═══ -->
+<div class="panel" id="panel-products">
+  <div class="sec-title">💼 Full Product Suite — Click to Open Quick Reference</div>
+  <div class="products-grid">
+    <div class="product-pill" onclick="openProduct('p1')"><div class="product-dot" style="background:#3b82f6;"></div>SBA 7(a) Loan</div>
+    <div class="product-pill" onclick="openProduct('p2')"><div class="product-dot" style="background:#6366f1;"></div>SBA 504 Loan</div>
+    <div class="product-pill" onclick="openProduct('p3')"><div class="product-dot" style="background:#06b6d4;"></div>SBA Microloan</div>
+    <div class="product-pill" onclick="openProduct('p4')"><div class="product-dot" style="background:#10b981;"></div>HELOC (Figure)</div>
+    <div class="product-pill" onclick="openProduct('p5')"><div class="product-dot" style="background:#ec4899;"></div>DSCR Loan (Figure)</div>
+    <div class="product-pill" onclick="openProduct('p6')"><div class="product-dot" style="background:#6366f1;"></div>Unsecured LOC</div>
+    <div class="product-pill" onclick="openProduct('p7')"><div class="product-dot" style="background:#f59e0b;"></div>MCA</div>
+    <div class="product-pill" onclick="openProduct('p8')"><div class="product-dot" style="background:#8b5cf6;"></div>Reverse Consolidation</div>
+    <div class="product-pill" onclick="openProduct('p9')"><div class="product-dot" style="background:#ef4444;"></div>Equipment Financing</div>
+    <div class="product-pill" onclick="openProduct('p10')"><div class="product-dot" style="background:#14b8a6;"></div>Invoice Factoring</div>
+    <div class="product-pill" onclick="openProduct('p11')"><div class="product-dot" style="background:#f97316;"></div>Credit Servicing</div>
+    <div class="product-pill" onclick="openProduct('p12')"><div class="product-dot" style="background:#0ea5e9;"></div>Commercial Real Estate</div>
+    <div class="product-pill" onclick="openProduct('p13')"><div class="product-dot" style="background:#84cc16;"></div>Ground Up — Vertical</div>
+    <div class="product-pill" onclick="openProduct('p14')"><div class="product-dot" style="background:#a3e635;"></div>Ground Up — Horizontal</div>
+    <div class="product-pill" onclick="openProduct('p15')"><div class="product-dot" style="background:#c8a94a;"></div>CRE 504 (Owner-Occupied)</div>
+    <div class="product-pill" onclick="openProduct('p16')"><div class="product-dot" style="background:#f43f5e;"></div>CRE Acquisition &amp; Refi</div>
+    <div class="product-pill" onclick="openProduct('p17')"><div class="product-dot" style="background:#a855f7;"></div>Cash-Out Refinance</div>
+    <div class="product-pill" onclick="openProduct('p18')"><div class="product-dot" style="background:#0891b2;"></div>ABL (Asset-Based Lending)</div>
+    <div class="product-pill" onclick="openProduct('p19')"><div class="product-dot" style="background:#d97706;"></div>Fix &amp; Flip</div>
+    <div class="product-pill" onclick="openProduct('p20')"><div class="product-dot" style="background:#16a34a;"></div>Residential Mortgage</div>
+  </div>
+
+  <div class="sec-title">📖 Product Quick Reference</div>
+  <div class="cards">
+
+    <div class="rc" id="p1"><div class="rc-head" onclick="toggleCard('p1')"><div class="rc-icon product">🏦</div><div class="rc-meta"><div class="rc-title">SBA 7(a) Loan</div><div class="rc-sub">Government-backed — up to $5M, 10-year term</div><span class="rc-tag tag-product">SBA</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Working capital, acquisition, expansion, real estate, debt refinancing.
+
+Requirements: 675+ FICO · 3+ years TIB · Profitable 2 consecutive years · Clean financials
+Exclusions: No truckers / oversaturated industries
+
+Key Terms:
+• Up to $5,000,000 | 10-year term (25 yrs for CRE) | ~9.5% APR variable
+• 6–8 weeks to fund | Fully amortizing — no balloon payments
+
+Lender Partners: Kapitus (625 FICO, 1–10 yr), PEAC Solutions (670 FICO, 3 yr min), Rapid Finance (600 FICO, 2 yr min)
+
+Pitch: "This is the best financing most small businesses can access — lowest cost of capital, longest terms. If you qualify, this is the conversation we should be having."</div></div></div>
+
+    <div class="rc" id="p2"><div class="rc-head" onclick="toggleCard('p2')"><div class="rc-icon product">🏗️</div><div class="rc-meta"><div class="rc-title">SBA 504 Loan</div><div class="rc-sub">Fixed-rate CRE &amp; heavy equipment — owner-occupied</div><span class="rc-tag tag-product">SBA</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Businesses purchasing or refinancing the commercial property they operate in; large equipment.
+
+Requirements: 650+ FICO · 2+ years TIB · Business occupies 51%+ of property (60%+ new construction)
+Net worth under $15M; net income under $5M (last 2 years)
+
+Key Terms:
+• Up to $5.5M (CDC portion) | 10–25 year fixed rates
+• Only 10% down (vs. 20–30% conventional) | 90% total financing
+
+Pitch: "If your business is buying the building it operates in, the 504 is the most efficient way to do it — fixed rates, minimal down payment, maximum financing."</div></div></div>
+
+    <div class="rc" id="p3"><div class="rc-head" onclick="toggleCard('p3')"><div class="rc-icon product">🏦</div><div class="rc-meta"><div class="rc-title">SBA Microloan</div><div class="rc-sub">Up to $50K — startups and small businesses</div><span class="rc-tag tag-product">SBA</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Early-stage businesses, nonprofits, small capital needs under $50K.
+
+Requirements: 580+ FICO (flexible) · Any TIB · Business plan sometimes required for startups
+Key Terms: Up to $50,000 | Up to 6-year repayment | 8–13% APR typical</div></div></div>
+
+    <div class="rc" id="p4"><div class="rc-head" onclick="toggleCard('p4')"><div class="rc-icon product">🏠</div><div class="rc-meta"><div class="rc-title">HELOC — Figure Lending</div><div class="rc-sub">Home equity line — 7–9% APR, up to $750K</div><span class="rc-tag tag-product">HELOC</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Any property owner — working capital, equipment, paying off MCA debt.
+
+Requirements: 620+ FICO (varies by state/CLTV) · Owner-occupied or investment property
+Max CLTV: 75–85% (varies by FICO and occupancy type) · Up to 3rd lien position
+
+Key Terms:
+• Up to $750K | 10, 15, 20, or 30-year terms | 5-year draw period
+• ~7–9% APR | Funds in as few as 5 days | 100% online application
+• No appraisal for amounts under $400K (AVM used) | Full appraisal over $400K
+• Property types: SFR, townhomes, PUDs, condos, duplexes, 3-4 units, secondary/investment
+• Not available in TX or NY (separate Texas HELOC program exists)
+
+Lender: Figure ($50K–$750K, 620+ FICO) | WBL ($100K–$2M, no FICO min, needs equity)
+
+Pitch: "Do you own your home or any real estate? We have a program that pulls home equity at 7–9% — a fraction of what most business products cost."</div></div></div>
+
+    <div class="rc" id="p5"><div class="rc-head" onclick="toggleCard('p5')"><div class="rc-icon product">🏢</div><div class="rc-meta"><div class="rc-title">DSCR Loan — Figure Lending</div><div class="rc-sub">Investment property — qualified on rental income</div><span class="rc-tag tag-product">DSCR</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Real estate investors qualifying on property cash flow — not personal income.
+
+Requirements: 660+ FICO · Investment/rental property · DSCR ≥ 1.0
+
+DSCR Formula: Monthly Rental Income ÷ Monthly Debt (PITIA)
+• 1.0 = break-even (minimum) | 1.25+ = preferred
+
+Key Terms:
+• $75K–$1M | 30-year fixed fully amortizing term | 0–5% origination fee
+• CLTV max 80% (refi) / 75% (cash-out) | 3 months reserves (single unit), 6 months (2–4 unit)
+• No personal income verification | Business purpose loans only
+• Property types: SFR, townhomes, PUDs, condos, MFR 2–4 units
+• Cash-out and no cash-out options available
+
+Key Ask: "Is it rented? What's the monthly rent? What do you still owe?"</div></div></div>
+
+    <div class="rc" id="p6"><div class="rc-head" onclick="toggleCard('p6')"><div class="rc-icon product">💳</div><div class="rc-meta"><div class="rc-title">Unsecured Line of Credit</div><div class="rc-sub">Revolving — no collateral, draw and repay as needed</div><span class="rc-tag tag-product">LOC</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Cash flow gaps, seasonal needs, payroll, inventory.
+
+Requirements: 625+ FICO · $25K+/mo revenue · 2+ years TIB · No open bankruptcies
+Key Terms: 6, 9, or 12-month revolving | No daily debits | No collateral
+
+Lender Partners: ARF Financial (575 FICO, B2B/brick-mortar), Plexe (640 Equifax, 2+ yrs, $30K–$500K, not CA/NV/TN), ByzFlex (550 FICO, $7.5K–$200K), Kapitus (625 FICO, 6–48mo)
+
+Key Selling Point: Unlike MCAs, a LOC doesn't lock you into fixed daily payments — it's a safety net the business controls.</div></div></div>
+
+    <div class="rc" id="p7"><div class="rc-head" onclick="toggleCard('p7')"><div class="rc-icon product">⚡</div><div class="rc-meta"><div class="rc-title">MCA — Merchant Cash Advance</div><div class="rc-sub">Fast capital — always try LOC/HELOC first</div><span class="rc-tag tag-product">MCA</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Speed and merchants who can't qualify for LOC, SBA, or HELOC.
+
+Requirements: 500+ FICO · 6+ months TIB · $10K+/mo revenue · NSFs ≤ 3
+Key Terms: Offer = 50–150% of monthly revenue | Factor rate 1.15x–1.49x | 24–72 hr funding
+Effective APR: 40–150%+ — always pitch HELOC or LOC first if eligible.
+
+NSF Rule: 0–1 = OK. 2–3 = caution. 4+ = most lenders decline. Always disclose upfront.
+
+Top Lenders (1st position, 600+ FICO, 2+ yrs): VOX ($15K/mo min), Kapitus, IOU, PEAC, Channel Partners ($250K/yr, 3 yr, 650 FICO), Rapid Finance
+Lower FICO options: SBF (500 min), Firstline (no min), Mint (no min), ByzFunder (525 min)</div></div></div>
+
+    <div class="rc" id="p8"><div class="rc-head" onclick="toggleCard('p8')"><div class="rc-icon product">🔁</div><div class="rc-meta"><div class="rc-title">Reverse Consolidation / MCA Relief</div><div class="rc-sub">Reduce daily MCA burn — 2+ positions</div><span class="rc-tag tag-product">MCA Relief</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Merchants with 2+ MCAs with daily ACH debits choking cash flow.
+
+Trigger: "How many positions do you have? Total daily payments? Total payoffs?"
+
+Process: New advance injects capital → pays off existing positions → one lower payment
+
+Lender Partners: Nexi (2nd–8th, up to 400 days, consolidation specialist), SBF, Fuji Funding, Rowan Advance (NO reverse consolidations — use for new positions)
+High-stack (4–6 positions): Alpine Advance (up to 10th), Wynwood (up to 9th, defaults OK), MNR Capital
+
+Key Questions: How many positions? Combined daily payments? Total payoffs? Monthly revenue?</div></div></div>
+
+    <div class="rc" id="p9"><div class="rc-head" onclick="toggleCard('p9')"><div class="rc-icon product">🔧</div><div class="rc-meta"><div class="rc-title">Equipment Financing</div><div class="rc-sub">Asset-backed — equipment is the collateral</div><span class="rc-tag tag-product">Equipment</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Purchasing machinery, vehicles, technology — equipment serves as collateral.
+
+Requirements: 600+ FICO · Equipment invoice required · Any TIB
+Key Terms: Up to 100% of asset value | Equipment secures the loan | Faster than SBA</div></div></div>
+
+    <div class="rc" id="p10"><div class="rc-head" onclick="toggleCard('p10')"><div class="rc-icon product">📑</div><div class="rc-meta"><div class="rc-title">Invoice Factoring</div><div class="rc-sub">Advance on unpaid B2B invoices</div><span class="rc-tag tag-product">Factoring</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: B2B businesses with $100K+ in unpaid invoices and slow-paying customers.
+
+Requirements: $100K+ AR outstanding · B2B (not B2C) · Invoices must be deliverable/verified
+Key Terms: 70–90% advance rate on invoice value | Remaining balance (minus fee) paid when customer pays
+
+Best Industries: Construction (AR heavy), Staffing, Trucking, Manufacturing, Professional Services</div></div></div>
+
+    <div class="rc" id="p11"><div class="rc-head" onclick="toggleCard('p11')"><div class="rc-icon product">📈</div><div class="rc-meta"><div class="rc-title">Credit Servicing</div><div class="rc-sub">60–90 day pipeline play — unlock better products</div><span class="rc-tag tag-product">Credit</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Merchants below 620 FICO who don't currently qualify for HELOC, LOC, or SBA.
+
+Goal: Reach 625+ for LOC or 620+ for HELOC within 60–90 days.
+
+Never let a low-FICO prospect walk: "We can actually help clean that up and get you into better products faster — let me explain how that works." Keep them warm in the pipeline.</div></div></div>
+
+    <div class="rc" id="p12"><div class="rc-head" onclick="toggleCard('p12')"><div class="rc-icon product">🏢</div><div class="rc-meta"><div class="rc-title">Commercial Real Estate (General)</div><div class="rc-sub">CRE acquisition, refinance, investor</div><span class="rc-tag tag-product">CRE</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Investors or business owners buying/refinancing commercial property.
+
+Requirements: 650+ FICO · 2+ years TIB · DSCR 1.20–1.25+ (for investment) · 65–75% LTV typical
+
+Property Types: Office, retail, mixed-use, warehouse, multifamily (5+), self-storage, hospitality
+Key Terms: Varies by loan type and property | Traditional underwriting — income, DSCR, credit
+
+Lenders: Whisper ($250K–$5M, no income/DSCR required, 50–75% LTV, BK/default OK 1 day out, 10.50–11.99%), WBL ($100K–$2M, no FICO min, needs equity)</div></div></div>
+
+    <div class="rc" id="p13"><div class="rc-head" onclick="toggleCard('p13')"><div class="rc-icon product">🏗️</div><div class="rc-meta"><div class="rc-title">Ground Up Construction — Vertical</div><div class="rc-sub">New above-ground structure (residential, commercial, multifamily)</div><span class="rc-tag tag-product">Construction</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Developers building new structures — homes, commercial buildings, multifamily.
+
+Requirements: 650+ FICO · Proven build track record · LTC (Loan-to-Cost) typically 75–80%
+Experience matters heavily — number of completed projects in last 3 years is a key qualifier.
+
+Key Terms: Construction-to-perm or standalone construction loan | Interest-only during build
+Draw schedule tied to construction milestones | Builder's risk insurance required
+
+Exit: Sell (flip) or Rent (DSCR refi into permanent financing)</div></div></div>
+
+    <div class="rc" id="p14"><div class="rc-head" onclick="toggleCard('p14')"><div class="rc-icon product">🌍</div><div class="rc-meta"><div class="rc-title">Ground Up Construction — Horizontal</div><div class="rc-sub">Land development: roads, utilities, site preparation</div><span class="rc-tag tag-product">Construction</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Land developers preparing sites — subdivision infrastructure, grading, utilities, roads.
+
+Requirements: 650+ FICO · Land ownership or under contract · Development experience required
+Entitlement/permit status is a major underwriting factor.
+
+Key Terms: Typically 60–70% LTC | Higher risk than vertical — fewer lenders
+Draw schedule tied to development milestones | Engineering drawings and permits required</div></div></div>
+
+    <div class="rc" id="p15"><div class="rc-head" onclick="toggleCard('p15')"><div class="rc-icon product">🏛️</div><div class="rc-meta"><div class="rc-title">CRE 504 — Owner-Occupied</div><div class="rc-sub">SBA 504 for business purchasing its own commercial space</div><span class="rc-tag tag-product">SBA / CRE</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Businesses buying the building they operate in — instead of paying rent.
+
+Requirements: 650+ FICO · Business occupies 51%+ (existing) or 60%+ (new construction)
+Net worth under $15M; net income under $5M last 2 years
+
+Key Terms: 10% down payment | Fixed long-term rates (10–25 years) | Up to $5.5M (CDC portion)
+Structure: 50% bank loan + 40% CDC (SBA) + 10% borrower down
+
+Pitch: "Instead of paying rent and building your landlord's equity, let's put that monthly payment toward owning your own building."</div></div></div>
+
+    <div class="rc" id="p16"><div class="rc-head" onclick="toggleCard('p16')"><div class="rc-icon product">🔄</div><div class="rc-meta"><div class="rc-title">CRE Acquisition &amp; Refinance</div><div class="rc-sub">Non-owner-occupied investment CRE purchase or refi</div><span class="rc-tag tag-product">CRE</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Real estate investors buying or refinancing commercial property.
+
+Requirements: 650+ FICO · DSCR typically 1.20–1.25+ for investment · 65–75% LTV
+Property must generate income (rent roll required)
+
+Transaction Types: Purchase | Rate/Term Refinance | Cash-Out Refinance
+Key Docs: Rent roll, current leases, operating statement (NOI), appraisal or purchase contract
+
+Lender: Whisper ($250K–$5M, no income/DSCR required, BK/default OK, 10.50–11.99%, nationwide ex-rural)</div></div></div>
+
+    <div class="rc" id="p17"><div class="rc-head" onclick="toggleCard('p17')"><div class="rc-icon product">💰</div><div class="rc-meta"><div class="rc-title">Cash-Out Refinance</div><div class="rc-sub">Pull equity from existing property for business use</div><span class="rc-tag tag-product">Refi</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Property owners who want to tap built-up equity as working capital, for expansion, or to pay off high-rate debt.
+
+Requirements: 640+ FICO · Existing property with sufficient equity
+LTV: Max 75% residential | 70–75% CRE | 90-day seasoning from date of purchase
+
+Works for both residential (via HELOC or refi) and commercial properties.
+For DSCR properties: cash-out available up to 75% CLTV.
+
+Pitch: "You've already built equity in that property — instead of leaving it sitting there, let's put it to work for the business at a much lower rate than any MCA."</div></div></div>
+
+    <div class="rc" id="p18"><div class="rc-head" onclick="toggleCard('p18')"><div class="rc-icon product" style="background:#cffafe;">🏭</div><div class="rc-meta"><div class="rc-title">ABL — Asset-Based Lending</div><div class="rc-sub">Revolving line secured by AR, inventory &amp; assets</div><span class="rc-tag tag-product">ABL</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: B2B businesses with strong accounts receivable, $500K+ annual revenue, multiple commercial customers. Ideal when traditional LOC or SBA isn't available but the business has solid AR.
+
+How It Works (Pathward / Ledgered Line of Credit):
+• Revolving line secured by first lien on all assets, primarily AR
+• Advance Formula: Up to 100% of Eligible AR aged < 90 days from invoice date
+• Earned but unbilled A/R can also be advanced (capped, requires job order reports)
+• All debtors notified to pay into a Pathward lockbox — cash applied after 3-day clearance
+• Post-close advance rate decreases 2%/month until settling at 92–95% (based on dilution review)
+
+Key Terms:
+• Rate: WSJ Prime + 2.5% (floor of 6%) | Loan Fee: 1% at close, 0.50% annually
+• Early Exit Fee: 2% of max loan amt (Year 1), 1% (Year 2) | 24-month term, auto-renews
+• Minimum loan balance: interest charged on prior month's average or minimum balance (whichever higher)
+• Demand feature: loan is due on demand
+
+Requirements:
+• Strong A/R base with creditworthy commercial customers (debtors)
+• CPA-prepared financials for 2023–2024
+• Monthly: financial statements, sales journals, A/R &amp; A/P agings, quarterly payroll tax returns
+
+Lender: Pathward, National Association (via ABL contract)
+
+Pitch: "If your business has strong outstanding invoices from commercial customers, we can set up a revolving line against that receivables base — so you're not waiting 30–90 days for customers to pay while you need cash now."</div></div></div>
+
+    <div class="rc" id="p19"><div class="rc-head" onclick="toggleCard('p19')"><div class="rc-icon product" style="background:#fef9c3;">🔨</div><div class="rc-meta"><div class="rc-title">Fix &amp; Flip</div><div class="rc-sub">Short-term rehab loan — purchase + renovation financing</div><span class="rc-tag tag-product">Fix &amp; Flip</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Real estate investors purchasing and rehabbing a property to resell or rent. Covers both acquisition and renovation costs.
+
+Lender Partner: Lima One Real Estate (Motor City Funding shared drive — Lima One Real Estate / FIX and FLIP folder)
+
+Key Terms:
+• Short-term loan: typically 12 months, interest-only during rehab
+• LTC (Loan-to-Cost): up to 90% of purchase + rehab budget (depending on experience)
+• ARV (After Rehab Value): max LTV typically 70–75% of ARV
+• Experience-based pricing: more completed HUD projects = better terms
+• Rate: typically 9–13% depending on experience and file strength
+• Points: 1.5–3.5% depending on loan size and tier
+
+Requirements: 650+ FICO · Property under contract or purchase intent · Rehab budget and ARV · Exit strategy (sell or rent) · Completed HUD projects track record
+
+Pitch: "If you're buying a property to rehab and flip — or stabilize and rent — we have a short-term loan that covers both the purchase and the renovation. We look at the after-repair value, not just the as-is price."</div></div></div>
+
+    <div class="rc" id="p20"><div class="rc-head" onclick="toggleCard('p20')"><div class="rc-icon product" style="background:#dcfce7;">🏡</div><div class="rc-meta"><div class="rc-title">Residential Mortgage</div><div class="rc-sub">Standard home loan — purchase, refinance, or cash-out</div><span class="rc-tag tag-product">Residential</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body"><div class="cb readable">Best for: Homeowners or buyers needing purchase, rate/term refinance, or cash-out refinance on a primary/secondary residential property.
+
+Note: Most rules correspond with DSCR product. Key difference — this qualifies on personal income (W-2 or self-employed) rather than rental income.
+
+Key Terms:
+• 650+ FICO minimum | 30-year or 15-year fixed, ARM options
+• Primary residence, secondary home, or investment property
+• Cash-out available: up to 75–80% LTV for primary, 70–75% for investment
+• PMI typically required below 20% down on conventional
+
+Transaction Types: Purchase | Rate/Term Refinance | Cash-Out Refinance
+
+Pitch: "Whether you're buying, refinancing for a better rate, or pulling equity out of your home — we can put together a residential mortgage that fits your situation."</div></div></div>
+
+  </div>
+</div><!-- /products -->
+
+
+<!-- ═══ TRAINING ═══ -->
+<div class="panel" id="panel-training">
+  <div class="sec-title">🎓 Rep Training — Motor City Funding Manual v6</div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
+    <a class="link-btn" id="pdf-manual" href="#" target="_blank">📘 Open Full Manual PDF</a>
+    <a class="link-btn" href="https://www.thepmfu.com/" target="_blank" style="background:var(--gold);color:var(--navy);border-color:var(--gold);">🎓 PMF University →</a>
+  </div>
+
+  <div class="train-section"><div class="train-head" onclick="toggleTrain(this)"><span class="train-icon">💡</span><div><div class="train-title">What Is Business Financing? — Our Role</div><div class="train-sub">The foundation of why we exist and how to think about this work</div></div></div>
+  <div class="train-body">
+    <p>Motor City Funding connects small business owners to capital — fast, through the right products, with a team that actually fights for their file. We work across MCAs, SBA loans, equipment financing, HELOCs, DSCR loans, CRE, and more.</p>
+    <h4>Why Business Owners Come to Us</h4>
+    <p>Three reasons: the bank said no, they need money faster than a bank can move, or they've borrowed before and know how this works. In all three cases, they have a problem. Your job is to find that problem, size it up, and match it to a solution.</p>
+    <h4>Our Role</h4>
+    <p>We are financing consultants. Not salespeople. Not order-takers. We listen, diagnose, match, and advocate. A rep who memorizes products is a catalog. A rep who understands what a business owner is trying to solve is a consultant. Be the consultant.</p>
+    <div class="highlight">"A $40,000 working capital injection could have kept that restaurant open through a slow winter. A $150,000 equipment loan could have let that contractor take on the job that would have changed everything. The money existed. The path to it didn't. That is the problem we solve."</div>
+  </div></div>
+
+  <div class="train-section"><div class="train-head" onclick="toggleTrain(this)"><span class="train-icon">🎯</span><div><div class="train-title">Hunt Mode — Keeping Your Pipeline Full</div><div class="train-sub">Call notes, priority system, outbound protocol, BAMFAM</div></div></div>
+  <div class="train-body">
+    <h4>The Rule</h4>
+    <p>You can't kill what you haven't hunted. Hunting is a system — not random dialing.</p>
+    <h4>#1 — Call Notes (Non-Negotiable)</h4>
+    <p>Every prospect gets a note after every touchpoint. A note has four elements: what you said or sent; what they said back; where they are in the process (first contact / qualified / docs requested / docs received / submitted); your next action and the date it should happen. <strong>If it isn't in the notes, it didn't happen.</strong></p>
+    <h4>#2 — Work Your List (Priority Order)</h4>
+    <ul><li>Prospects with a confirmed BAMFAM call today</li><li>Prospects who submitted partial docs — follow up to complete</li><li>Warm prospects who haven't moved — they need a nudge</li><li>Fresh outbound leads from today's list</li><li>Cold outbound — new contacts</li></ul>
+    <p><strong>Never skip to #4 or #5 when #1, #2, or #3 have open items.</strong></p>
+    <h4>#3 — Outbound Protocol</h4>
+    <p>Your outbound call has one job: get them into a qualifying conversation. Introduction → qualifying questions → product match → close for docs. No wasted time re-explaining MCF before they've engaged.</p>
+    <h4>#4 — Inbound Warm Lead Protocol</h4>
+    <p>Call within 5 minutes of the lead coming in. Open with context — they responded to outreach about business financing. Move directly to qualifying. Speed is the edge: the rep who calls first wins most of the time.</p>
+    <h4>#5 — End of Day Review (6:30 PM)</h4>
+    <ul><li>All call notes updated and complete</li><li>Every BAMFAM confirmed — prospect has call on calendar</li><li>All partial-doc prospects followed up</li><li>Tomorrow's priority list built and ranked</li><li>Submitted files checked for status updates</li></ul>
+    <div class="highlight">If Daily Review takes more than 15 minutes, you did not document during the day. Fix that tomorrow.</div>
+  </div></div>
+
+  <div class="train-section"><div class="train-head" onclick="toggleTrain(this)"><span class="train-icon">⚔️</span><div><div class="train-title">Kill Mode — From Qualified Prospect to Docs in Hand</div><div class="train-sub">Tone → Intro → Discovery → Match → Close → Objections → BAMFAM</div></div></div>
+  <div class="train-body">
+    <p>Kill Mode is a sequence, not an improvisation. In that order. Every time.</p>
+    <h4>Tone</h4>
+    <p>Talk slower than you think you should (150–170 wpm). Talk louder than feels natural. Use pauses as a tool — after you ask an important question, stop talking. Mirror the client's pace, energy, and vocabulary.</p>
+    <h4>Own the Conversation</h4>
+    <p>There are no scripts in this office — scripts create a ceiling. A rep who actually understands the process can handle anything. Build that understanding, not a script. Use option-based questions: never ask "do you want fries?" Ask "small, medium, or large?"</p>
+    <h4>Discovery — The Qualifying Questions</h4>
+    <p>Work through the 12 qualifying questions conversationally. Every answer feeds your product match. You're answering one question: what does this business need, and do we have a product for it?</p>
+    <h4>The Match</h4>
+    <p>FICO first. Then revenue. Then property. Then TIB. Run the Quick Match Guide (Home page) to route instantly. When they qualify: "Based on what you've told me, you look like a strong [PRODUCT] candidate — this is [one-sentence why it fits]. Let's get your application started today."</p>
+    <h4>After They Engage: Move Directly to Discovery</h4>
+    <p>Do not add more context, re-explain MCF, or fill the silence. They're listening. Start qualifying.</p>
+  </div></div>
+
+  <div class="train-section"><div class="train-head" onclick="toggleTrain(this)"><span class="train-icon">📊</span><div><div class="train-title">Reading Financial Documents — Appendix C</div><div class="train-sub">Bank statements, Schedule C, Form 1120S — what to find and why it matters</div></div></div>
+  <div class="train-body">
+    <h4>Business Bank Statement — Key Numbers</h4>
+    <ul>
+      <li><strong>Total Deposits:</strong> Sum of all money IN during the period. This is effective monthly revenue — most MCA products offer 50–150% of one month's deposits.</li>
+      <li><strong>Number of Deposits:</strong> 8–15/month = steady cash flow. 1–2 large deposits = project-based/seasonal = higher risk. Some lenders require 5+ deposits/month minimum.</li>
+      <li><strong>Average Daily Balance (ADB):</strong> Shows if the business actually keeps money. ADB should be at least 15–20% of avg monthly deposits. Low ADB = struggles with daily MCA remittances.</li>
+      <li><strong>NSF / Returned Items:</strong> 0–1 = acceptable. 2–3 = caution. 4+ = most lenders decline. Always disclose NSF count upfront — hiding them causes post-submission declines.</li>
+    </ul>
+    <h4>Schedule C (Sole Proprietor) — Key Lines</h4>
+    <ul>
+      <li><strong>Line 1 — Gross Receipts:</strong> Top-line revenue. Cross-reference against bank deposits. Large gaps = income in another account (ask) or inflated tax return (flag).</li>
+      <li><strong>Line 7 — Gross Income:</strong> Revenue after COGS — shows gross margin efficiency.</li>
+      <li><strong>Line 31 — Net Profit:</strong> What the owner actually earned after all expenses. Drives personal income for HELOC DTI calculations. Two consecutive losses = flag.</li>
+    </ul>
+    <h4>Form 1120S (S-Corporation) — Key Lines</h4>
+    <ul>
+      <li><strong>Line 1a — Gross Receipts:</strong> Cross-reference against bank deposits.</li>
+      <li><strong>Line 21 — Ordinary Business Income:</strong> Net profit that passes through to owners via K-1.</li>
+      <li><strong>Line 7 — Officer Compensation:</strong> Owner salary (W-2). Total owner income = Officer W-2 + K-1 ordinary income.</li>
+      <li><strong>Schedule K-1 Ownership %:</strong> All owners 20%+ must sign as personal guarantors. Always ask: "How is ownership split?" Get all owners above 20% to sign upfront.</li>
+    </ul>
+    <div class="highlight">You are not the underwriter — but you ARE the first filter. A rep who can quickly spot a strong file (high deposits, healthy ADB, low NSFs, clean tax returns) saves everyone time and builds lender credibility.</div>
+  </div></div>
+
+  <div class="train-section"><div class="train-head" onclick="toggleTrain(this)"><span class="train-icon">🏆</span><div><div class="train-title">What the Top Rep Looks Like</div><div class="train-sub">The non-negotiables that separate producers from restarters</div></div></div>
+  <div class="train-body">
+    <p>It's never the most naturally charming. It's never the ones who come in knowing the most. Nine times out of ten it's the most consistent person in the room.</p>
+    <h4>The Top Rep Does These Every Day — Without Being Asked</h4>
+    <ul>
+      <li>Their notes are current before they leave the building</li>
+      <li>Their priority list is built before 9:30 AM</li>
+      <li>They BAMFAM every call — even the ones that went great</li>
+      <li>They listen to their own call recordings at least twice a week</li>
+      <li>They come to Morning Meeting having already thought about what they want to work on</li>
+      <li>When they have a bad day, they find the one thing that went wrong and fix it tomorrow — they don't spiral</li>
+    </ul>
+    <h4>Career Path</h4>
+    <ul>
+      <li><strong>Rep:</strong> 80+ dials/day, 1+ submission/week. Under daily manager oversight.</li>
+      <li><strong>Senior Rep:</strong> 100+ dials/day, 3+ submissions/week, 1+ funded/month. Self-directed, minimal oversight.</li>
+    </ul>
+    <div class="highlight">"The fundamentals compound. The rep who does the disciplined work every single day builds an engine. The rep who skips it, no matter how talented, keeps restarting from zero."</div>
+  </div></div>
+
+</div><!-- /training -->
+
+
+<!-- ═══ TOOLS ═══ -->
+<div class="panel" id="panel-tools">
+  <div class="sec-title">🛠 Operational Tools &amp; Resources</div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <h3>⏰ Daily Schedule</h3>
+      <table class="sched-table">
+        <tr><td class="t-time">9:30 AM</td><td>Arrival &amp; Prep — review priority list, check yesterday's notes</td></tr>
+        <tr><td class="t-time">9:45 AM</td><td>Morning Meeting — full team, no exceptions</td></tr>
+        <tr><td class="t-time">10:00 AM</td><td>Final lead review — confirm BAMFAM calls for the day</td></tr>
+        <tr class="t-power"><td class="t-time" style="color:var(--gold);">10:30 AM</td><td><strong>⚡ POWER HOUR — Outbound only. No email. Dialing.</strong></td></tr>
+        <tr><td class="t-time">11:30 AM</td><td>Follow-up: warm leads, partial doc follow-ups, inbound</td></tr>
+        <tr><td class="t-time">12:30 PM</td><td>Lunch</td></tr>
+        <tr><td class="t-time">1:30 PM</td><td>Pipeline calls, BAMFAM confirmations, doc collection</td></tr>
+        <tr class="t-power"><td class="t-time" style="color:var(--gold);">2:30 PM</td><td><strong>⚡ POWER HOUR — Outbound only. Full focus.</strong></td></tr>
+        <tr><td class="t-time">3:30 PM</td><td style="color:var(--text-muted);font-style:italic;">☕ 15-Minute Break</td></tr>
+        <tr><td class="t-time">3:45 PM</td><td>Follow-up: warm leads, afternoon inbound</td></tr>
+        <tr class="t-power"><td class="t-time" style="color:var(--gold);">5:30 PM</td><td><strong>⚡ POWER HOUR — Final outbound push.</strong></td></tr>
+        <tr><td class="t-time">6:30 PM</td><td>Daily Review — update notes, build tomorrow's priority list</td></tr>
+      </table>
+      <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:10px 13px;font-size:12px;color:#92400e;margin-top:12px;">
+        <strong>Priority Order Every Morning:</strong> (1) BAMFAM calls today → (2) Partial doc follow-ups → (3) Warm prospects → (4) Fresh outbound → (5) Cold outbound. Never jump to 4 or 5 while 1–3 have open items.
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <h3>✅ Daily Non-Negotiables</h3>
+      <ul class="checklist">
+        <li>Notes on every contact — every day. If it's not in the notes, it didn't happen.</li>
+        <li>Priority list built before 9:30 AM</li>
+        <li>BAMFAM on every call — no exceptions. No call ends without a locked next step.</li>
+        <li>All BAMFAMs confirmed before leaving — prospect has call on calendar</li>
+        <li>Partial doc follow-ups completed — what's missing, when are you getting it?</li>
+        <li>Text after every close: "Hey [name], text me back so you've got my number saved."</li>
+        <li>Unique subject line on every follow-up email — never "Follow Up"</li>
+        <li>Submitted files checked for status updates before end of day</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec-title">📁 Figure Lending — Product Documents</div>
+  <div class="cards">
+    <div class="rc" id="fig1"><div class="rc-head" onclick="toggleCard('fig1')"><div class="rc-icon tool">📘</div><div class="rc-meta"><div class="rc-title">HELOC Product Guide — Figure</div><div class="rc-sub">Full HELOC program overview: eligibility matrix, terms, states</div><span class="rc-tag tag-tool">Figure Doc</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <p style="font-size:13px;margin-top:10px;color:var(--text-muted);">Comprehensive HELOC product guide. Covers property types, eligibility matrix (FICO vs CLTV), draw period terms, valuation requirements, eNotary process, and how it works.</p>
+      <a class="link-btn" id="pdf-heloc-guide" href="#" target="_blank">📄 Open PDF</a>
+      <a class="link-btn" id="pdf-heloc-stages" href="#" target="_blank">📄 App Stages</a>
+      <a class="link-btn" id="pdf-heloc-status" href="#" target="_blank">📄 Status Tables</a>
+    </div></div>
+
+    <div class="rc" id="fig2"><div class="rc-head" onclick="toggleCard('fig2')"><div class="rc-icon tool">📗</div><div class="rc-meta"><div class="rc-title">DSCR Product Guide — Figure</div><div class="rc-sub">Investment property loan: eligibility, reserves, cash-out</div><span class="rc-tag tag-tool">Figure Doc</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <p style="font-size:13px;margin-top:10px;color:var(--text-muted);">DSCR product guide. Covers eligibility matrix, CLTV by segment, reserve requirements by property type, cash-out vs. rate-term options, and valuation process.</p>
+      <a class="link-btn" id="pdf-dscr" href="#" target="_blank">📄 Open PDF</a>
+    </div></div>
+
+    <div class="rc" id="fig3"><div class="rc-head" onclick="toggleCard('fig3')"><div class="rc-icon tool">📙</div><div class="rc-meta"><div class="rc-title">Texas HELOC Guide</div><div class="rc-sub">Special rules for Texas properties — separate program</div><span class="rc-tag tag-tool">Figure Doc</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <p style="font-size:13px;margin-top:10px;color:var(--text-muted);">Texas has unique HELOC rules (Article XVI Section 50a6). Different app stages, additional waiting periods, and separate guidelines apply. Reference before pitching any TX property owner.</p>
+      <a class="link-btn" id="pdf-texas" href="#" target="_blank">📄 TX Overview</a>
+      <a class="link-btn" id="pdf-texas-stages" href="#" target="_blank">📄 TX App Stages</a>
+    </div></div>
+
+    <div class="rc" id="fig4"><div class="rc-head" onclick="toggleCard('fig4')"><div class="rc-icon tool">📒</div><div class="rc-meta"><div class="rc-title">Supporting Figure Docs</div><div class="rc-sub">Income verification, notary guide, decline reasons, crypto</div><span class="rc-tag tag-tool">Figure Docs</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
+        <a class="figure-tag" id="pdf-income" href="#" target="_blank">Income Verification</a>
+        <a class="figure-tag" id="pdf-decline" href="#" target="_blank">Decline Reasons</a>
+        <a class="figure-tag" id="pdf-enotary" href="#" target="_blank">eNotary Guide</a>
+        <a class="figure-tag" id="pdf-manual-notary" href="#" target="_blank">Manual Notary</a>
+        <a class="figure-tag" id="pdf-lead-portal" href="#" target="_blank">Lead Portal Job Aid</a>
+        <a class="figure-tag" id="pdf-crypto" href="#" target="_blank">Crypto-Backed Loan</a>
+        <a class="figure-tag" id="pdf-servicing" href="#" target="_blank">Servicing Overview</a>
+        <a class="figure-tag" id="pdf-abbrev" href="#" target="_blank">Abbreviated Terms</a>
+      </div>
+    </div></div>
+  </div>
+</div><!-- /tools -->
+
+
+<!-- ═══ LEAD SOURCES ═══ -->
+<div class="panel" id="panel-leadsources">
+  <div class="sec-title">🗂️ Lead Source Tab Reference</div>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Canonical tab matrix for the rep-facing Google Sheets distribution system. Each tab represents a source family — backend lead source codes remain the audit source of truth; route tabs are the sheet display and distribution lane.</p>
+
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+    <a class="link-btn" id="pdf-lead-source-report" href="#" target="_blank">📄 Full Source Report PDF</a>
+  </div>
+
+  <div class="sec-title">📊 Quick Reference — All Source Tabs</div>
+  <div class="products-grid" style="margin-bottom:28px;">
+    <div class="product-pill" style="justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div class="product-dot" style="background:#3b82f6;"></div>Blue Beetle</div><span style="font-size:11px;color:var(--text-muted);font-weight:400;">KD</span></div>
+    <div class="product-pill" style="justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div class="product-dot" style="background:#ef4444;"></div>Red Beetle</div><span style="font-size:11px;color:var(--text-muted);font-weight:400;">KD sub · LT</span></div>
+    <div class="product-pill" style="justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div class="product-dot" style="background:#10b981;"></div>Green Beetle</div><span style="font-size:11px;color:var(--text-muted);font-weight:400;">KD sub · Non-LT</span></div>
+    <div class="product-pill" style="justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div class="product-dot" style="background:#8b5cf6;"></div>Spiderman</div><span style="font-size:11px;color:var(--text-muted);font-weight:400;">SPD · Preferred</span></div>
+    <div class="product-pill" style="justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div class="product-dot" style="background:#f59e0b;"></div>Antman</div><span style="font-size:11px;color:var(--text-muted);font-weight:400;">ANT · Aged</span></div>
+    <div class="product-pill" style="justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div class="product-dot" style="background:#475569;"></div>Dr Doom</div><span style="font-size:11px;color:var(--text-muted);font-weight:400;">DR · Restricted</span></div>
+    <div class="product-pill" style="justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div class="product-dot" style="background:#9ca3af;"></div>War Machine</div><span style="font-size:11px;color:var(--text-muted);font-weight:400;">CJ · Fill</span></div>
+    <div class="product-pill" style="justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div class="product-dot" style="background:#06b6d4;"></div>Previous Subs</div><span style="font-size:11px;color:var(--text-muted);font-weight:400;">BA</span></div>
+    <div class="product-pill" style="justify-content:space-between;opacity:.5;"><div style="display:flex;align-items:center;gap:10px;"><div class="product-dot" style="background:#d1d5db;"></div>Dennis</div><span style="font-size:11px;color:var(--red);font-weight:600;">RETIRED</span></div>
+    <div class="product-pill" style="justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div class="product-dot" style="background:#c8a94a;"></div>Live Transfer</div><span style="font-size:11px;color:var(--text-muted);font-weight:400;">Override</span></div>
+  </div>
+
+  <div class="sec-title">📋 Source Tab Detail</div>
+  <div class="cards" id="sourceCards">
+
+    <div class="rc" id="ls1"><div class="rc-head" onclick="toggleCard('ls1')"><div class="rc-icon" style="background:#dbeafe;">🔵</div><div class="rc-meta"><div class="rc-title">Blue Beetle</div><div class="rc-sub">Source prefix: KD / Blue Beetle</div><span class="rc-tag" style="background:#dbeafe;color:#1d4ed8;">KD Pool</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Origin</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">KloverData/KD app intake plus later scrubbed KD reserve batches. The base KD lane — remains source prefix KD even when related KD subroutes display separately on their own tabs.</p>
+      <div class="script-lbl">Operational Meaning</div>
+      <p style="font-size:12.5px;color:#374151;line-height:1.7;">Ordinary KD pool. Scrub-fresh eligibility applies. Retained Active/App-in rows return to the same rep independent of ordinary scrub-fresh pool rules.</p>
+      <div class="tip-note">💡 This is the base KD lane. Red Beetle and Green Beetle are subroutes that display on their own tabs but remain KD-family rows under the hood.</div>
+    </div></div>
+
+    <div class="rc" id="ls2"><div class="rc-head" onclick="toggleCard('ls2')"><div class="rc-icon" style="background:#fee2e2;">🔴</div><div class="rc-meta"><div class="rc-title">Red Beetle</div><div class="rc-sub">Source prefix: KD subroute / Blue Beetle MYRM source</div><span class="rc-tag" style="background:#fee2e2;color:#991b1b;">KD Sub · LT File</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Origin</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">Daniel-team KD Lending Tree file, imported from the scrubbed Red Beetle CSV. Processed through MYRM using the Blue Beetle provider/source label, then imported with a dedicated route-tab name so the sheet displays it separately from ordinary Blue Beetle rows.</p>
+      <div class="script-lbl">Operational Meaning</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">Separate KD display lane. Lead-level restriction behaves like a route override — these rows can be targeted without changing the rep's account globally.</p>
+      <div class="script-lbl">Source File</div>
+      <div class="cb" style="font-size:11.5px;">10k MCA LT w cell w rev for daniel@pmfus.com 6-11-2026 (1).scrubbed.csv</div>
+      <div class="tip-note">⚠️ Red Beetle rows are still KD/Blue Beetle-family under the hood. The separate tab is a display lane only — source prefix remains KD.</div>
+    </div></div>
+
+    <div class="rc" id="ls3"><div class="rc-head" onclick="toggleCard('ls3')"><div class="rc-icon" style="background:#d1fae5;">🟢</div><div class="rc-meta"><div class="rc-title">Green Beetle</div><div class="rc-sub">Source prefix: KD subroute / Blue Beetle MYRM source</div><span class="rc-tag" style="background:#d1fae5;color:#065f46;">KD Sub · Non-LT</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Origin</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">Daniel-team KD non-Lending Tree file, imported from the scrubbed Green Beetle CSV. Processed through MYRM using the Blue Beetle provider/source label, then imported with a dedicated route-tab name.</p>
+      <div class="script-lbl">Operational Meaning</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">Separate KD display lane. Revenue filter is applied at intake — eligible rows are prioritized according to route rules.</p>
+      <div class="script-lbl">Source File</div>
+      <div class="cb" style="font-size:11.5px;">10k MCA w cell w rev for daniel@pmfus.com 6-11-2026 (1).scrubbed.csv</div>
+      <div class="tip-note">💡 Green Beetle = KD non-LT file. Red Beetle = KD Lending Tree file. Both are KD subroutes on their own display tabs — same family, different origin files.</div>
+    </div></div>
+
+    <div class="rc" id="ls4"><div class="rc-head" onclick="toggleCard('ls4')"><div class="rc-icon" style="background:#ede9fe;">🕷️</div><div class="rc-meta"><div class="rc-title">Spiderman</div><div class="rc-sub">Source prefix: SPD / Spiderman</div><span class="rc-tag" style="background:#ede9fe;color:#6d28d9;">SPD · Preferred</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Origin</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">Scrubbed Spiderman batch imported as SPD after MYRM/email scrub processing. Introduced as a separate scrubbed lead family distinct from KD and CJ.</p>
+      <div class="script-lbl">Operational Meaning</div>
+      <p style="font-size:12.5px;color:#374151;line-height:1.7;">Preferred non-KD/CJ source. Fills before older CJ (War Machine) when available. Treat as higher-quality fill inventory over War Machine.</p>
+    </div></div>
+
+    <div class="rc" id="ls5"><div class="rc-head" onclick="toggleCard('ls5')"><div class="rc-icon" style="background:#fef3c7;">🐜</div><div class="rc-meta"><div class="rc-title">Antman</div><div class="rc-sub">Source prefix: ANT / Antman</div><span class="rc-tag" style="background:#fef3c7;color:#92400e;">ANT · Aged</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Origin</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">Aged Antman scrubbed files from Ben Arnold uploads.</p>
+      <div class="script-lbl">Operational Meaning</div>
+      <p style="font-size:12.5px;color:#374151;line-height:1.7;">Dedicated source tab. Annual revenue figures are normalized into monthly revenue equivalents for sheet and profile display where present — the underlying annual figure is preserved in source details.</p>
+    </div></div>
+
+    <div class="rc" id="ls6"><div class="rc-head" onclick="toggleCard('ls6')"><div class="rc-icon" style="background:#f1f5f9;">💀</div><div class="rc-meta"><div class="rc-title">Dr Doom</div><div class="rc-sub">Source prefix: DR / Dr Doom</div><span class="rc-tag" style="background:#f1f5f9;color:#475569;">DR · Restricted</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Origin</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">Combined scrubbed Dr Doom list uploaded as DR.</p>
+      <div class="script-lbl">Operational Meaning</div>
+      <p style="font-size:12.5px;color:#374151;line-height:1.7;">Dedicated source tab. Intended to operate as a lead-level restricted campaign — similar to live-transfer style routing. Restrictions live on the lead/route metadata, not on the rep account globally, so rows can be targeted without making the entire rep account special.</p>
+    </div></div>
+
+    <div class="rc" id="ls7"><div class="rc-head" onclick="toggleCard('ls7')"><div class="rc-icon" style="background:#f3f4f6;">⚙️</div><div class="rc-meta"><div class="rc-title">War Machine</div><div class="rc-sub">Source prefix: CJ / War Machine</div><span class="rc-tag" style="background:#f3f4f6;color:#374151;">CJ · Fill Pool</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Origin</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">CJ/PMF MCA workbook and reserve scrub batches.</p>
+      <div class="script-lbl">Operational Meaning</div>
+      <p style="font-size:12.5px;color:#374151;line-height:1.7;">Ordinary CJ pool. Generally least favored after fresher or restricted sources (KD family, Spiderman) are satisfied. Available as fill inventory once those sources are depleted.</p>
+      <div class="tip-note">📌 Distribution logic prioritizes fresher and more specific source families before older CJ rows.</div>
+    </div></div>
+
+    <div class="rc" id="ls8"><div class="rc-head" onclick="toggleCard('ls8')"><div class="rc-icon" style="background:#cffafe;">🔄</div><div class="rc-meta"><div class="rc-title">Previous Subs</div><div class="rc-sub">Source prefix: BA / Mixed</div><span class="rc-tag" style="background:#cffafe;color:#0e7490;">BA · Prev Subs</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Origin</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">BA/previous-subscriber files, including the corrected replacement for the old "Boiler Room" naming. BA exclusivity is recorded as metadata.</p>
+      <div class="script-lbl">Operational Meaning</div>
+      <p style="font-size:12.5px;color:#374151;line-height:1.7;">BA source-family tab. DNC is the primary scrub suppression rule. BA rows route to "Previous Subs" — not the retired "Boiler Room" tab name.</p>
+      <div class="tip-note">⚠️ The old "Boiler Room" tab name is corrected to "Previous Subs." The retired label remains auditable in history but active routing uses the canonical name only.</div>
+    </div></div>
+
+    <div class="rc" id="ls9" style="opacity:.65;"><div class="rc-head" onclick="toggleCard('ls9')"><div class="rc-icon" style="background:#f9fafb;">🚫</div><div class="rc-meta"><div class="rc-title">Dennis &nbsp;<span style="font-size:11px;font-weight:600;color:var(--red);">RETIRED</span></div><div class="rc-sub">Source prefix: DEN / Dennis</div><span class="rc-tag" style="background:#f3f4f6;color:#9ca3af;">DEN · Retired</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Origin</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">Sparse Dennis uploads, later determined to be bad data and retired/deleted from distribution.</p>
+      <div class="script-lbl">Operational Meaning</div>
+      <p style="font-size:12.5px;color:#374151;line-height:1.7;">Historical/compatibility tab only. Retained as a tab category for history and audit purposes. DEN leads should not return in normal future pulls.</p>
+      <div class="tip-note" style="background:#fee2e2;border-color:#fca5a5;color:#991b1b;">🚫 <strong>Do not work DEN leads.</strong> This source was marked as bad data and retired from active distribution.</div>
+    </div></div>
+
+    <div class="rc" id="ls10"><div class="rc-head" onclick="toggleCard('ls10')"><div class="rc-icon" style="background:#fffbeb;">📞</div><div class="rc-meta"><div class="rc-title">Live Transfer</div><div class="rc-sub">Route override — not a standalone source prefix</div><span class="rc-tag" style="background:#fffbeb;color:#92400e;">Route Override</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div class="script-lbl">Origin</div>
+      <p style="font-size:12.5px;color:#374151;margin-bottom:10px;line-height:1.7;">Designated live-transfer leads from a source such as CJ or KD. Live Transfer is not a source prefix by itself — it is a routing override layered on top of a lead's underlying source.</p>
+      <div class="script-lbl">Operational Meaning</div>
+      <p style="font-size:12.5px;color:#374151;line-height:1.7;">Temporary assignment lane. These rows stay with designated reps for the configured cycle count before returning to their underlying source pool. The override expires after the configured number of cycles.</p>
+      <div class="tip-note">💡 Live Transfer rows retain their original source prefix (KD or CJ) — the Live Transfer designation is the routing layer on top, not a permanent re-categorization of the lead.</div>
+    </div></div>
+
+  </div><!-- /sourceCards -->
+
+  <div class="sec-title" style="margin-top:8px;">📐 Operational Rules</div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;">
+    <ul class="checklist">
+      <li><strong>Source prefix ≠ sheet tab.</strong> Red Beetle and Green Beetle display on their own tabs but remain KD/Blue Beetle-family rows. Never assume the tab name equals the source prefix.</li>
+      <li><strong>Active and App-in retained rows</strong> return to their current rep independent of ordinary scrub-fresh pool rules.</li>
+      <li><strong>Temporary campaign restrictions</strong> should live on the lead/route metadata — similar to live-transfer behavior — not on the rep's account globally.</li>
+      <li><strong>Scrubbed imports and reserve exports</strong> should not commit raw lead CSVs to version control. Source filenames and provenance are recorded in the Source Report only.</li>
+      <li><strong>Retired or corrected labels</strong> (e.g. "Boiler Room" → "Previous Subs") remain auditable in history. Active rep-facing routing uses the current canonical tab names only.</li>
+    </ul>
+  </div>
+
+</div><!-- /leadsources -->
+</div><!-- /content -->
+
+<div class="footer">MCF Rep Resource Hub · Motor City Office · <strong>ben@pmfus.com</strong> · <span id="footerDate"></span></div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// OPTION 2 — GOOGLE DRIVE PDF LINKS
+// Upload each PDF to Google Drive, set sharing to
+// "Anyone with the link can view", then paste the link below.
+// Leave as '' to keep using the local relative path instead.
+// ═══════════════════════════════════════════════════════
+const DRIVE_LINKS = {
+  manual:             'https://drive.google.com/file/d/1LJ6zTXQ5Y5jr3Oh2DCyJ8FG7vO1mPk-R/view?usp=sharing',
+  quiz_rep:           'https://drive.google.com/file/d/1ZoROo5_k2eyQeamfETdPBXqMtxxoudvJ/view?usp=sharing',
+  quiz_master:        'https://drive.google.com/file/d/1v8vcKBbwnhuSm63RIul6FFGEdYRDygFu/view?usp=sharing',
+  heloc_guide:        'https://drive.google.com/file/d/1dHBfmykqIxtpjmoNZkXPS3LwLz9b_npr/view?usp=sharing',
+  heloc_app_stages:   'https://drive.google.com/file/d/1_If5e1klTiB6QqWsclLuKZkRP5nJSpPr/view?usp=sharing',
+  heloc_status:       'https://drive.google.com/file/d/1MOCyISGbNjbOi1ztwbnaFjBS195x8xyt/view?usp=sharing',
+  dscr_guide:         'https://drive.google.com/file/d/15zSxm5TEB5HxAPQ-DrGRbJtrq0T-0i_Z/view?usp=sharing',
+  texas_heloc:        'https://drive.google.com/file/d/1de71YIY8Ld-O_rsOEK08WfL5ZBOSsg4v/view?usp=sharing',
+  texas_heloc_stages: 'https://drive.google.com/file/d/1RTUvFMoOw_EX9OS61H0ve_ujufRUu6yj/view?usp=sharing',
+  income_verify:      'https://drive.google.com/file/d/1xlud5k_bG6IW1EiBgX1E3fV2vCYZabfv/view?usp=sharing',
+  decline_reasons:    'https://drive.google.com/file/d/17tCjznwkYQ-vNXppNXKIBdIpzXLEuuRl/view?usp=sharing',
+  enotary:            'https://drive.google.com/file/d/1vkzJfL0FUCKOtrN_vYsny2-DFyNqvr5R/view?usp=sharing',
+  manual_notary:      'https://drive.google.com/file/d/1NJmnxLUgu0QdKXCaX3-s3ZPblVmPqBZ3/view?usp=sharing',
+  lead_portal:        'https://drive.google.com/file/d/1ahG1aWQf_t0VhE7TFgSlGBs9kzNAeEht/view?usp=sharing',
+  crypto:             'https://drive.google.com/file/d/1WklsBA5d1DpJH9MHidGpoJwG85MPfFT4/view?usp=sharing',
+  servicing:          'https://drive.google.com/file/d/1rw9jBTSbkFIJYjgl5Cv4pkApGu1eoMM-/view?usp=sharing',
+  abbrev_terms:       'https://drive.google.com/file/d/1AzxQ4EUtkjmbb1k822rOQhG2ddrH9S_s/view?usp=sharing',
+  lead_source_report: 'https://drive.google.com/file/d/13zvhVPiWhAIHBYqg8MElZ-jqlwbNryZQ/view?usp=drivesdk',
+};
+
+// Local fallback paths (used when DRIVE_LINKS entry is empty)
+const LOCAL_LINKS = {
+  manual:             '../PMF_New_Rep_Manual_v6_with_AppendixC.pdf',
+  quiz_rep:           '../PMF_New_Rep_Quiz_REP_v2.pdf',
+  quiz_master:        '../PMF_New_Rep_Quiz_MASTER_v2.pdf',
+  heloc_guide:        '../PMF Figure Docs/PMF_HELOC_Product_Guide.pdf',
+  heloc_app_stages:   '../PMF Figure Docs/PMF_HELOC_App_Stages.pdf',
+  heloc_status:       '../PMF Figure Docs/PMF_HELOC_Status_Tables.pdf',
+  dscr_guide:         '../PMF Figure Docs/PMF_DSCR_Product_Guide.pdf',
+  texas_heloc:        '../PMF Figure Docs/PMF_Texas_HELOC_Overview.pdf',
+  texas_heloc_stages: '../PMF Figure Docs/PMF_Texas_HELOC_App_Stages.pdf',
+  income_verify:      '../PMF Figure Docs/PMF_Income_Verification_Overview.pdf',
+  decline_reasons:    '../PMF Figure Docs/PMF_Decline_Reasons_Reference.pdf',
+  enotary:            '../PMF Figure Docs/PMF_eNotary_Guide.pdf',
+  manual_notary:      '../PMF Figure Docs/PMF_Manual_Notary_Guide.pdf',
+  lead_portal:        '../PMF Figure Docs/PMF_Lead_Portal_Job_Aid.pdf',
+  crypto:             '../PMF Figure Docs/PMF_Crypto-Backed_Loan_Product_Guide.pdf',
+  servicing:          '../PMF Figure Docs/PMF_Servicing_Overview.pdf',
+  abbrev_terms:       '../PMF Figure Docs/PMF_Abbreviated_Terms_Reference.pdf',
+  lead_source_report: '../mcf-source-tab-origin-report.pdf',
+};
+
+// Resolves to Drive link if set, otherwise falls back to local path
+function pdfLink(key) { return DRIVE_LINKS[key] || LOCAL_LINKS[key]; }
+
+// Wire up all PDF buttons/links after DOM loads
+document.addEventListener('DOMContentLoaded', () => {
+  const map = {
+    'pdf-manual':             'manual',
+    'pdf-quiz-rep':           'quiz_rep',
+    'pdf-quiz-master':        'quiz_master',
+    'pdf-heloc-guide':        'heloc_guide',
+    'pdf-heloc-stages':       'heloc_app_stages',
+    'pdf-heloc-status':       'heloc_status',
+    'pdf-dscr':               'dscr_guide',
+    'pdf-texas':              'texas_heloc',
+    'pdf-texas-stages':       'texas_heloc_stages',
+    'pdf-income':             'income_verify',
+    'pdf-decline':            'decline_reasons',
+    'pdf-enotary':            'enotary',
+    'pdf-manual-notary':      'manual_notary',
+    'pdf-lead-portal':        'lead_portal',
+    'pdf-crypto':             'crypto',
+    'pdf-servicing':          'servicing',
+    'pdf-abbrev':             'abbrev_terms',
+    'pdf-lead-source-report': 'lead_source_report',
+  };
+  Object.entries(map).forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if (el) el.href = pdfLink(key);
+  });
+});
+
+// Date
+const ds = new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+document.getElementById('todayDate').textContent = ds;
+document.getElementById('footerDate').textContent = 'Last updated ' + ds;
+
+// Tab switching
+function switchTab(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+  document.getElementById('globalSearch').value = '';
+  filterAll('');
+}
+
+// Card toggle
+function toggleCard(id) { document.getElementById(id).classList.toggle('open'); }
+
+// Inner accordion (objections)
+function toggleIA(el) {
+  const body = el.nextElementSibling;
+  const open = body.classList.toggle('open');
+  el.querySelector('span').textContent = open ? '▴' : '▾';
+}
+
+// Training section toggle
+function toggleTrain(el) { el.nextElementSibling.classList.toggle('open'); }
+
+// Copy to clipboard
+function copyText(id, btn) {
+  navigator.clipboard.writeText(document.getElementById(id).innerText).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✅ Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Product pill → open quick reference
+function openProduct(id) {
+  // Switch to products tab
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-products').classList.add('active');
+  // Find the Products tab (6th tab, index 5)
+  const prodTab = Array.from(document.querySelectorAll('.tab')).find(t => t.textContent.includes('Products'));
+  if (prodTab) prodTab.classList.add('active');
+  // Open and scroll to card
+  setTimeout(() => {
+    const card = document.getElementById(id);
+    if (!card) return;
+    card.classList.add('open');
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 50);
+}
+
+// Global search
+function filterAll(q) {
+  q = q.toLowerCase().trim();
+  document.querySelectorAll('.rc').forEach(c => c.classList.toggle('hidden', q ? !c.textContent.toLowerCase().includes(q) : false));
+  document.querySelectorAll('.product-pill').forEach(p => p.classList.toggle('hidden', q ? !p.textContent.toLowerCase().includes(q) : false));
+  document.querySelectorAll('.intake-card').forEach(c => c.classList.toggle('hidden', q ? !c.textContent.toLowerCase().includes(q) : false));
+  document.querySelectorAll('.train-section').forEach(c => c.classList.toggle('hidden', q ? !c.textContent.toLowerCase().includes(q) : false));
+}
+
+// / key focuses search
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); document.getElementById('globalSearch').focus(); }
+});
+
+// ═══ MERCHANT ROUTER — FAIR SCORING ENGINE ═══
+// Backend knowledge from lender matrix (35+ verified lender guidelines, March 2026)
+
+function leeway(val, ideal, softMin, weight) {
+  // Returns weighted score with leeway — never fully eliminates products below threshold
+  if (!val || val === 0) return weight * 0.3; // unknown = partial credit
+  if (val >= ideal) return weight;
+  if (val >= softMin) {
+    // Linear interpolation between softMin (40%) and ideal (100%)
+    const pct = 0.4 + 0.6 * ((val - softMin) / (ideal - softMin));
+    return weight * Math.min(pct, 1);
+  }
+  // Below soft min — still gets partial credit (20–40%) so product isn't eliminated
+  const floor = 0.2;
+  const pct = floor + 0.2 * (val / softMin);
+  return weight * Math.min(pct, 0.4);
+}
+
+function tiLeeway(months, ideal, weight) {
+  if (!months) return weight * 0.3;
+  if (months >= ideal) return weight;
+  if (months >= ideal * 0.5) return weight * (0.4 + 0.6 * (months / ideal));
+  return weight * Math.max(0.2, months / ideal);
+}
+
+function runRouter() {
+  const goal     = document.getElementById('r-goal').value;
+  const tibVal   = parseInt(document.getElementById('r-tib').value) || 0;
+  const revVal   = parseInt(document.getElementById('r-rev').value) || 0;
+  const ficoVal  = parseInt(document.getElementById('r-fico').value) || 0;
+  const assets   = document.getElementById('r-assets').value;
+  const debtPos  = parseInt(document.getElementById('r-debt').value) || 0;
+  const industry = document.getElementById('r-industry').value;
+
+  const annualRev = revVal * 12;
+  const hasProperty = ['home_equity','investment_prop','cre'].includes(assets);
+  const hasInvestProp = ['investment_prop'].includes(assets);
+  const hasCRE = ['cre'].includes(assets);
+  const hasEquipInvoice = assets === 'equipment_invoice';
+  const hasAR = assets === 'ar';
+  const assetsBlank = !assets;
+
+  // Goal bonus helpers
+  const goalBonus = (matches) => matches.includes(goal) ? 10 : 0;
+  const industryBonus = (matches) => matches.includes(industry) ? 8 : 0;
+
+  // Score each product (max 100 pts each)
+  const scores = [
+    {
+      id:'sba7a', name:'SBA 7(a) Loan', color:'#3b82f6',
+      score: Math.min(100,
+        leeway(ficoVal, 675, 620, 30) +
+        tiLeeway(tibVal, 36, 25) +
+        leeway(revVal, 8000, 4000, 15) +
+        goalBonus(['working_capital','expansion','acquisition','equipment','real_estate','debt_refi']) +
+        industryBonus(['professional','medical','construction','retail','general']) +
+        (ficoVal >= 675 && tibVal >= 36 ? 10 : 0)
+      ),
+      pitch: 'Best rates, longest terms for qualified borrowers. Up to $5M at ~9.5% APR, 10-year term. Lowest cost of capital for small businesses.',
+      docs: 'PMF App, 6 mo bank statements, P&L, tax returns (3 yrs), personal financial statement, debt schedule',
+      note: ficoVal > 0 && ficoVal < 675 ? '⚠️ FICO below 675 minimum — possible with strong file; consider credit improvement first.' : ''
+    },
+    {
+      id:'sba504', name:'SBA 504 Loan', color:'#6366f1',
+      score: Math.min(100,
+        leeway(ficoVal, 650, 600, 25) +
+        tiLeeway(tibVal, 24, 18) +
+        (hasCRE || ['real_estate','construction'].includes(goal) ? 30 : 5) +
+        goalBonus(['real_estate','construction','equipment']) +
+        (industry === 'real_estate' ? 10 : 0) +
+        5
+      ),
+      pitch: 'Fixed-rate CRE or heavy equipment for businesses buying their own space. 10% down, up to $5.5M.',
+      docs: 'PMF App, 3 yrs business + personal tax returns, P&L, balance sheet, personal financial statement, purchase contract/appraisal',
+      note: 'Best when business occupies 51%+ of property being purchased.'
+    },
+    {
+      id:'heloc', name:'HELOC (Figure Lending)', color:'#10b981',
+      score: Math.min(100,
+        (hasProperty ? 40 : 5) +
+        leeway(ficoVal, 680, 620, 25) +
+        (assets === 'home_equity' || hasInvestProp ? 15 : 0) +
+        goalBonus(['working_capital','expansion','equipment','debt_refi','cash_out']) +
+        10
+      ),
+      pitch: '7–9% APR revolving line up to $750K — based on home equity, not business performance. Funds in under a week.',
+      docs: 'PMF App, property address, estimated value, mortgage balance, gov ID, homeowners insurance',
+      note: assetsBlank ? '⚠️ Asset qualifier not collected — ask if they own any real estate.' : (!hasProperty ? '⚠️ No property indicated — HELOC requires real estate equity.' : '')
+    },
+    {
+      id:'dscr', name:'DSCR Loan (Figure)', color:'#ec4899',
+      score: Math.min(100,
+        (hasInvestProp ? 45 : assets === 'cre' ? 35 : 5) +
+        leeway(ficoVal, 680, 640, 25) +
+        goalBonus(['real_estate','cash_out']) +
+        (industry === 'real_estate' ? 15 : 0) +
+        5
+      ),
+      pitch: 'Investment property loans qualified on rental income — no personal income verification. $75K–$1M, 30-year fixed.',
+      docs: 'PMF App, lease agreement, property details, gov ID, mortgage statement, 3 mo liquid reserves',
+      note: 'DSCR ≥ 1.0 required. Best for real estate investors with active rental income.'
+    },
+    {
+      id:'loc', name:'Unsecured Line of Credit', color:'#6366f1',
+      score: Math.min(100,
+        leeway(ficoVal, 640, 575, 30) +
+        leeway(revVal, 25000, 12000, 30) +
+        tiLeeway(tibVal, 24, 12) +
+        goalBonus(['working_capital','expansion','cash_out']) +
+        industryBonus(['professional','medical','retail','restaurant','general']) +
+        5
+      ),
+      pitch: 'Revolving credit line — no collateral, no daily debits. Draw what you need, pay it down, draw again. 6–15 month terms.',
+      docs: 'PMF App, 4 mo bank statements, driver\'s license, voided check',
+      note: ficoVal > 0 && ficoVal < 575 ? '⚠️ FICO below soft minimum — ARF Financial (575 min) or ByzFlex (550 min) may still qualify.' : ''
+    },
+    {
+      id:'mca', name:'MCA', color:'#f59e0b',
+      score: Math.min(100,
+        leeway(ficoVal, 550, 480, 20) +
+        leeway(revVal, 15000, 8000, 30) +
+        tiLeeway(tibVal, 12, 6) +
+        goalBonus(['working_capital','expansion','equipment']) +
+        industryBonus(['restaurant','retail','medical','construction','trucking','general']) +
+        (debtPos === 0 ? 15 : debtPos === 1 ? 8 : 0)
+      ),
+      pitch: 'Fast capital in 24–72 hours. Offer = 50–150% of monthly revenue. Best for speed when LOC/HELOC aren\'t options.',
+      docs: 'PMF App, 3–4 mo bank statements, driver\'s license, voided check',
+      note: 'Always try LOC, HELOC, or SBA first. Effective APR 40–150%+. Disclose NSFs upfront — 4+ = most lenders decline.'
+    },
+    {
+      id:'revcon', name:'Reverse Consolidation', color:'#8b5cf6',
+      score: Math.min(100,
+        (debtPos >= 2 ? 50 : debtPos === 1 ? 20 : 0) +
+        leeway(revVal, 20000, 10000, 25) +
+        goalBonus(['debt_refi','working_capital']) +
+        (debtPos >= 3 ? 15 : 0) +
+        10
+      ),
+      pitch: 'Inject capital to pay down 2+ MCA positions → one lower daily payment. Relief for merchants with stacked advances choking cash flow.',
+      docs: 'PMF App, 4 mo bank statements, business debt schedule, driver\'s license, voided check, payoff statements',
+      note: debtPos < 2 ? 'Requires 2+ active MCA positions to trigger. Ask: "How many positions do you have? Total daily payments?"' : 'Strong candidate. Lenders: Nexi (up to 8th pos), Alpine (up to 10th), Wynwood (up to 9th, defaults OK).'
+    },
+    {
+      id:'equip', name:'Equipment Financing', color:'#ef4444',
+      score: Math.min(100,
+        (hasEquipInvoice ? 45 : goal === 'equipment' ? 20 : 5) +
+        leeway(ficoVal, 620, 560, 30) +
+        goalBonus(['equipment']) +
+        industryBonus(['construction','trucking','medical','general']) +
+        10
+      ),
+      pitch: 'Finance machinery, vehicles, or technology — equipment serves as collateral. Up to 100% of asset value.',
+      docs: 'PMF App, 4 mo bank statements, equipment invoice/quote, driver\'s license',
+      note: assetsBlank && goal === 'equipment' ? '⚠️ Asset qualifier not collected — confirm equipment invoice exists.' : (!hasEquipInvoice && goal === 'equipment' ? 'Scored on equipment goal — confirm invoice is available.' : '')
+    },
+    {
+      id:'factoring', name:'Invoice Factoring', color:'#14b8a6',
+      score: Math.min(100,
+        (hasAR ? 45 : 5) +
+        leeway(annualRev, 100000, 50000, 20) +
+        goalBonus(['working_capital','cash_out']) +
+        industryBonus(['construction','professional','trucking']) +
+        10
+      ),
+      pitch: 'Advance 70–90% on unpaid B2B invoices. Ideal for businesses waiting on slow-paying customers with $100K+ AR outstanding.',
+      docs: 'PMF App, sample invoices, AR aging report, customer list, 4 mo bank statements',
+      note: !hasAR ? 'Best fit requires confirmed $100K+ unpaid invoices. Ask: "Do you have outstanding invoices from business customers?"' : ''
+    },
+    {
+      id:'cre', name:'Commercial Real Estate (General)', color:'#0ea5e9',
+      score: Math.min(100,
+        (hasCRE || hasInvestProp ? 35 : 5) +
+        leeway(ficoVal, 660, 610, 25) +
+        tiLeeway(tibVal, 24, 12) +
+        goalBonus(['real_estate','cash_out','construction']) +
+        (industry === 'real_estate' ? 15 : 0) +
+        5
+      ),
+      pitch: 'Commercial property acquisition or refinance. Whisper lender: $250K–$5M, no income/DSCR required, BK/default OK, 50–75% LTV.',
+      docs: 'PMF App, property details, purchase contract/appraisal, rent roll, 2 yrs tax returns, P&L, personal financial statement, entity docs',
+      note: ''
+    },
+    {
+      id:'constV', name:'Ground Up Construction — Vertical', color:'#84cc16',
+      score: Math.min(100,
+        leeway(ficoVal, 660, 610, 25) +
+        (goal === 'construction' ? 30 : goal === 'real_estate' ? 20 : 5) +
+        (industry === 'construction' || industry === 'real_estate' ? 20 : 5) +
+        (hasCRE || hasInvestProp || assets === 'home_equity' ? 15 : 0) +
+        5
+      ),
+      pitch: 'New above-ground structure — residential, commercial, or multifamily. LTC up to 75–80%. Experience and track record are key qualifiers.',
+      docs: 'Completed application, land settlement stmt, purchase contract, plans/blueprints, construction budget, ARV appraisal, build track record, builder\'s risk insurance, entity docs',
+      note: 'Builder track record (# completed projects last 3 yrs) is heavily weighted in underwriting.'
+    },
+    {
+      id:'constH', name:'Ground Up Construction — Horizontal', color:'#a3e635',
+      score: Math.min(100,
+        leeway(ficoVal, 660, 610, 25) +
+        (goal === 'construction' ? 30 : 5) +
+        (industry === 'construction' || industry === 'real_estate' ? 20 : 5) +
+        (hasCRE || hasInvestProp ? 15 : 0) +
+        5
+      ),
+      pitch: 'Land development — site preparation, roads, utilities, grading. Fewer lenders; entitlement/permit status is a major factor.',
+      docs: 'Land ownership docs, survey, site development plan/engineering drawings, development budget, entitlement/permit status, developer track record, entity docs, personal financial statement',
+      note: 'Higher risk than vertical — fewer lenders. Entitlement status and developer experience are critical.'
+    },
+    {
+      id:'cre504', name:'CRE 504 — Owner-Occupied', color:'#c8a94a',
+      score: Math.min(100,
+        leeway(ficoVal, 650, 600, 25) +
+        tiLeeway(tibVal, 24, 12) +
+        (hasCRE || goal === 'real_estate' ? 35 : 10) +
+        goalBonus(['real_estate','construction']) +
+        5
+      ),
+      pitch: 'Business buying its own commercial space — 10% down, fixed long-term rates, up to $5.5M. "Stop building your landlord\'s equity."',
+      docs: 'PMF App, 3 yrs business + personal tax returns, P&L, balance sheet, personal financial statement, purchase contract/appraisal, 51%+ occupancy confirmation, driver\'s license',
+      note: 'Business must occupy 51%+ of property (existing) or 60%+ (new construction).'
+    },
+    {
+      id:'creRefi', name:'CRE Acquisition & Refinance', color:'#f43f5e',
+      score: Math.min(100,
+        (hasCRE || hasInvestProp ? 35 : 5) +
+        leeway(ficoVal, 660, 610, 25) +
+        goalBonus(['real_estate','cash_out']) +
+        (industry === 'real_estate' ? 15 : 0) +
+        10
+      ),
+      pitch: 'Investment CRE purchase or refinance. Qualified on NOI/DSCR. Whisper option: no income/DSCR required for non-conforming files.',
+      docs: 'PMF App, property appraisal/purchase contract, rent roll + leases, operating statement (NOI 12 mo), 2 yrs tax returns, personal financial statement, mortgage statements, entity docs',
+      note: ''
+    },
+    {
+      id:'cashout', name:'Cash-Out Refinance', color:'#a855f7',
+      score: Math.min(100,
+        (hasProperty ? 40 : 5) +
+        leeway(ficoVal, 660, 610, 25) +
+        goalBonus(['cash_out','working_capital','debt_refi']) +
+        (industry === 'real_estate' ? 10 : 0) +
+        5
+      ),
+      pitch: 'Pull equity from existing property as working capital, expansion capital, or to pay off higher-rate debt — at a fraction of MCA rates.',
+      docs: 'PMF App, property appraisal, mortgage statement(s), property insurance, 2 yrs personal tax returns, income verification, personal financial statement, driver\'s license',
+      note: assetsBlank ? '⚠️ Asset qualifier not collected — confirm property equity available.' : (!hasProperty ? 'No property assets indicated — cash-out requires existing property with equity.' : 'Max LTV: 75% residential, 70–75% CRE. 90-day seasoning from purchase date.')
+    },
+    {
+      id:'abl', name:'ABL — Asset-Based Lending', color:'#0891b2',
+      score: Math.min(100,
+        (hasAR ? 40 : 5) +
+        leeway(annualRev, 500000, 200000, 20) +
+        goalBonus(['working_capital','cash_out','expansion']) +
+        industryBonus(['professional','construction','trucking','medical']) +
+        (industry === 'professional' || hasAR ? 10 : 0) +
+        5
+      ),
+      pitch: 'Revolving credit line secured by AR. Advance up to 100% of eligible invoices aged <90 days. Rate: WSJ Prime + 2.5% (floor 6%). Best for B2B businesses with strong commercial customers.',
+      docs: 'YTD P&L + Balance Sheet, CPA financials 2023–2024, A/R aging (summary + detail), A/P summary aging, sample invoices/contracts from top 3 customers, 12-month sales history, debt schedule',
+      note: !hasAR ? 'Ask: "Do you invoice commercial customers? What is your typical outstanding A/R balance?" — this can unlock ABL significantly.' : ''
+    },
+    {
+      id:'fixflip', name:'Fix & Flip', color:'#d97706',
+      score: Math.min(100,
+        leeway(ficoVal, 660, 610, 25) +
+        (goal === 'real_estate' || goal === 'construction' ? 35 : 5) +
+        (industry === 'real_estate' || industry === 'construction' ? 20 : 5) +
+        (hasInvestProp || hasCRE || assets === 'home_equity' ? 10 : 0) +
+        5
+      ),
+      pitch: 'Short-term rehab loan covering purchase + renovation. Up to 90% LTC, 70–75% of ARV. Lima One Real Estate. Experience-based pricing — more completed HUD projects = better terms.',
+      docs: 'Property address, purchase price, rehab budget, ARV, bed/bath/SF, vacancy status, scope of work, borrower info, entity docs, credit score, liquid assets, HUD project track record, citizenship',
+      note: 'Key qualifier: number of rehab projects COMPLETED ON HUD in last 3 years. Ask this early.'
+    },
+    {
+      id:'resmtg', name:'Residential Mortgage', color:'#16a34a',
+      score: Math.min(100,
+        (assets === 'home_equity' ? 40 : hasInvestProp ? 30 : 5) +
+        leeway(ficoVal, 680, 630, 25) +
+        goalBonus(['real_estate','cash_out']) +
+        (goal === 'real_estate' || goal === 'cash_out' ? 10 : 0) +
+        5
+      ),
+      pitch: 'Standard residential mortgage — purchase, rate/term refi, or cash-out. Qualifies on personal income (W-2 or self-employed). Corresponds with DSCR guidelines for investment properties.',
+      docs: '2 mo bank statements, homeowners insurance, latest W-2, pay stubs, driver\'s license, 2 yrs personal tax returns (1040), mortgage statement (if refi), property address + loan info, cash-out amount',
+      note: ''
+    },
+    {
+      id:'credit', name:'Credit Servicing', color:'#f97316',
+      score: Math.min(100,
+        (ficoVal > 0 && ficoVal < 620 ? 50 : ficoVal >= 620 && ficoVal < 640 ? 20 : 5) +
+        (goal === 'credit' ? 30 : 10) +
+        leeway(revVal, 10000, 5000, 15) +
+        5
+      ),
+      pitch: '60–90 day pipeline play. Clean the FICO profile to unlock LOC (625+), HELOC (620+), or SBA (675+). Never let a low-FICO prospect walk.',
+      docs: 'Credit report (all 3 bureaus), list of negative items, owner SSN for monitoring',
+      note: ficoVal >= 640 ? 'FICO is in a workable range — consider routing to LOC or HELOC first before credit servicing.' : 'Strong candidate. Bridge play while improving credit.'
+    }
+  ];
+
+  // Sort by score descending
+  scores.sort((a,b) => b.score - a.score);
+
+  // Check thin profile flag
+  const above30 = scores.filter(s => s.score >= 30).length;
+  const thinFlag = above30 < 2;
+
+  let html = '';
+  if (thinFlag) {
+    html += `<div class="router-flag">⚠️ <div><strong>Thin profile — consider gathering more data before routing.</strong> Fewer than 2 products scored above 30. Ask for FICO, revenue, and whether they own any property to sharpen results.</div></div>`;
+  }
+  if (assetsBlank) {
+    html += `<div class="router-flag" style="background:#f0f9ff;border-color:#bae6fd;color:#0369a1;">ℹ️ <div>Asset qualifier not collected. Ask: "Do you own your home, any rental property, or commercial real estate?" — this can unlock HELOC, DSCR, and CRE products significantly.</div></div>`;
+  }
+
+  html += `<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:12px;">Ranked Product Matches (${scores.length} products scored)</div>`;
+
+  scores.forEach((p, i) => {
+    const s = Math.round(p.score);
+    const cls = s >= 70 ? 'match-strong' : s >= 45 ? 'match-possible' : s >= 25 ? 'match-explore' : 'match-no';
+    const bl  = s >= 70 ? 'mb-g' : s >= 45 ? 'mb-y' : s >= 25 ? 'mb-p' : 'mb-gr';
+    const lbl = s >= 70 ? '✓ Strong Match' : s >= 45 ? '~ Possible' : s >= 25 ? '↗ Worth Exploring' : '– Not Recommended';
+    html += `<div class="match-card ${cls}">
+      <div class="match-header">
+        <span style="font-size:12px;color:var(--text-muted);font-weight:600;">${i+1}.</span>
+        <span class="match-name"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${p.color};margin-right:5px;vertical-align:middle;"></span>${p.name}</span>
+        <span class="mbadge ${bl}">${lbl}</span>
+        <span class="match-score">Score: ${s}/100</span>
+      </div>
+      ${p.note ? `<div class="match-note">${p.note}</div>` : ''}
+      <div class="match-pitch">${p.pitch}</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:4px;"><strong>Docs to request:</strong> ${p.docs}</div>
+    </div>`;
+  });
+
+  document.getElementById('routerResults').innerHTML = html;
+}
+</script>
+</body>
+</html>
