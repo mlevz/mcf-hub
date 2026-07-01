@@ -204,7 +204,7 @@ mark{background:rgba(200,169,74,0.3);border-radius:2px;padding:0 2px;}
     <button class="tab" onclick="switchTab('templates',this)">✉️ Templates <span class="tc">15</span></button>
     <button class="tab" onclick="switchTab('intake',this)">📝 Deal Intake <span class="tc">7</span></button>
     <button class="tab" onclick="switchTab('docs',this)">📋 Doc Checklists <span class="tc">20</span></button>
-    <button class="tab" onclick="switchTab('products',this)">💼 Products <span class="tc">20</span></button>
+    <button class="tab" onclick="switchTab('products',this)">💼 Products <span class="tc">21</span></button>
     <button class="tab" onclick="switchTab('training',this)">🎓 Training</button>
     <button class="tab" onclick="switchTab('tools',this)">🛠 Tools</button>
     <button class="tab" onclick="switchTab('leadsources',this)">🗂️ Lead Sources <span class="tc">10</span></button>
@@ -917,6 +917,7 @@ To get a quote, please send over:
     <div class="product-pill" onclick="openProduct('p18')"><div class="product-dot" style="background:#0891b2;"></div>ABL (Asset-Based Lending)</div>
     <div class="product-pill" onclick="openProduct('p19')"><div class="product-dot" style="background:#d97706;"></div>Fix &amp; Flip</div>
     <div class="product-pill" onclick="openProduct('p20')"><div class="product-dot" style="background:#16a34a;"></div>Residential Mortgage</div>
+    <div class="product-pill" onclick="openProduct('p21')"><div class="product-dot" style="background:#1e40af;"></div>C&amp;I Term Loan</div>
   </div>
 
   <div class="sec-title">📖 Product Quick Reference</div>
@@ -1162,6 +1163,153 @@ Key Terms:
 Transaction Types: Purchase | Rate/Term Refinance | Cash-Out Refinance
 
 Pitch: "Whether you're buying, refinancing for a better rate, or pulling equity out of your home — we can put together a residential mortgage that fits your situation."</div></div></div>
+
+
+    <div class="rc" id="p21"><div class="rc-head" onclick="toggleCard('p21')"><div class="rc-icon product" style="background:#dbeafe;">🏛️</div><div class="rc-meta"><div class="rc-title">C&amp;I Term Loan</div><div class="rc-sub">Commercial &amp; Industrial — working capital, equipment, debt refi</div><span class="rc-tag tag-product">C&amp;I</span></div><span class="rc-chevron">▼</span></div>
+    <div class="rc-body">
+      <div style="background:#fef3c7;border:1px solid #f59e0b;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.85rem;color:#92400e;">
+        <strong>⚠️ Use this first:</strong> Do not sell a term, amortization, lien position, or renewal as guaranteed. Confirm product fit, collateral, occupancy, and financials before positioning the deal.
+      </div>
+
+      <div style="font-weight:700;font-size:.9rem;margin-bottom:8px;color:var(--navy);">⚡ Fast Decision Guide</div>
+      <div style="overflow-x:auto;margin-bottom:16px;">
+        <table style="width:100%;border-collapse:collapse;font-size:.8rem;">
+          <thead><tr style="background:var(--navy);color:#fff;">
+            <th style="padding:7px 10px;text-align:left;">Borrower Need</th>
+            <th style="padding:7px 10px;text-align:left;">Correct Product</th>
+            <th style="padding:7px 10px;text-align:left;">Likely Structure</th>
+            <th style="padding:7px 10px;text-align:left;">Non-Negotiable Check</th>
+          </tr></thead>
+          <tbody>
+            <tr style="background:#f8fafc;">
+              <td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Buying or refinancing the building the business operates from</td>
+              <td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;color:#1e40af;">Owner-Occupied CRE</td>
+              <td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Up to 80% LTV; up to 30-year amortization</td>
+              <td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Business occupies 51%+ of building. Newtek generally needs 1st lien on refinance.</td>
+            </tr>
+            <tr>
+              <td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Working capital, equipment, or debt refinance. Borrower pledges unrelated real estate.</td>
+              <td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;color:#1e40af;">C&amp;I Term Loan Secured by Real Estate</td>
+              <td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Often 5-year term / 10-year amortization when real estate support is substantial</td>
+              <td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Property is collateral only. It does <strong>not</strong> create a 30-year deal.</td>
+            </tr>
+            <tr style="background:#f8fafc;">
+              <td style="padding:7px 10px;">Business does not occupy property; property is investment / tenant occupied.</td>
+              <td style="padding:7px 10px;font-weight:600;color:#dc2626;">Not Owner-Occupied CRE</td>
+              <td style="padding:7px 10px;">Potential collateral support only; different product review needed</td>
+              <td style="padding:7px 10px;">Do not call it owner-occupied. Confirm actual occupancy and cash flow.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="font-weight:700;font-size:.9rem;margin-bottom:8px;color:var(--navy);">📐 Core Difference: 30-Year CRE vs. 5-over-10 C&amp;I</div>
+      <div style="overflow-x:auto;margin-bottom:16px;">
+        <table style="width:100%;border-collapse:collapse;font-size:.8rem;">
+          <thead><tr style="background:var(--navy);color:#fff;">
+            <th style="padding:7px 10px;text-align:left;">Question</th>
+            <th style="padding:7px 10px;text-align:left;">Owner-Occupied CRE</th>
+            <th style="padding:7px 10px;text-align:left;">C&amp;I with RE Collateral</th>
+          </tr></thead>
+          <tbody>
+            <tr style="background:#f8fafc;"><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">What is being financed?</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Property purchase or refinance</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Business purpose: WC, equipment, debt refi, etc.</td></tr>
+            <tr><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Why does real estate matter?</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">It is the asset being purchased/refinanced</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">It secures the business loan</td></tr>
+            <tr style="background:#f8fafc;"><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Amortization</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;color:#16a34a;">Up to 30 years</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;color:#d97706;">Usually 10-year amortization</td></tr>
+            <tr><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Maturity</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Long-term CRE structure</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;">5-year maturity with balloon</td></tr>
+            <tr style="background:#f8fafc;"><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Owner occupancy</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Required: 51%+</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Not required for collateral — no 30-year CRE terms</td></tr>
+            <tr><td style="padding:7px 10px;">Lien position</td><td style="padding:7px 10px;">Generally 1st lien</td><td style="padding:7px 10px;">Case-specific, subject to underwriting</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+        <div>
+          <div style="font-weight:700;font-size:.9rem;margin-bottom:8px;color:var(--navy);">🔄 Renewal / Balloon Talking Points</div>
+          <div class="cb readable" style="font-size:.8rem;">• A 5-over-10 is <strong>not</strong> a committed 10-year loan. It is a five-year loan with payments based on a 10-year schedule.
+• Do not promise automatic renewal, a second five-year term, or a waived appraisal.
+• Any continuation depends on borrower performance, DSCR, credit quality, collateral value, and lender discretion.
+• A future five-year term may require a new loan process and another appraisal.
+
+<span class="script-lbl">✅ Safe language:</span> "If the business performs well, we can review options as the maturity approaches, but any continuation would remain subject to underwriting and current policy."</div>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:.9rem;margin-bottom:8px;color:var(--navy);">🚨 Red Flags — Escalate Early</div>
+          <div class="cb readable" style="font-size:.8rem;background:#fef2f2;border-color:#fca5a5;">• Borrower wants 30-year terms but is NOT buying/refinancing an owner-occupied property
+• Operating business occupies less than 51% of the building
+• Existing debt cannot be paid off or Newtek cannot obtain required lien position
+• Borrower refuses to pledge property after identified as necessary collateral
+• MCA debt, stacked UCCs, unexplained debt, or unclear payoff info
+• Weak DSCR, thin liquidity, or structure relying on generic FF&amp;E / AR as core collateral</div>
+        </div>
+      </div>
+
+      <div style="font-weight:700;font-size:.9rem;margin-bottom:8px;color:var(--navy);">📦 Collateral: What Actually Matters</div>
+      <div style="overflow-x:auto;margin-bottom:16px;">
+        <table style="width:100%;border-collapse:collapse;font-size:.8rem;">
+          <thead><tr style="background:var(--navy);color:#fff;">
+            <th style="padding:7px 10px;text-align:left;">Collateral Type</th>
+            <th style="padding:7px 10px;text-align:left;">How to Think About It</th>
+            <th style="padding:7px 10px;text-align:left;">How to Position It</th>
+          </tr></thead>
+          <tbody>
+            <tr style="background:#f8fafc;"><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;">Real estate</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Usually the strongest. Confirm value, liens, ownership, and borrower willingness.</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Discuss lien expectation early. Be clear when personal residence is involved.</td></tr>
+            <tr><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;">Machinery / equipment</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Can matter when substantial, identifiable, durable, and resaleable.</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Do not overvalue generic or aged equipment.</td></tr>
+            <tr style="background:#f8fafc;"><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;">Accounts receivable</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Can weaken quickly, especially in stressed files or MCA refinances.</td><td style="padding:7px 10px;border-bottom:1px solid #e2e8f0;">Do not present AR as a sure recovery source. Confirm quality, aging, concentration.</td></tr>
+            <tr><td style="padding:7px 10px;font-weight:600;">FF&amp;E / generic office</td><td style="padding:7px 10px;">Usually weak recovery value.</td><td style="padding:7px 10px;">Do not sell desks, computers, or generic FF&amp;E as meaningful collateral.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+        <div>
+          <div style="font-weight:700;font-size:.9rem;margin-bottom:8px;color:var(--navy);">❓ Pre-Qual Questions — Ask Every Time</div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:.8rem;">
+              <thead><tr style="background:#1e40af;color:#fff;"><th style="padding:6px 10px;text-align:left;">Area</th><th style="padding:6px 10px;text-align:left;">What You Need to Know</th></tr></thead>
+              <tbody>
+                <tr style="background:#f8fafc;"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;">Use of proceeds</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">WC, debt refi, equipment, property purchase/refi, acquisition, or combo?</td></tr>
+                <tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;">Real estate</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">Being bought/refinanced, or only pledged as collateral?</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;">Occupancy</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">Does operating business occupy 51%+? Any tenants?</td></tr>
+                <tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;">Existing liens</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">Who holds mortgage? Payoff? Can Newtek take 1st lien?</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;">Structure need</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">Lowest payment, longest amortization, or no balloon?</td></tr>
+                <tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-weight:600;">Cash flow</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">Current payments, proposed payments, liquidity, DSCR?</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:6px 10px;font-weight:600;">Collateral consent</td><td style="padding:6px 10px;">Will borrower pledge the property? Do they understand a lien may be placed on personal residence?</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:.9rem;margin-bottom:8px;color:var(--navy);">💬 Quick Talk Tracks</div>
+          <div class="cb readable" style="font-size:.8rem;">
+<span class="script-lbl">Owner-occupied CRE:</span>
+"Because the business operates from the property, we can evaluate it as owner-occupied commercial real estate. That opens up longer amortization — but we need to confirm occupancy, existing debt, and lien position first."
+
+<span class="script-lbl">C&amp;I with collateral:</span>
+"You're not financing the property itself. You're using the property to strengthen a business loan. The structure is typically a 5-year term with a 10-year amortization — payments are lower, but there's a balloon at maturity."
+
+<span class="script-lbl">Borrower reluctant to pledge:</span>
+"Before we spend more time on the file, I want to be direct: the property is a required part of this structure. If it's off the table, we need to look at a different product."
+
+<span class="script-lbl">When unsure:</span>
+"I need to confirm use of proceeds, property occupancy, existing liens, and financials before I position this as owner-occupied CRE or C&amp;I."</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+        <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:6px;padding:10px 14px;font-size:.8rem;">
+          <div style="font-weight:700;color:#c2410c;margin-bottom:4px;">🚫 Do NOT say:</div>
+          "We can give you 30 years because you own a property."
+        </div>
+        <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:10px 14px;font-size:.8rem;">
+          <div style="font-weight:700;color:#166534;margin-bottom:4px;">✅ Say instead:</div>
+          "The property may strengthen the collateral package and help support a lower payment structure, but this remains a C&amp;I loan. The current structure would generally be five years amortized over ten."
+        </div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <a class="link-btn" id="pdf-ci-cheatsheet" href="#" target="_blank">📄 Open Full C&amp;I Cheat Sheet</a>
+      </div>
+    </div></div>
 
   </div>
 </div><!-- /products -->
@@ -1508,6 +1656,7 @@ const DRIVE_LINKS = {
   servicing:          'https://drive.google.com/file/d/1rw9jBTSbkFIJYjgl5Cv4pkApGu1eoMM-/view?usp=sharing',
   abbrev_terms:       'https://drive.google.com/file/d/1AzxQ4EUtkjmbb1k822rOQhG2ddrH9S_s/view?usp=sharing',
   lead_source_report: 'https://drive.google.com/file/d/13zvhVPiWhAIHBYqg8MElZ-jqlwbNryZQ/view?usp=drivesdk',
+      ci_cheatsheet: 'https://drive.google.com/file/d/1SZdvp0fBF-yWyMRrHNT-2NDFu-h0UeHU/view?usp=drivesdk',
 };
 
 // Local fallback paths (used when DRIVE_LINKS entry is empty)
@@ -1530,6 +1679,7 @@ const LOCAL_LINKS = {
   servicing:          '../PMF Figure Docs/PMF_Servicing_Overview.pdf',
   abbrev_terms:       '../PMF Figure Docs/PMF_Abbreviated_Terms_Reference.pdf',
   lead_source_report: '../mcf-source-tab-origin-report.pdf',
+      ci_cheatsheet: '../C_and_I_Cheat_Sheet.docx',
 };
 
 // Resolves to Drive link if set, otherwise falls back to local path
@@ -1556,6 +1706,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'pdf-servicing':          'servicing',
     'pdf-abbrev':             'abbrev_terms',
     'pdf-lead-source-report': 'lead_source_report',
+        'pdf-ci-cheatsheet': 'ci_cheatsheet',
   };
   Object.entries(map).forEach(([id, key]) => {
     const el = document.getElementById(id);
