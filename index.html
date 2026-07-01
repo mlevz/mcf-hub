@@ -168,6 +168,38 @@ mark{background:rgba(200,169,74,0.3);border-radius:2px;padding:0 2px;}
 .footer{text-align:center;padding:16px 32px;font-size:11px;color:var(--text-muted);border-top:1px solid var(--border);}
 @media(max-width:900px){.kpi-row{grid-template-columns:repeat(2,1fr);}.intake-grid,.router-wrap,.tools-grid{grid-template-columns:1fr;}}
 @media(max-width:600px){.header{padding:0 16px;}.kpi-row,.tabs-wrap,.content{padding-left:16px;padding-right:16px;}.cards{grid-template-columns:1fr;}.search-wrap input{width:160px;}}
+
+/* ── INTAKE FORM ── */
+.intake-form-header{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px;padding:18px 20px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);}
+.intake-form-section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);padding:18px 20px;margin-bottom:14px;}
+.intake-form-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.intake-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;}
+.intake-product-section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:2px solid var(--gold);padding:18px 20px;margin-bottom:14px;}
+.intake-action-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.ia-btn{padding:9px 16px;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.ia-btn-primary{background:var(--navy);color:#fff;}.ia-btn-primary:hover{background:var(--navy-mid);}
+.ia-btn-secondary{background:#374151;color:#fff;}.ia-btn-secondary:hover{background:#1f2937;}
+.ia-btn-danger{background:var(--red);color:#fff;}.ia-btn-danger:hover{background:#dc2626;}
+.intake-summary-box{background:#f0fdf4;border:1.5px solid #86efac;border-radius:var(--radius);padding:16px 20px;margin-bottom:16px;font-size:12.5px;line-height:1.85;white-space:pre-wrap;font-family:inherit;display:none;}
+/* ── DOC CHECKLISTS INTERACTIVE ── */
+.checklist li{cursor:pointer;transition:all .15s;user-select:none;}
+.checklist li.checked::before{content:'✓';color:var(--green);}
+.checklist li.checked{color:#9ca3af;text-decoration:line-through;opacity:.7;}
+.doc-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px 0;}
+.doc-progress-txt{font-size:12px;font-weight:600;color:var(--text-muted);flex:1;}
+.doc-pbar-wrap{width:100%;height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin:6px 0 10px;}
+.doc-pbar-fill{height:100%;background:var(--green);border-radius:3px;transition:width .3s;}
+.doc-action-btn{padding:4px 10px;border:1.5px solid var(--border);border-radius:5px;font-size:10.5px;font-weight:700;cursor:pointer;background:#fff;color:var(--text-muted);transition:all .15s;letter-spacing:.3px;}
+.doc-action-btn:hover{border-color:var(--navy);color:var(--navy);}
+.doc-action-btn.red:hover{border-color:var(--red);color:var(--red);}
+/* ── ROUTER RESULT ACTIONS ── */
+.result-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.ra-btn{padding:4px 11px;border:1.5px solid;border-radius:5px;font-size:10.5px;font-weight:700;cursor:pointer;background:transparent;transition:all .15s;letter-spacing:.2px;}
+.ra-btn-blue{border-color:var(--blue);color:var(--blue);}.ra-btn-blue:hover{background:var(--blue);color:#fff;}
+.ra-btn-teal{border-color:var(--green);color:var(--green);}.ra-btn-teal:hover{background:var(--green);color:#fff;}
+.ra-btn-purple{border-color:var(--purple);color:var(--purple);}.ra-btn-purple:hover{background:var(--purple);color:#fff;}
+@media(max-width:900px){.intake-form-grid{grid-template-columns:1fr;}.intake-form-header{flex-direction:column;}.intake-action-bar{flex-wrap:wrap;}}
+@media print{.header,.tabs-wrap,.kpi-row,.share-banner,.panel:not(.active){display:none!important;}.intake-form-header .intake-action-bar{display:none!important;}.panel.active{display:block!important;}.intake-summary-box{display:block!important;}}
 </style>
 </head>
 <body>
@@ -190,7 +222,7 @@ mark{background:rgba(200,169,74,0.3);border-radius:2px;padding:0 2px;}
 </div>
 
 <div class="kpi-row">
-  <div class="kpi c-gold"><div class="kpi-label">Products</div><div class="kpi-val">20</div><div class="kpi-desc">Financing programs</div></div>
+  <div class="kpi c-gold"><div class="kpi-label">Products</div><div class="kpi-val">21</div><div class="kpi-desc">Financing programs</div></div>
   <div class="kpi c-blue"><div class="kpi-label">Templates</div><div class="kpi-val">15</div><div class="kpi-desc">Email &amp; text scripts</div></div>
   <div class="kpi c-green"><div class="kpi-label">Doc Checklists</div><div class="kpi-val">20</div><div class="kpi-desc">Per product</div></div>
   <div class="kpi c-purple"><div class="kpi-label">Pitch Frameworks</div><div class="kpi-val">5</div><div class="kpi-desc">Scripts &amp; objections</div></div>
@@ -725,7 +757,221 @@ To get a quote, please send over:
 
 <!-- ═══ DEAL INTAKE ═══ -->
 <div class="panel" id="panel-intake">
-  <div class="sec-title">📝 Deal Intake Questionnaires — Quick Reference</div>
+  <div class="sec-title">📝 Deal Intake — Live Interactive Form</div>
+
+  <!-- HEADER: deal type + action buttons -->
+  <div class="intake-form-header">
+    <div style="flex:1;min-width:220px;">
+      <div class="fg" style="margin-bottom:0;">
+        <label>Select Deal Type</label>
+        <select id="intake-type" onchange="switchIntakeForm(this.value)">
+          <option value="">— Choose product to begin intake —</option>
+          <option value="general">💼 General Business Finance</option>
+          <option value="heloc">🏠 HELOC — Home Equity Line</option>
+          <option value="dscr">🏢 DSCR — Investment Property</option>
+          <option value="construction">🏗️ Ground Up Construction</option>
+          <option value="sba504cre">🏦 SBA 504 / CRE Owner-Occupied</option>
+          <option value="mca_consol">🔁 MCA Consolidation</option>
+          <option value="equipment">🔧 Equipment Financing</option>
+          <option value="abl">🏭 ABL — Asset-Based Lending</option>
+          <option value="fixflip">🔨 Fix &amp; Flip (Lima One)</option>
+          <option value="resmtg">🏡 Residential Mortgage</option>
+        </select>
+      </div>
+    </div>
+    <div class="intake-action-bar" style="align-self:flex-end;">
+      <button class="ia-btn ia-btn-primary" onclick="routeFromIntake()">⚡ Route This Deal</button>
+      <button class="ia-btn ia-btn-secondary" onclick="generateIntakeSummary()">📋 Copy Summary</button>
+      <button class="ia-btn ia-btn-secondary" onclick="window.print()">🖨️ Print</button>
+      <button class="ia-btn ia-btn-danger" onclick="clearIntake()">↺ Clear</button>
+    </div>
+  </div>
+
+  <div id="intakeSummaryBox" class="intake-summary-box"></div>
+
+  <!-- CORE FIELDS — always visible -->
+  <div class="intake-form-section">
+    <div class="intake-form-title">📋 Core Information</div>
+    <div class="intake-form-grid">
+      <div class="fg"><label>Business Legal Name</label><input type="text" id="if-bizname" placeholder="As it appears on bank account"></div>
+      <div class="fg"><label>Owner Name(s)</label><input type="text" id="if-ownername" placeholder="Primary owner(s), % if multiple"></div>
+      <div class="fg"><label>Business Type / Industry</label><input type="text" id="if-industry" placeholder="e.g. Restaurant, Construction, Medical"></div>
+      <div class="fg"><label>Phone / Email</label><input type="text" id="if-contact" placeholder="Best contact for follow-up"></div>
+      <div class="fg"><label>Amount Requested ($)</label><input type="number" id="if-amount" placeholder="e.g. 150000"></div>
+      <div class="fg"><label>Use of Funds</label><input type="text" id="if-usefunds" placeholder="Working capital, equipment, expansion..."></div>
+      <div class="fg"><label>Avg Monthly Revenue — Last 3 Months ($)</label><input type="number" id="if-rev" oninput="syncIntakeRouter()" placeholder="e.g. 45000"></div>
+      <div class="fg"><label>Owner FICO Score (estimate OK)</label><input type="number" id="if-fico" oninput="syncIntakeRouter()" placeholder="e.g. 680"></div>
+      <div class="fg"><label>Time in Business</label>
+        <select id="if-tib" onchange="syncIntakeRouter()">
+          <option value="">Select...</option>
+          <option value="3">Under 6 months</option>
+          <option value="6">6–12 months</option>
+          <option value="12">1–2 years</option>
+          <option value="24">2–3 years</option>
+          <option value="36">3–5 years</option>
+          <option value="60">5+ years</option>
+        </select>
+      </div>
+      <div class="fg"><label>Open MCA / Debt Positions</label>
+        <select id="if-debt" onchange="syncIntakeRouter()">
+          <option value="0">None</option>
+          <option value="1">1 position</option>
+          <option value="2">2 positions</option>
+          <option value="3">3+ positions</option>
+        </select>
+      </div>
+      <div class="fg"><label>Real Estate / Assets Owned</label>
+        <select id="if-assets" onchange="syncIntakeRouter()">
+          <option value="">Select...</option>
+          <option value="home_equity">Home equity (primary residence)</option>
+          <option value="investment_prop">Investment / rental property</option>
+          <option value="cre">Commercial real estate</option>
+          <option value="equipment_invoice">Equipment invoice / quote</option>
+          <option value="ar">Accounts receivable / invoices</option>
+          <option value="none">No significant assets</option>
+        </select>
+      </div>
+      <div class="fg"><label>% Ownership</label><input type="text" id="if-ownership" placeholder="e.g. 100%, or 60%/40%"></div>
+    </div>
+  </div>
+
+  <!-- PRODUCT-SPECIFIC SECTIONS -->
+  <div class="intake-product-section hidden" id="ifp-heloc">
+    <div class="intake-form-title">🏠 HELOC — Property Details</div>
+    <div class="intake-form-grid">
+      <div class="fg"><label>Property Address (full)</label><input type="text" id="if-h-addr" placeholder="Street, City, State, ZIP"></div>
+      <div class="fg"><label>Property Type</label><select id="if-h-type"><option value="">Select...</option><option>Primary residence</option><option>Investment / rental property</option><option>Commercial</option></select></div>
+      <div class="fg"><label>Estimated Property Value ($)</label><input type="number" id="if-h-val" placeholder="Owner estimate OK to start"></div>
+      <div class="fg"><label>Current Mortgage Balance ($)</label><input type="number" id="if-h-mort"></div>
+      <div class="fg"><label>Is Property Rented? Monthly Rent?</label><input type="text" id="if-h-rent" placeholder="Yes — $X/mo, or No"></div>
+      <div class="fg"><label>Income Source</label><select id="if-h-income"><option value="">Select...</option><option>W-2 / employed</option><option>Self-employed</option><option>Rental income</option><option>Mixed</option></select></div>
+    </div>
+  </div>
+
+  <div class="intake-product-section hidden" id="ifp-dscr">
+    <div class="intake-form-title">🏢 DSCR — Investment Property</div>
+    <div class="intake-form-grid">
+      <div class="fg"><label>Property Address</label><input type="text" id="if-d-addr"></div>
+      <div class="fg"><label>Property Type</label><select id="if-d-type"><option>SFR (Single Family)</option><option>2-4 Unit</option><option>Condo / Townhome</option></select></div>
+      <div class="fg"><label>Rental Status</label><select id="if-d-status"><option>Occupied — lease active</option><option>Vacant</option></select></div>
+      <div class="fg"><label>Monthly Rent ($)</label><input type="number" id="if-d-rent" placeholder="Market rent or current lease"></div>
+      <div class="fg"><label>Purchase Price / Est. Value ($)</label><input type="number" id="if-d-val"></div>
+      <div class="fg"><label>Outstanding Mortgage Balance ($)</label><input type="number" id="if-d-mort"></div>
+      <div class="fg"><label>Annual Expenses: Tax + Insurance + HOA ($)</label><input type="number" id="if-d-exp" placeholder="Total annual"></div>
+      <div class="fg"><label>Transaction Type</label><select id="if-d-trans"><option>Purchase</option><option>Refinance</option><option>Cash-Out Refi</option></select></div>
+    </div>
+  </div>
+
+  <div class="intake-product-section hidden" id="ifp-construction">
+    <div class="intake-form-title">🏗️ Ground Up Construction</div>
+    <div class="intake-form-grid">
+      <div class="fg"><label>Property Under Contract?</label><select id="if-c-contract"><option>Yes</option><option>No — land only</option></select></div>
+      <div class="fg"><label>Purchase Price / Land Basis ($)</label><input type="number" id="if-c-price"></div>
+      <div class="fg"><label>Build Budget ($)</label><input type="number" id="if-c-budget"></div>
+      <div class="fg"><label>ARV — After Completion Value ($)</label><input type="number" id="if-c-arv"></div>
+      <div class="fg"><label>Project Type</label><select id="if-c-type"><option>Vertical (above-ground structure)</option><option>Horizontal (land dev / site prep)</option></select></div>
+      <div class="fg"><label>Project Description (beds / baths / sq ft)</label><input type="text" id="if-c-desc" placeholder="e.g. 4/3, 2,400 sqft single family"></div>
+      <div class="fg"><label>Entity Name</label><input type="text" id="if-c-entity" placeholder="LLC or Corp if closing in entity"></div>
+      <div class="fg"><label>Available Cash / Liquid Assets ($)</label><input type="number" id="if-c-cash"></div>
+      <div class="fg"><label>Down Payment Source</label><input type="text" id="if-c-dp" placeholder="Savings, equity, partner, etc."></div>
+      <div class="fg"><label>Completed Builds Last 3 Years (on HUD)</label><input type="number" id="if-c-builds" placeholder="# of finished projects"></div>
+      <div class="fg"><label>Exit Strategy</label><select id="if-c-exit"><option>Sell</option><option>Rent / Hold</option></select></div>
+      <div class="fg"><label>Citizenship Status</label><input type="text" id="if-c-cit" placeholder="US Citizen, Perm. Resident, etc."></div>
+    </div>
+  </div>
+
+  <div class="intake-product-section hidden" id="ifp-sba504cre">
+    <div class="intake-form-title">🏦 SBA 504 / CRE Owner-Occupied</div>
+    <div class="intake-form-grid">
+      <div class="fg"><label>Property Address + Type</label><input type="text" id="if-504-addr" placeholder="Address and property type"></div>
+      <div class="fg"><label>Transaction</label><select id="if-504-trans"><option>Purchase</option><option>Refinance</option></select></div>
+      <div class="fg"><label>Purchase Price / Est. Value ($)</label><input type="number" id="if-504-val"></div>
+      <div class="fg"><label>Outstanding Debt on Property ($)</label><input type="number" id="if-504-debt" placeholder="If refinance"></div>
+      <div class="fg"><label>% of Building Your Business Occupies</label><input type="text" id="if-504-occ" placeholder="Must be 51%+ existing, 60%+ new"></div>
+      <div class="fg"><label>Annual Gross Revenue ($)</label><input type="number" id="if-504-rev"></div>
+    </div>
+  </div>
+
+  <div class="intake-product-section hidden" id="ifp-mca_consol">
+    <div class="intake-form-title">🔁 MCA Consolidation</div>
+    <div class="intake-form-grid">
+      <div class="fg"><label>Number of Active MCA Positions</label><input type="number" id="if-m-pos" placeholder="Count of active advances"></div>
+      <div class="fg"><label>Total Daily / Weekly Payment Amount ($)</label><input type="number" id="if-m-pay" placeholder="Combined ACH debits"></div>
+      <div class="fg"><label>Total Remaining Payoff Balance ($)</label><input type="number" id="if-m-payoff" placeholder="Across all positions"></div>
+      <div class="fg"><label>MCA Lender Names (if known)</label><input type="text" id="if-m-lenders" placeholder="e.g. Bluevine, Credibly, etc."></div>
+      <div class="fg"><label>Primary Goal</label><select id="if-m-goal"><option>Reduce daily payments</option><option>Extend terms</option><option>Replace with LOC / term loan</option></select></div>
+    </div>
+  </div>
+
+  <div class="intake-product-section hidden" id="ifp-equipment">
+    <div class="intake-form-title">🔧 Equipment Financing</div>
+    <div class="intake-form-grid">
+      <div class="fg"><label>Equipment Description</label><input type="text" id="if-e-desc" placeholder="What are you purchasing?"></div>
+      <div class="fg"><label>Make / Model / Vendor</label><input type="text" id="if-e-make" placeholder="Manufacturer and seller"></div>
+      <div class="fg"><label>Purchase Price ($)</label><input type="number" id="if-e-price"></div>
+      <div class="fg"><label>New or Used?</label><select id="if-e-cond"><option>New</option><option>Used</option></select></div>
+    </div>
+  </div>
+
+  <div class="intake-product-section hidden" id="ifp-abl">
+    <div class="intake-form-title">🏭 ABL — Asset-Based Lending</div>
+    <div class="intake-form-grid">
+      <div class="fg"><label>Annual Gross Revenue ($)</label><input type="number" id="if-a-rev" placeholder="Full year gross"></div>
+      <div class="fg"><label>Avg Monthly A/R Outstanding ($)</label><input type="number" id="if-a-ar" placeholder="Unpaid invoices balance"></div>
+      <div class="fg"><label>Customer Payment Terms</label><select id="if-a-terms"><option>Net 30</option><option>Net 60</option><option>Net 90+</option><option>Mixed</option></select></div>
+      <div class="fg"><label>CPA Financials Available (2023–2024)?</label><select id="if-a-cpa"><option>Yes — both years</option><option>Yes — partial</option><option>No</option></select></div>
+      <div class="fg"><label># of Major Commercial Customers</label><input type="number" id="if-a-custs" placeholder="Top revenue contributors"></div>
+      <div class="fg"><label>Existing UCC Liens on A/R?</label><select id="if-a-ucc"><option>No</option><option>Yes</option><option>Unknown</option></select></div>
+      <div class="fg"><label>A/R Aging Report Available?</label><select id="if-a-aging"><option>Yes</option><option>No</option></select></div>
+      <div class="fg"><label>Primary Use of Line</label><select id="if-a-use"><option>Payroll</option><option>Operations / overhead</option><option>Bridge while awaiting payment</option><option>Other</option></select></div>
+    </div>
+  </div>
+
+  <div class="intake-product-section hidden" id="ifp-fixflip">
+    <div class="intake-form-title">🔨 Fix &amp; Flip (Lima One)</div>
+    <div class="intake-form-grid">
+      <div class="fg"><label>Property Address</label><input type="text" id="if-f-addr"></div>
+      <div class="fg"><label>Purchase Price ($)</label><input type="number" id="if-f-price"></div>
+      <div class="fg"><label>Rehab Budget ($)</label><input type="number" id="if-f-rehab" placeholder="Estimate OK"></div>
+      <div class="fg"><label>Finance Rehab Too?</label><select id="if-f-finr"><option>Yes</option><option>No</option></select></div>
+      <div class="fg"><label>ARV — After Rehab Value ($)</label><input type="number" id="if-f-arv"></div>
+      <div class="fg"><label>Current Bed/Bath / Sq Ft</label><input type="text" id="if-f-beds" placeholder="e.g. 3/2, 1,200 sqft"></div>
+      <div class="fg"><label>Changing Bed/Bath/SF?</label><select id="if-f-chg"><option>No</option><option>Yes</option></select></div>
+      <div class="fg"><label>Vacancy Status</label><select id="if-f-vac"><option>Vacant</option><option>Occupied</option></select></div>
+      <div class="fg"><label>Scope of Work</label><input type="text" id="if-f-scope" placeholder="Kitchen, roof, full gut rehab..."></div>
+      <div class="fg"><label>Entity Name</label><input type="text" id="if-f-ent" placeholder="LLC/Corp if applicable"></div>
+      <div class="fg"><label>Available Cash / Liquid Assets ($)</label><input type="number" id="if-f-cash"></div>
+      <div class="fg"><label>Down Payment Source</label><input type="text" id="if-f-dp"></div>
+      <div class="fg"><label>HUD Rehab Projects Completed — Last 3 Yrs</label><input type="number" id="if-f-huds" placeholder="# finished on HUD"></div>
+      <div class="fg"><label>Exit Strategy</label><select id="if-f-exit"><option>Sell</option><option>Rent / Hold</option></select></div>
+      <div class="fg"><label>Citizenship Status</label><input type="text" id="if-f-cit"></div>
+      <div class="fg"><label>Home Address</label><input type="text" id="if-f-home"></div>
+    </div>
+  </div>
+
+  <div class="intake-product-section hidden" id="ifp-resmtg">
+    <div class="intake-form-title">🏡 Residential Mortgage</div>
+    <div class="intake-form-grid">
+      <div class="fg"><label>Property Address</label><input type="text" id="if-r-addr"></div>
+      <div class="fg"><label>Transaction Type</label><select id="if-r-trans"><option>Purchase</option><option>Rate/Term Refi</option><option>Cash-Out Refi</option></select></div>
+      <div class="fg"><label>Purchase Price / Est. Value ($)</label><input type="number" id="if-r-val"></div>
+      <div class="fg"><label>Outstanding Mortgage Balance ($)</label><input type="number" id="if-r-mort"></div>
+      <div class="fg"><label>Cash-Out Amount Needed ($)</label><input type="number" id="if-r-co" placeholder="If cash-out refi"></div>
+      <div class="fg"><label>Occupancy Type</label><select id="if-r-occ"><option>Primary residence</option><option>Secondary / vacation home</option><option>Investment property</option></select></div>
+      <div class="fg"><label>Income Type</label><select id="if-r-inc"><option>W-2 / employed</option><option>Self-employed</option><option>Rental income</option></select></div>
+      <div class="fg"><label>Any late payments, BK, or liens (last 24 mo)?</label><select id="if-r-der"><option>No</option><option>Yes — provide details below</option></select></div>
+      <div class="fg" style="grid-column:1/-1;"><label>Derogatory Details</label><input type="text" id="if-r-dernotes" placeholder="Explain if applicable"></div>
+    </div>
+  </div>
+
+  <!-- NOTES — always visible -->
+  <div class="intake-form-section">
+    <div class="intake-form-title">📎 Rep Notes &amp; Flags</div>
+    <div class="fg"><textarea id="if-notes" rows="3" style="resize:vertical;" placeholder="NSFs, urgency, referral source, objections raised, red flags, anything the underwriter should know..."></textarea></div>
+  </div>
+
+  <!-- QUICK REFERENCE SECTION (existing Q-lists) -->
+  <div class="sec-title" style="margin-top:32px;">📖 Quick Reference — Intake Questions by Product</div>
   <div class="intake-grid">
 
     <div class="intake-card"><div class="intake-title">💼 General Business Finance <span class="intake-num">(13 Q)</span></div>
@@ -2107,6 +2353,10 @@ function runRouter() {
     const cls = s >= 70 ? 'match-strong' : s >= 45 ? 'match-possible' : s >= 25 ? 'match-explore' : 'match-no';
     const bl  = s >= 70 ? 'mb-g' : s >= 45 ? 'mb-y' : s >= 25 ? 'mb-p' : 'mb-gr';
     const lbl = s >= 70 ? '✓ Strong Match' : s >= 45 ? '~ Possible' : s >= 25 ? '↗ Worth Exploring' : '– Not Recommended';
+    const docMap = {sba7a:'d1',sba504:'d2',heloc:'d4',dscr:'d5',loc:'d6',mca:'d7',revcon:'d8',equip:'d9',factoring:'d10',credit:'d11',cre:'d12',constV:'d13',constH:'d14',cre504:'d15',creRefi:'d16',cashout:'d17',abl:'d18',fixflip:'d19',resmtg:'d20'};
+    const intakeMap = {sba7a:'general',sba504:'sba504cre',heloc:'heloc',dscr:'dscr',loc:'general',mca:'general',revcon:'mca_consol',equip:'equipment',factoring:'general',credit:'general',cre:'sba504cre',constV:'construction',constH:'construction',cre504:'sba504cre',creRefi:'sba504cre',cashout:'heloc',abl:'abl',fixflip:'fixflip',resmtg:'resmtg'};
+    const docId = docMap[p.id] || '';
+    const intakeType = intakeMap[p.id] || 'general';
     html += `<div class="match-card ${cls}">
       <div class="match-header">
         <span style="font-size:12px;color:var(--text-muted);font-weight:600;">${i+1}.</span>
@@ -2117,11 +2367,245 @@ function runRouter() {
       ${p.note ? `<div class="match-note">${p.note}</div>` : ''}
       <div class="match-pitch">${p.pitch}</div>
       <div style="font-size:11px;color:var(--text-muted);margin-top:4px;"><strong>Docs to request:</strong> ${p.docs}</div>
+      <div class="result-actions">
+        ${docId ? `<button class="ra-btn ra-btn-blue" onclick="viewDocChecklist('${docId}')">📋 Doc Checklist</button>` : ''}
+        <button class="ra-btn ra-btn-teal" onclick="startIntakeFor('${intakeType}')">📝 Start Intake</button>
+      </div>
     </div>`;
   });
 
   document.getElementById('routerResults').innerHTML = html;
 }
+
+// ═══ INTAKE FORM LOGIC ═══
+function switchIntakeForm(type) {
+  document.querySelectorAll('.intake-product-section').forEach(s => s.classList.add('hidden'));
+  if (type && type !== 'general') {
+    const el = document.getElementById('ifp-' + type);
+    if (el) el.classList.remove('hidden');
+  }
+  document.getElementById('intakeSummaryBox').style.display = 'none';
+}
+
+function syncIntakeRouter() {
+  // Live sync core intake fields → router form (silent)
+  const rev  = document.getElementById('if-rev').value;
+  const fico = document.getElementById('if-fico').value;
+  const tib  = document.getElementById('if-tib').value;
+  const debt = document.getElementById('if-debt').value;
+  const assets = document.getElementById('if-assets').value;
+  if (rev)  document.getElementById('r-rev').value  = rev;
+  if (fico) document.getElementById('r-fico').value = fico;
+  if (tib)  document.getElementById('r-tib').value  = tib;
+  if (debt) document.getElementById('r-debt').value = debt;
+  if (assets) document.getElementById('r-assets').value = assets;
+}
+
+function routeFromIntake() {
+  syncIntakeRouter();
+  // Set industry goal from selected deal type
+  const type = document.getElementById('intake-type').value;
+  const goalMap = {
+    general:'working_capital', heloc:'cash_out', dscr:'real_estate',
+    construction:'construction', sba504cre:'real_estate', mca_consol:'debt_refi',
+    equipment:'equipment', abl:'working_capital', fixflip:'real_estate', resmtg:'real_estate'
+  };
+  if (goalMap[type]) document.getElementById('r-goal').value = goalMap[type];
+  // Switch to router tab and run
+  const routerTab = Array.from(document.querySelectorAll('.tab')).find(t => t.textContent.includes('Router'));
+  switchTab('router', routerTab);
+  setTimeout(() => { runRouter(); document.getElementById('routerResults').scrollIntoView({behavior:'smooth', block:'start'}); }, 80);
+}
+
+function generateIntakeSummary() {
+  const g = id => { const el=document.getElementById(id); return el ? (el.tagName==='SELECT' ? el.options[el.selectedIndex]?.text||'' : el.value||'') : ''; };
+  const type = document.getElementById('intake-type').options[document.getElementById('intake-type').selectedIndex]?.text || 'General';
+  const fmt = v => v ? v : '—';
+  let lines = [
+    '━━━ MCF DEAL INTAKE SUMMARY ━━━',
+    `Deal Type:       ${fmt(type)}`,
+    `Business:        ${fmt(g('if-bizname'))}`,
+    `Owner(s):        ${fmt(g('if-ownername'))} | ${fmt(g('if-ownership'))} ownership`,
+    `Industry:        ${fmt(g('if-industry'))}`,
+    `Contact:         ${fmt(g('if-contact'))}`,
+    '',
+    `Amount Needed:   $${fmt(g('if-amount'))} — ${fmt(g('if-usefunds'))}`,
+    `Monthly Revenue: $${fmt(g('if-rev'))}`,
+    `FICO:            ${fmt(g('if-fico'))}`,
+    `Time in Biz:     ${g('if-tib') ? document.getElementById('if-tib').options[document.getElementById('if-tib').selectedIndex].text : '—'}`,
+    `Debt Positions:  ${g('if-debt') ? document.getElementById('if-debt').options[document.getElementById('if-debt').selectedIndex].text : '—'}`,
+    `Assets:          ${g('if-assets') ? document.getElementById('if-assets').options[document.getElementById('if-assets').selectedIndex].text : '—'}`,
+  ];
+  // Product-specific
+  const t = document.getElementById('intake-type').value;
+  if (t === 'heloc') {
+    lines.push('', '── HELOC ──');
+    lines.push(`Property:        ${fmt(g('if-h-addr'))} (${fmt(g('if-h-type'))})`);
+    lines.push(`Est. Value:      $${fmt(g('if-h-val'))}  |  Mortgage: $${fmt(g('if-h-mort'))}`);
+    lines.push(`Rented:          ${fmt(g('if-h-rent'))}  |  Income: ${fmt(g('if-h-income'))}`);
+  } else if (t === 'dscr') {
+    lines.push('', '── DSCR ──');
+    lines.push(`Property:        ${fmt(g('if-d-addr'))} (${fmt(g('if-d-type'))})`);
+    lines.push(`Status:          ${fmt(g('if-d-status'))}  |  Rent: $${fmt(g('if-d-rent'))}/mo`);
+    lines.push(`Value:           $${fmt(g('if-d-val'))}  |  Mortgage: $${fmt(g('if-d-mort'))}`);
+    lines.push(`Annual Exp:      $${fmt(g('if-d-exp'))}  |  Transaction: ${fmt(g('if-d-trans'))}`);
+  } else if (t === 'construction') {
+    lines.push('', '── CONSTRUCTION ──');
+    lines.push(`Under Contract:  ${fmt(g('if-c-contract'))}  |  Type: ${fmt(g('if-c-type'))}`);
+    lines.push(`Price/Land:      $${fmt(g('if-c-price'))}  |  Build Budget: $${fmt(g('if-c-budget'))}`);
+    lines.push(`ARV:             $${fmt(g('if-c-arv'))}  |  Exit: ${fmt(g('if-c-exit'))}`);
+    lines.push(`Description:     ${fmt(g('if-c-desc'))}`);
+    lines.push(`HUD Builds:      ${fmt(g('if-c-builds'))}  |  Liquid Assets: $${fmt(g('if-c-cash'))}`);
+    lines.push(`Entity:          ${fmt(g('if-c-entity'))}  |  Citizenship: ${fmt(g('if-c-cit'))}`);
+  } else if (t === 'mca_consol') {
+    lines.push('', '── MCA CONSOLIDATION ──');
+    lines.push(`Active Positions: ${fmt(g('if-m-pos'))}`);
+    lines.push(`Daily Payment:   $${fmt(g('if-m-pay'))}  |  Total Payoff: $${fmt(g('if-m-payoff'))}`);
+    lines.push(`Lenders:         ${fmt(g('if-m-lenders'))}`);
+    lines.push(`Goal:            ${fmt(g('if-m-goal'))}`);
+  } else if (t === 'equipment') {
+    lines.push('', '── EQUIPMENT ──');
+    lines.push(`Equipment:       ${fmt(g('if-e-desc'))}`);
+    lines.push(`Make/Model:      ${fmt(g('if-e-make'))}  |  Condition: ${fmt(g('if-e-cond'))}`);
+    lines.push(`Price:           $${fmt(g('if-e-price'))}`);
+  } else if (t === 'abl') {
+    lines.push('', '── ABL ──');
+    lines.push(`Annual Revenue:  $${fmt(g('if-a-rev'))}  |  Avg A/R: $${fmt(g('if-a-ar'))}`);
+    lines.push(`Terms:           ${fmt(g('if-a-terms'))}  |  CPA Financials: ${fmt(g('if-a-cpa'))}`);
+    lines.push(`# Customers:     ${fmt(g('if-a-custs'))}  |  UCC Liens: ${fmt(g('if-a-ucc'))}`);
+    lines.push(`A/R Aging Avail: ${fmt(g('if-a-aging'))}  |  Use of Line: ${fmt(g('if-a-use'))}`);
+  } else if (t === 'fixflip') {
+    lines.push('', '── FIX & FLIP ──');
+    lines.push(`Property:        ${fmt(g('if-f-addr'))}`);
+    lines.push(`Price:           $${fmt(g('if-f-price'))}  |  Rehab: $${fmt(g('if-f-rehab'))}  |  ARV: $${fmt(g('if-f-arv'))}`);
+    lines.push(`Beds/SF:         ${fmt(g('if-f-beds'))}  |  Vacancy: ${fmt(g('if-f-vac'))}`);
+    lines.push(`Scope:           ${fmt(g('if-f-scope'))}`);
+    lines.push(`HUD Builds:      ${fmt(g('if-f-huds'))}  |  Exit: ${fmt(g('if-f-exit'))}`);
+    lines.push(`Liquid Assets:   $${fmt(g('if-f-cash'))}  |  Entity: ${fmt(g('if-f-ent'))}`);
+    lines.push(`Citizenship:     ${fmt(g('if-f-cit'))}`);
+  } else if (t === 'resmtg') {
+    lines.push('', '── RESIDENTIAL MORTGAGE ──');
+    lines.push(`Property:        ${fmt(g('if-r-addr'))}`);
+    lines.push(`Transaction:     ${fmt(g('if-r-trans'))}  |  Occupancy: ${fmt(g('if-r-occ'))}`);
+    lines.push(`Value:           $${fmt(g('if-r-val'))}  |  Mortgage: $${fmt(g('if-r-mort'))}`);
+    lines.push(`Cash-Out:        $${fmt(g('if-r-co'))}  |  Income: ${fmt(g('if-r-inc'))}`);
+    lines.push(`Derogatories:    ${fmt(g('if-r-der'))} ${fmt(g('if-r-dernotes'))}`);
+  } else if (t === 'sba504cre') {
+    lines.push('', '── SBA 504 / CRE ──');
+    lines.push(`Property:        ${fmt(g('if-504-addr'))}  |  Trans: ${fmt(g('if-504-trans'))}`);
+    lines.push(`Value:           $${fmt(g('if-504-val'))}  |  Existing Debt: $${fmt(g('if-504-debt'))}`);
+    lines.push(`Occupancy %:     ${fmt(g('if-504-occ'))}  |  Annual Rev: $${fmt(g('if-504-rev'))}`);
+  }
+  const notes = document.getElementById('if-notes').value;
+  if (notes) { lines.push('', '── NOTES ──'); lines.push(notes); }
+  lines.push('', `Prepared: ${new Date().toLocaleString()}`);
+  const summary = lines.join('\n');
+  // Show in box
+  const box = document.getElementById('intakeSummaryBox');
+  box.textContent = summary;
+  box.style.display = 'block';
+  box.scrollIntoView({behavior:'smooth', block:'start'});
+  // Copy to clipboard
+  navigator.clipboard.writeText(summary).then(() => {
+    const tmp = box.style.background;
+    box.style.background = '#dcfce7';
+    setTimeout(() => box.style.background = tmp, 800);
+  });
+}
+
+function clearIntake() {
+  document.querySelectorAll('#panel-intake input, #panel-intake select, #panel-intake textarea').forEach(el => {
+    if (el.tagName === 'SELECT') el.selectedIndex = 0;
+    else el.value = '';
+  });
+  document.getElementById('intake-type').value = '';
+  switchIntakeForm('');
+  document.getElementById('intakeSummaryBox').style.display = 'none';
+}
+
+// ═══ DOC CHECKLIST INTERACTIVITY ═══
+function initDocChecklists() {
+  document.querySelectorAll('#docCards .rc').forEach(card => {
+    const body = card.querySelector('.rc-body');
+    if (!body) return;
+    // Inject toolbar
+    const toolbar = document.createElement('div');
+    toolbar.className = 'doc-toolbar';
+    toolbar.innerHTML = `
+      <div class="doc-progress-txt">
+        <span class="doc-count">0</span> of <span class="doc-total">0</span> items collected
+        <div class="doc-pbar-wrap"><div class="doc-pbar-fill" style="width:0%"></div></div>
+      </div>
+      <button class="doc-action-btn" onclick="clearDocCard(this)">↺ Clear</button>
+      <button class="doc-action-btn" onclick="printDocCard(this)">🖨️ Print</button>
+    `;
+    body.insertBefore(toolbar, body.firstChild);
+    // Make list items clickable
+    body.querySelectorAll('.checklist li').forEach(li => {
+      li.addEventListener('click', function() {
+        this.classList.toggle('checked');
+        updateDocProgress(card);
+      });
+    });
+    updateDocProgress(card);
+  });
+}
+
+function updateDocProgress(card) {
+  const items   = card.querySelectorAll('.checklist li');
+  const checked = card.querySelectorAll('.checklist li.checked');
+  const toolbar = card.querySelector('.doc-toolbar');
+  if (!toolbar) return;
+  toolbar.querySelector('.doc-count').textContent = checked.length;
+  toolbar.querySelector('.doc-total').textContent = items.length;
+  const pct = items.length ? Math.round(checked.length / items.length * 100) : 0;
+  toolbar.querySelector('.doc-pbar-fill').style.width = pct + '%';
+}
+
+function clearDocCard(btn) {
+  const card = btn.closest('.rc');
+  card.querySelectorAll('.checklist li.checked').forEach(li => li.classList.remove('checked'));
+  updateDocProgress(card);
+}
+
+function printDocCard(btn) {
+  const card = btn.closest('.rc');
+  const title = card.querySelector('.rc-title')?.textContent || 'Doc Checklist';
+  const items = Array.from(card.querySelectorAll('.checklist li')).map(li => {
+    const checked = li.classList.contains('checked');
+    return (checked ? '☑' : '☐') + ' ' + li.textContent.trim();
+  }).join('\n');
+  const win = window.open('', '_blank', 'width=700,height=900');
+  win.document.write(`<html><head><title>${title}</title><style>body{font-family:Arial,sans-serif;padding:32px;font-size:13px;line-height:2;max-width:600px;}h2{font-size:16px;margin-bottom:20px;}pre{white-space:pre-wrap;font-family:Arial,sans-serif;line-height:2;}</style></head><body><h2>📋 ${title}</h2><pre>${items}</pre><p style="margin-top:24px;font-size:11px;color:#888;">Motor City Funding · ${new Date().toLocaleDateString()}</p></body></html>`);
+  win.document.close();
+  win.print();
+}
+
+// ═══ CROSS-PANEL NAVIGATION ═══
+function viewDocChecklist(docId) {
+  const docsTab = Array.from(document.querySelectorAll('.tab')).find(t => t.textContent.includes('Doc'));
+  switchTab('docs', docsTab);
+  setTimeout(() => {
+    const card = document.getElementById(docId);
+    if (!card) return;
+    card.classList.add('open');
+    card.scrollIntoView({behavior:'smooth', block:'center'});
+  }, 80);
+}
+
+function startIntakeFor(type, goal) {
+  const intakeTab = Array.from(document.querySelectorAll('.tab')).find(t => t.textContent.includes('Intake'));
+  switchTab('intake', intakeTab);
+  setTimeout(() => {
+    const sel = document.getElementById('intake-type');
+    if (sel && type) { sel.value = type; switchIntakeForm(type); }
+    if (goal) document.getElementById('r-goal').value = goal;
+    document.getElementById('panel-intake').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 80);
+}
+
+document.addEventListener('DOMContentLoaded', initDocChecklists);
+
 </script>
 </body>
 </html>
